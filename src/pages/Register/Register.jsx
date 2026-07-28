@@ -11,6 +11,13 @@ function Register() {
     const[password, setPassword] = useState("")
     const[confirmPassword, setConfirmPassword] = useState("")
 
+    const[error, setError] = useState({
+      name : "",
+      email : "",
+      password : "",
+      confirmPassword : ""
+    })
+
      const[nameError, setNameError] = useState(null)
       const[emailError, setEmailError] = useState(null)
       const[passwordError, setPasswordError] = useState(null)
@@ -28,45 +35,79 @@ function Register() {
    
       const handleRegister = ()=>{
 
-        const existingUser = data.fin
+        const existingUser = data.find(user=>user.name===name)
+
+        if(existingUser){
+         return "user Already exsist"
+        }
 
        if(name===""){
-            setNameError('input is blank')
-            return;
+          setError({
+            ...error,
+            name : "name input is blank"
+          })
+          return;
          }
          else{
-            setNameError("")
+            setError({
+            ...error,
+            name : ""
+         })
          }
          if(!/^[A-Za-z0-9]+$/.test(name)){
-          setNameError('name should be numbers and letters')
+          setError({
+            ...error,
+            name : "name sould contain number and letters"
+          })
+          return;
+         }
+         else{
+            setError({
+            ...error,
+            name : ""
+         })}
+      
+
+         if(!email.endsWith("@gmail.com")){
+            setError({
+            ...error,
+            email : "invalid email entered"
+          })
+          return;
+         }
+         else{
+           setError({
+            ...error,
+            email : ""
+         })
+         }
+         if(!/^[A-Za-z0-9@#$%&]+$/.test(password)){
+            
+              setError({
+            ...error,
+            password : "password must be contains letters, numbers, and special charactors"
+          })
           return;
 
          }
          else{
-            setNameError("")
-         }
-      
-
-         if(!email.endsWith("@gmail.com")){
-            setEmailError('not a valid email')
-            return;
-         }
-         else{
-            setEmailError('')
-         }
-         if(!/^[A-Za-z0-9@#$%&]+$/.test(password)){
-             setPasswordError('password must be contains letters, numbers, and special charactors')
-             return;
-         }
-         else{
-            setPasswordError("")
+            setError({
+            ...error,
+            password : ""
+         })
          }
          if(confirmPassword!==password){
-            setConfirmPasswordError('confirm password is rejected')
-            return;
+             setError({
+            ...error,
+            confirmPassword : "password not confirmed"
+          })
+          return;
          }
          else{
-            setConfirmPasswordError('')
+            setError({
+            ...error,
+            confirmPassword : ""
+         })
          }
          
          
@@ -75,26 +116,24 @@ function Register() {
             email: email,
             password: password,
             role : "user"
+        
 
          }
     
     registerMuatation.mutate(newUser)
 
       }
-    
   
-
-
 
   return (
     <div className='h-screen flex flex-col justify-center items-center '>
         <div  className='w-3/6 border rounded-4xl text-center p-5'>
         <h1 className='text-5xl text-brand-brown font-extrabold'>Register</h1>
         <div className='flex flex-col gap-10  m-10 '>
-            <input type="text" placeholder='enter name ...' onChange={(e)=>setName(e.target.value)} className='p-5 border border-brand-gold bg-brand-cream' />
-            <input type="email" placeholder='enter email Address ...' onChange={(e)=>setEmail(e.target.value)} className='p-5 border border-brand-gold bg-brand-cream' />
-            <input type="password" placeholder='password...' onChange={(e)=>setPassword(e.target.value)} className='p-5 border border-brand-gold bg-brand-cream'/>
-            <input type="password" placeholder='confirm password ...' onChange={(e)=>setConfirmPassword(e.target.value)} className='p-5 border border-brand-gold bg-brand-cream' />
+            <div><input type="text" placeholder='enter name ...' onChange={(e)=>setName(e.target.value)} className='w-full p-5 border border-brand-gold bg-brand-cream' /><p>{error.name}</p></div>
+            <div><input type="email" placeholder='enter email Address ...' onChange={(e)=>setEmail(e.target.value)} className='w-full p-5 border border-brand-gold bg-brand-cream' /><p>{error.email}</p></div>
+            <div><input type="password" placeholder='password...' onChange={(e)=>setPassword(e.target.value)} className='w-full p-5 border border-brand-gold bg-brand-cream'/><p>{error.password}</p></div>
+            <div><input type="password" placeholder='confirm password ...' onChange={(e)=>setConfirmPassword(e.target.value)} className='w-full p-5 border border-brand-gold bg-brand-cream' /><p>{error.confirmPassword}</p></div>
             <button className='bg-brand-beige p-5' onClick={handleRegister}>Register</button>
 
         </div>

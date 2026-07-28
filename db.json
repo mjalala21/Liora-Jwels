@@ -540,20 +540,6 @@
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
-      "image": "/images/bangles/bangle3.jpg",
-      "material": "18K Gold",
-      "description": "Elegant handcrafted diamond ring.",
-      "inStock": true,
-      "featured": true
-    },
-    {
-      "id": "39",
-      "name": "Royal Diamond Ring",
-      "category": "Bangle",
-      "price": 2999,
-      "originalPrice": 3499,
-      "rating": 4.8,
-      "reviews": 120,
       "image": "/images/bangles/bangle4.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
@@ -638,8 +624,29 @@
       "password": "123qwe#@",
       "role": "user",
       "id": "uongffLE9dE"
+    },
+    {
+      "name": "rijtiwruoituwoi",
+      "email": "dkjakja@gmail.com",
+      "password": "123qwe#@",
+      "role": "user",
+      "id": "I5X5_N985UE"
     }
   ],
   "orders": [],
+  "carts": [
+    {
+      "id": "lkWORahoJhA",
+      "userId": 2,
+      "productId": "39",
+      "quandity": 1
+    },
+    {
+      "userId": "uongffLE9dE",
+      "productId": "30",
+      "quantity": 1,
+      "id": "-hO1CmvfJBo"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import {useQuery} from '@tanstack/react-query'
 import { getProducts } from '../../services/api'
+import { Link } from 'react-router-dom'
 
 function Category() {
 
@@ -27,7 +28,7 @@ function Category() {
         {filteredProducts.map(product=>
             <div key={product.id}>
                 <p>{product.name}</p>
-                <img src={product.image} alt="" />
+                <Link to={`/products/${product.id}`}><img src={product.image} alt="" /></Link>
                 <p>{product.description}</p>
               <p>{product.price}</p>
             </div>

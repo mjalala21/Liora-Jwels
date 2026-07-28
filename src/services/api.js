@@ -15,3 +15,11 @@ export async function getUsers(){
     const response = await axios.get("http://localhost:3000/users")
     return response.data
 }
+
+export async function addToCart(item){
+    const response = await axios.post("http://localhost:3000/carts",item)
+
+    return response.data
+}
+
+export async function getCart

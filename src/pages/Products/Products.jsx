@@ -39,9 +39,9 @@ function Products() {
  {data.filter(product=>product.category === "Ring" && product.id)
       .slice(0,4)
       .map(product=> 
-      <div>
+      <div key={product.id}>
         <p>{product.id}</p>
-        <img src={product.image} className="w-\[300px]/ h-\[400px]\ object-cover rounded-l"/>
+        <img src={product.image} className="w-\[300px]/ h-\[400px]\ object-cover rounded-l" />
         <p>{product.name}</p>
         <p>{product.description}</p>
         <p>{product.price}</p>
@@ -49,13 +49,13 @@ function Products() {
         </div>
      )
       }
-        <Link to='/products/Ring'><button>View all</button></Link>
+        <Link to='/products/category/Ring'><button>View all</button></Link>
    </div>
        <div className='flex gap-20 p-10'>
  {data.filter(product=>product.category === "Bracelet" && product.id)
       .slice(0,4)
       .map(product=> 
-      <div>
+      <div  key={product.id}>
         <p>{product.id}</p>
         <img src={product.image} className="w-\[300px]/ h-\[400px]\ object-cover rounded-l"/>
         <p>{product.name}</p>
@@ -65,13 +65,13 @@ function Products() {
         </div>
      )
       }
-        <Link to='/products/Bracelet'><button>View all</button></Link>
+        <Link to='/products/category/Bracelet'><button>View all</button></Link>
    </div>
        <div className='flex gap-20 p-10'>
  {data.filter(product=>product.category === "Necklace" && product.id)
       .slice(0,4)
       .map(product=> 
-      <div>
+      <div  key={product.id}>
         <p>{product.id}</p>
         <img src={product.image} className="w-\[300px]/ h-\[400px]\ object-cover rounded-l"/>
         <p>{product.name}</p>
@@ -81,13 +81,13 @@ function Products() {
         </div>
      )
       }
-       <Link to='/products/Necklace'> <button>View all</button></Link>
+       <Link to='/products/category/Necklace'> <button>View all</button></Link>
    </div>
        <div className='flex gap-20 p-10'>
  {data.filter(product=>product.category === "Bangle" && product.id)
       .slice(0,4)
       .map(product=> 
-      <div>
+      <div  key={product.id}>
         <p>{product.id}</p>
         <img src={product.image} className="w-\[300px]/ h-\[400px]\ object-cover rounded-l"/>
         <p>{product.name}</p>
@@ -97,7 +97,7 @@ function Products() {
         </div>
      )
       }
-       <Link to='/products/Bangle'><button>View all</button></Link> 
+       <Link to='/products/category/Bangle'><button>View all</button></Link> 
    </div>
    </div>
    )
