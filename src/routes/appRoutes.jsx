@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from '../pages/Home/Home'
 import { Route, Routes } from 'react-router-dom'
-import Cart from '../pages/cart/Cart'
+import Cart from '../pages/Cart/Cart'
 import Login from '../pages/Login/Login'
 import Register from '../pages/Register/Register'
 import Wishlist from '../pages/Wishlist/Wishlist'

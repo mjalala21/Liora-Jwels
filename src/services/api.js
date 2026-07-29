@@ -22,4 +22,7 @@ export async function addToCart(item){
     return response.data
 }
 
-export async function getCart
+export async function getCart(userId){
+    const response = await axios.get(`http://localhost:3000/carts?userId=${userId}`)
+    return response.data
+}
