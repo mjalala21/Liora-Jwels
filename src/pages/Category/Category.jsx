@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../services/api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getProducts, addToCart, getCart } from "../../services/api";
 import { 
   FaHeart,
   FaEye,
@@ -21,7 +21,7 @@ function Category() {
 
 
 
-  const {data, isLoading, error} = useQuery({
+  const {data : products, isProductLoading, error} = useQuery({
 
     queryKey:["products",category],
 
@@ -29,9 +29,20 @@ function Category() {
 
   });
 
+ 
 
+  const addCartMutation = useMutation({
+    mutationFn : addToCart
+  })
 
-  if(isLoading){
+  const {data : cart, isCartLoading } = useQuery({
+
+    queryKey : ["cart"],
+    queryFn : getCart
+
+  })
+
+  if(isProductLoading || isCartLoading){
 
     return (
       <div className="
@@ -46,7 +57,8 @@ function Category() {
 
   }
 
-
+ console.log(products)
+ console.log(cart)
 
   if(error){
 
@@ -58,10 +70,37 @@ function Category() {
 
 
   const filteredProducts =
-  data.filter(
+  products.filter(
     product=>product.category===category
   );
+ function handleAddCart(idToAdd){
 
+  const user = JSON.parse(localStorage.getItem("user"))
+
+  const cartedProduct= data.find(p=>p.id===idToAdd)
+
+const existingItem = cart.find(item=> item.productId === idToAdd
+  
+)
+if(existingItem){
+  alert("this item already added to te cart")
+}
+  
+   
+  if(cartedProduct){
+
+    const cartedItem = {
+      userId: user.id ,
+      productId : cartedProduct.id ,
+      quantity : 1
+    }
+
+    addCartMutation.mutate(cartedItem)
+
+  }
+  
+
+ }
 
 
 
@@ -331,7 +370,7 @@ function Category() {
 
 
 
-          <button
+          <button onClick={()=>handleAddCart(product.id)}
           className="
             mt-5
             w-full

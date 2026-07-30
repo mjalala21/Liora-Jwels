@@ -345,7 +345,7 @@ gap-4
 
 
 <span className="
-bg-brand-cream
+bg-brand-gold
 px-5
 py-2
 rounded-full
