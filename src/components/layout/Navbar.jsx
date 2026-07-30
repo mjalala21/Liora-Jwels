@@ -1,32 +1,254 @@
 import React from 'react'
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
-import { FaRegUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+
 
 function Navbar() {
-  return (
-    <div className=' flex justify-between  bg-brand-brown p-4'>
-      <div className='flex gap-40'>
 
-      
-      <div className='text-brand-gold text-2xl'>LIORA</div>
-      <div className='flex gap-20'>
-        <Link to = '/'><div className='text-brand-beige font-serif'>Home</div></Link>
-        <Link to='/products'><div className='text-brand-beige font-serif'>Collections</div></Link>
-        <Link to='/bestsellers'><div className='text-brand-beige font-serif'>Best Sellers</div></Link>
-        <Link to='/newin'><div className='text-brand-beige font-serif'>Newin</div></Link>
-        
-        </div>
+  const navItems = [
+    {name:"Home", path:"/"},
+    {name:"Collections", path:"/products"},
+    {name:"Best Sellers", path:"/bestsellers"},
+    {name:"About", path:"/promise"}
+  ];
+
+
+  return (
+
+    <nav className="
+      fixed
+      top-0
+      left-0
+      w-full
+      z-50
+      px-12
+      py-6
+      flex
+      justify-between
+      items-center
+    
+      backdrop-blur-md
+bg-white/10
+    ">
+
+
+      {/* Left Menu */}
+
+      <div className="flex gap-12">
+
+        {
+          navItems.map((item,index)=>(
+
+            <Link 
+            key={index}
+            to={item.path}
+            >
+
+              <motion.div
+
+              whileHover={{
+                y:-3
+              }}
+
+              className="
+              text-[#F5E6C8]
+              font-serif
+              text-sm
+              tracking-[0.2em]
+              uppercase
+              relative
+              group
+              "
+
+              >
+
+              {item.name}
+
+
+              {/* underline animation */}
+
+              <span
+              className="
+              absolute
+              left-0
+              bottom-[-8px]
+              w-0
+              h-[1px]
+              bg-[#E6C98C]
+              group-hover:w-full
+              transition-all
+              duration-500
+              "
+              />
+
+              </motion.div>
+
+
+            </Link>
+
+          ))
+        }
+
       </div>
-      <div className='flex gap-20 '>
-        <div><input placeholder='search...' className='text-white' /></div>
-        <Link to='/login'><div className='text-brand-beige text-xl'><FaRegUser /></div></Link>
-        <Link to='/wishlist'><div className='text-brand-beige text-xl'><FaRegHeart /></div></Link>
-        <Link to='/cart'><div className='text-brand-beige text-xl'><LuShoppingCart /></div></Link>
+
+
+
+      {/* Logo */}
+
+      <motion.div
+
+      initial={{
+        opacity:0
+      }}
+
+      animate={{
+        opacity:1
+      }}
+
+      transition={{
+        duration:1
+      }}
+
+      className="
+      text-[#E6C98C]
+      text-3xl
+      font-serif
+      tracking-[0.5em]
+      "
+
+      >
+
+        LIORA
+
+      </motion.div>
+
+
+
+
+      {/* Right Section */}
+
+
+      <div className="
+      flex
+      items-center
+      gap-8
+      ">
+
+
+      {/* Search */}
+
+      <div
+      className="
+      flex
+      items-center
+      border-b
+      border-[#E6C98C]
+      pb-1
+      "
+      >
+
+      <input
+
+      placeholder="Search"
+
+      className="
+      bg-transparent
+      outline-none
+      text-[#F5E6C8]
+      placeholder:text-[#F5E6C8]/60
+      w-28
+      font-serif
+      text-sm
+      "
+
+      />
+
+      <IoSearch
+      className="
+      text-[#E6C98C]
+      "
+      />
+
       </div>
-    </div>
+
+
+
+
+      {/* Icons */}
+
+      <motion.div
+      whileHover={{scale:1.1}}
+      >
+
+      <Link to="/login">
+
+      <FaRegUser
+      className="
+      text-[#F5E6C8]
+      text-xl
+      hover:text-[#E6C98C]
+      transition
+      duration-300
+      "
+      />
+
+      </Link>
+
+      </motion.div>
+
+
+
+      <motion.div
+      whileHover={{scale:1.1}}
+      >
+
+      <Link to="/wishlist">
+
+      <FaRegHeart
+      className="
+      text-[#F5E6C8]
+      text-xl
+      hover:text-[#E6C98C]
+      transition
+      duration-300
+      "
+      />
+
+      </Link>
+
+      </motion.div>
+
+
+
+      <motion.div
+      whileHover={{scale:1.1}}
+      >
+
+      <Link to="/cart">
+
+      <LuShoppingCart
+      className="
+      text-[#F5E6C8]
+      text-xl
+      hover:text-[#E6C98C]
+      transition
+      duration-300
+      "
+      />
+
+      </Link>
+
+      </motion.div>
+
+
+      </div>
+
+
+    </nav>
+
   )
 }
 

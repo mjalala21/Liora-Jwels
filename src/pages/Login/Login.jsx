@@ -1,71 +1,318 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import { getUsers } from '../../services/api'
-import { useState} from 'react'
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getUsers } from "../../services/api";
 
 function Login() {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-const[email, setEmail] = useState("")
-const[password, setPassword] = useState("")
-const[rerror, setError] = useState({
-  remail : "",
-  rpassword : ""
-})
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const {data, isLoading} = useQuery({
-  queryKey : ["users"],
-  queryFn : getUsers
-})
-if(isLoading){
-  return <p>Loading...</p>
-}
-function handleLogin(){
-   console.log(data)
-  const loginUser = data.find(user=>user.email===email)
+  const [error, setError] = useState({
+    email: "",
+    password: ""
+  });
 
-  
 
- 
- if(loginUser){
-    setError({
-      ...rerror,
-      remail : "user not found"
-    })
- }
-if(password!==loginUser.password){
- setError({
-  ...rerror,
-  rpassword : "invalid password entered"
- })
-}
+  const { data, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: getUsers
+  });
 
-localStorage.setItem("user", JSON.stringify(loginUser));
 
-navigate('/')
+  if(isLoading){
+    return <p>Loading...</p>
+  }
 
-}
+
+
+  function handleLogin(){
+
+    const loginUser = data.find(
+      user => user.email === email
+    );
+
+
+    if(!loginUser){
+
+      setError({
+        ...error,
+        email:"User not found"
+      });
+
+      return;
+    }
+
+
+    if(loginUser.password !== password){
+
+      setError({
+        ...error,
+        password:"Incorrect password"
+      });
+
+      return;
+    }
+
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify(loginUser)
+    );
+
+    navigate("/");
+
+  }
+
 
 
   return (
-    <div className=' h-screen flex flex-col justify-center items-center'>
-      <div className='w-3/6 border rounded-4xl text-center p-5'>
-      <h1 className='text-5xl text-brand-brown font-extrabold'>Login</h1>
-      <div className='flex flex-col gap-10  m-10 '>
-        <div><input type = 'email' placeholder='enter your email...' className=' w-full p-5 border border-brand-gold bg-brand-cream' onChange={(e)=>setEmail(e.target.value)}/></div>
-        <div><input type="password" placeholder="enter password" className='w-full p-5 border border-brand-gold bg-brand-cream' onChange={(e)=>setPassword(e.target.value)}  /></div>
-        <button className='bg-brand-beige p-5' onClick={handleLogin}>LogIn</button>
+
+    <div 
+      className="
+        min-h-screen
+        bg-[#F8F4EC]
+        flex
+        items-center
+        justify-center
+        p-6
+      "
+    >
+
+
+      <div className="
+        max-w-5xl
+        w-full
+        grid
+        md:grid-cols-2
+        bg-white
+        rounded-3xl
+        overflow-hidden
+        shadow-2xl
+      ">
+
+
+        {/* Image Side */}
+
+        <div 
+          className="
+            hidden
+            md:block
+            bg-cover
+            bg-center
+          "
+          style={{
+            backgroundImage:
+            "url('images/Hero/jwellery.jpg')"
+          }}
+        >
+
+          <div className="
+            h-full
+            bg-black/30
+            flex
+            flex-col
+            justify-end
+            p-10
+            text-white
+          ">
+
+            <h2 className="
+              text-5xl
+              font-serif
+            ">
+              LIORA
+            </h2>
+
+            <p className="
+              mt-3
+              text-lg
+            ">
+              Timeless elegance crafted for your precious moments.
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+
+        {/* Login Form */}
+
+        <div className="
+          p-10
+          md:p-14
+        ">
+
+
+          <div className="
+            text-center
+            mb-10
+          ">
+
+            <h1 className="
+              text-5xl
+              font-serif
+              text-brand-brown
+              tracking-wide
+            ">
+              Welcome Back
+            </h1>
+
+
+            <p className="
+              mt-3
+              text-gray-500
+            ">
+              Sign in to continue your luxury journey
+            </p>
+
+
+            <div className="
+              w-24
+              h-[1px]
+              bg-brand-gold
+              mx-auto
+              mt-5
+            "></div>
+
+
+          </div>
+
+
+
+
+          <div className="
+            flex
+            flex-col
+            gap-6
+          ">
+
+
+            <div>
+
+              <input
+                type="email"
+                placeholder="Email address"
+                className="
+                  w-full
+                  p-4
+                  rounded-xl
+                  border
+                  border-brand-gold/40
+                  bg-brand-cream
+                  outline-none
+                  focus:ring-2
+                  focus:ring-brand-gold
+                "
+                onChange={(e)=>setEmail(e.target.value)}
+              />
+
+              {
+                error.email &&
+                <p className="text-red-500 mt-2">
+                  {error.email}
+                </p>
+              }
+
+            </div>
+
+
+
+
+            <div>
+
+              <input
+                type="password"
+                placeholder="Password"
+                className="
+                  w-full
+                  p-4
+                  rounded-xl
+                  border
+                  border-brand-gold/40
+                  bg-brand-cream
+                  outline-none
+                  focus:ring-2
+                  focus:ring-brand-gold
+                "
+                onChange={(e)=>setPassword(e.target.value)}
+              />
+
+              {
+                error.password &&
+                <p className="text-red-500 mt-2">
+                  {error.password}
+                </p>
+              }
+
+            </div>
+
+
+
+
+            <button
+              onClick={handleLogin}
+              className="
+                bg-brand-brown
+                text-white
+                py-4
+                rounded-xl
+                tracking-widest
+                hover:bg-brand-gold
+                transition
+                duration-500
+              "
+            >
+              LOGIN
+            </button>
+
+
+          </div>
+
+
+
+
+          <div className="
+            flex
+            justify-center
+            gap-3
+            mt-8
+            text-sm
+          ">
+
+            <p>
+              New to LIORA?
+            </p>
+
+
+            <Link 
+              to="/register"
+              className="
+                text-brand-gold
+                font-semibold
+                hover:underline
+              "
+            >
+              Create Account
+            </Link>
+
+
+          </div>
+
+
+        </div>
+
+
       </div>
-      <div className='flex gap-5 justify-center'>
-      <p className='p-2'>if you're not registerd yet ! </p>
-      <Link to='/register'><button className='bg-brand-gold px-4 py-2 rounded-2xl'>Register</button></Link>
-      </div>
-</div>
+
+
     </div>
-  )
+
+  );
 }
 
-export default Login
+export default Login;

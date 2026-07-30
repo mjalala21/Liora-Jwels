@@ -26,3 +26,8 @@ export async function getCart(userId){
     const response = await axios.get(`http://localhost:3000/carts?userId=${userId}`)
     return response.data
 }
+
+export async function removeItemfromCart(itemId){
+    const response = await axios.delete(`http://localhost:3000/carts/${itemId}`)
+    return response.data
+}

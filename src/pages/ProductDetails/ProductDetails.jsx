@@ -1,35 +1,67 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { addToCart, getProducts } from '../../services/api'
+import { addToCart, getProducts, getCart} from '../../services/api'
 
 function ProductDetails() {
+
+  const navigate = useNavigate()
 
     const addCartMutation = useMutation({
         mutationFn : addToCart
     })
 
  const {id} = useParams()
-    const {data, isLoading} = useQuery({
+    const {data : products, isLoading} = useQuery({
         queryKey : ['product', id],
         queryFn : getProducts
     })
+
+    const {data : cart, isCartLoading } = useQuery({
+  queryKey : ['cart'],
+  queryFn : getCart
+})
    
     if(isLoading){
     return <p>Loading...</p>
   }
 
+  if(isCartLoading){
+    return <p>Loading...</p>
+  }
 
 
-  const product = data.find(p=>p.id===id)
-
+const product = products.find(p => String(p.id) === String(id));
      if(!product){
         return <p>page not found</p>
      }
 
+     console.log(product)
+
 function handleAddCart(){
+
+  console.log("clicked user")
      
      const user = JSON.parse(localStorage.getItem("user"))
+
+     
+
+    const checkCart = cart.find(item => {
+ 
+      
+
+  return (
+
+    item.userId ===user.id &&
+    item.productId === product.id
+  );
+});
+
+
+
+     if(checkCart){
+      return 
+     }
   
 
   const cartItem ={
@@ -39,7 +71,11 @@ function handleAddCart(){
   }
 
   addCartMutation.mutate(cartItem)
+navigate('/cart')
+ 
   }
+
+
 
   return (
     <div>

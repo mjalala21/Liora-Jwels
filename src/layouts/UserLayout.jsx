@@ -5,8 +5,10 @@ import Footer from '../components/layout/Footer'
 
 function UserLayout() {
   return (
-    <div>
-        <Navbar/>
+    <div className='relative'>
+      <div className='absolute top-0 left-0 w-full '>
+        <Navbar />
+        </div>
         <Outlet/>
         <Footer/>
     </div>
