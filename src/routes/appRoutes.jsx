@@ -13,6 +13,8 @@ import AuthLayout from '../layouts/AuthLayout'
 import NotFound from '../pages/NotFound/NotFound'
 import ProductDetails from '../pages/ProductDetails/ProductDetails'
 import PromiseSection from '../pages/Products/Promise'
+import Checkout from '../pages/Checkout/Checkout'
+import MyOrders from '../pages/Orders/Orders'
 
 
 function AppRoutes() {
@@ -28,7 +30,8 @@ function AppRoutes() {
         <Route path='/products/category/:category' element={<Category/>}></Route>
         <Route path='/products/:id' element={<ProductDetails/>}></Route>
         <Route path='/bestsellers' element={<BestSeller/>}></Route>
-        <Route path='/promise' element={<PromiseSection/>}></Route>
+        <Route path='/orders' element={<MyOrders/>}></Route>
+        <Route path='/checkout' element={<Checkout/>}></Route>
       </Route>
       <Route element={<AuthLayout/>}>
          <Route path='/login' element={<Login/>}></Route>

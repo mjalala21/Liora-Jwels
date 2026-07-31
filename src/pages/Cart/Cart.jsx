@@ -7,6 +7,8 @@ import {
 } from "../../services/api";
 
 import { FaTrash, FaShoppingBag } from "react-icons/fa";
+import { Link } from "react-router-dom";
+// import { getCartProducts } from "../../utilis/calculateTotal";
 
 
 function Cart() {
@@ -74,7 +76,7 @@ function Cart() {
   }
 
 
-
+// const cartProductDetail = getCartProducts(cart, products)
 
   const cartProduct = cart
 
@@ -97,7 +99,7 @@ function Cart() {
 
   .filter(item=>item.product);
 
-
+// const cartProduct = cartProductDetail.filter(item=> item.product)
 
 
   const total = cartProduct.reduce(
@@ -490,7 +492,7 @@ Total
 
 
 
-<button
+<Link to='/checkout'><button 
 
 className="
 mt-10
@@ -509,7 +511,7 @@ transition
 
 Proceed To Checkout
 
-</button>
+</button></Link>
 
 
 </div>

@@ -31,3 +31,8 @@ export async function removeItemfromCart(itemId){
     const response = await axios.delete(`http://localhost:3000/carts/${itemId}`)
     return response.data
 }
+
+export async function placeOrders(itemToOrder){
+    const response = await axios.post("http://localhost:3000/orders", itemToOrder)
+    return response.data
+}

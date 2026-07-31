@@ -7,20 +7,26 @@ function ProductDetails() {
 
   const navigate = useNavigate()
 
-    const addCartMutation = useMutation({
-        mutationFn : addToCart
-    })
+   const {id} = useParams()
 
- const {id} = useParams()
+    const user = JSON.parse(localStorage.getItem("user"))
+
     const {data : products, isLoading} = useQuery({
         queryKey : ['product', id],
         queryFn : getProducts
     })
 
     const {data : cart, isCartLoading } = useQuery({
-  queryKey : ['cart'],
-  queryFn : getCart
+  queryKey : ['cart', user.id],
+  queryFn : ()=>getCart(user.id)
 })
+
+    const addCartMutation = useMutation({
+        mutationFn : addToCart
+    })
+
+
+  
    
     if(isLoading){
     return <p>Loading...</p>
@@ -36,20 +42,13 @@ const product = products.find(p => String(p.id) === String(id));
         return <p>page not found</p>
      }
 
-     console.log(product)
+    
 
 function handleAddCart(){
 
-  console.log("clicked user")
-     
-     const user = JSON.parse(localStorage.getItem("user"))
 
-     
-
-    const checkCart = cart.find(item => {
+      const checkCart = cart.find(item => {
  
-      
-
   return (
 
     item.userId ===user.id &&
@@ -60,7 +59,7 @@ function handleAddCart(){
 
 
      if(checkCart){
-      return 
+      alert("it's already a carted item ")
      }
   
 
@@ -71,7 +70,7 @@ function handleAddCart(){
   }
 
   addCartMutation.mutate(cartItem)
-navigate('/cart')
+
  
   }
 

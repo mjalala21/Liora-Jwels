@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProducts, addToCart, getCart } from "../../services/api";
 import { 
   FaHeart,
@@ -14,14 +14,18 @@ function Category() {
 
   const {category} = useParams();
 
+  const queryClient = useQueryClient()
+
+  const navigate = useNavigate()
+
 
   const [wishlist,setWishlist] = useState([]);
 
   const [quickView,setQuickView] = useState(null);
 
+    const user = JSON.parse(localStorage.getItem("user"))
 
-
-  const {data : products, isProductLoading, error} = useQuery({
+  const {data : products=[], isProductLoading, error} = useQuery({
 
     queryKey:["products",category],
 
@@ -29,18 +33,30 @@ function Category() {
 
   });
 
- 
+   const {data : cart, isCartLoading } = useQuery({
+
+    queryKey : ["cart", user.id],
+    queryFn : ()=>getCart(user.id)
+
+  })
 
   const addCartMutation = useMutation({
-    mutationFn : addToCart
-  })
+    mutationFn : addToCart,
 
-  const {data : cart, isCartLoading } = useQuery({
+     onSuccess: (data) => {
+    console.log("Added successfully", data);
+     queryClient.invalidateQueries({
+      queryKey : ["cart", user.id]
+     }) 
+  },
 
-    queryKey : ["cart"],
-    queryFn : getCart
+  onError: (error) => {
+    console.log("Error:", error);
+  }
+});
 
-  })
+
+
 
   if(isProductLoading || isCartLoading){
 
@@ -57,8 +73,9 @@ function Category() {
 
   }
 
- console.log(products)
- console.log(cart)
+  console.log(cart)
+
+
 
   if(error){
 
@@ -73,21 +90,41 @@ function Category() {
   products.filter(
     product=>product.category===category
   );
+
+  
+
+
+
+
  function handleAddCart(idToAdd){
 
-  const user = JSON.parse(localStorage.getItem("user"))
+if(!user){
+  navigate("/login")
+  return;
+}
 
-  const cartedProduct= data.find(p=>p.id===idToAdd)
+  const cartedProduct= products.find(p=>
+    String(p.id)=== String(idToAdd))
 
-const existingItem = cart.find(item=> item.productId === idToAdd
+
+const existingItem = cart.find(item=> 
+   String(item.userId) === String(user.id) &&
+  String(item.productId) === String(idToAdd)
   
 )
+console.log("Current cart:", cart);
+console.log("Clicked product:", idToAdd);
+console.log("Current user:", user.id);
+
+
 if(existingItem){
   alert("this item already added to te cart")
+
+  return;
 }
   
-   
-  if(cartedProduct){
+  
+
 
     const cartedItem = {
       userId: user.id ,
@@ -95,10 +132,10 @@ if(existingItem){
       quantity : 1
     }
 
+
     addCartMutation.mutate(cartedItem)
 
-  }
-  
+
 
  }
 
@@ -370,7 +407,10 @@ if(existingItem){
 
 
 
-          <button onClick={()=>handleAddCart(product.id)}
+          <button disabled={isCartLoading}
+          type='button'  onClick={()=>{
+            console.log("clicked")
+          handleAddCart(product.id)}}
           className="
             mt-5
             w-full

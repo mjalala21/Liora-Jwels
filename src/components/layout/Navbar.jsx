@@ -12,7 +12,7 @@ function Navbar() {
     {name:"Home", path:"/"},
     {name:"Collections", path:"/products"},
     {name:"Best Sellers", path:"/bestsellers"},
-    {name:"About", path:"/promise"}
+    {name:"Orders", path:"/orders"}
   ];
 
 
