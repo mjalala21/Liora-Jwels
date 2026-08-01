@@ -58,11 +58,11 @@ const wishlistCount = wishlist.length;
 
 
 const categories=[
-"Rings",
-"Bangles",
-"Necklaces",
-"Bracelets",
-"Earrings"
+"Ring",
+"Bangle",
+"Necklace",
+"Bracelet",
+"Earring"
 ];
 
 
@@ -129,7 +129,7 @@ setOpenCollection(false)
 >
 
 
-<button
+<Link to='/products'><button
 
 className="
 text-[#F5E6C8]
@@ -144,6 +144,7 @@ uppercase
 Collections
 
 </button>
+</Link>
 
 
 
@@ -191,7 +192,7 @@ categories.map(category=>(
 
 key={category}
 
-to={`/products/${category}`}
+to={`/products/category/${category}`}
 
 className="
 block

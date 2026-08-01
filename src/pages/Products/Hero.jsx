@@ -2,6 +2,7 @@ import React from 'react'
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import heroVideo from "../../assets/videos/hero-jewellery.mp4";
 import jewellery from "../../assets/jwellery/bgjwellery11.png";
 
 function Hero() {
@@ -12,9 +13,8 @@ function Hero() {
      <div>
 
 
-      <section
-
-        className="
+     <section
+className="
 relative
 h-screen
 overflow-hidden
@@ -23,15 +23,22 @@ items-center
 justify-center
 text-center
 "
+>
 
-        style={{
-          backgroundImage:
-            "url('images/Hero/mainhero2.jpeg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-
-      >
+<video
+  src={heroVideo}
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="
+  absolute
+  inset-0
+  w-full
+  h-full
+  object-cover
+  "
+/>
 
 
         {/* Luxury dark overlay */}
@@ -49,7 +56,7 @@ to-[#F8F4EC]/20
 
 
 
-        {/* Golden glow */}
+       
 
         <motion.div
 
@@ -81,53 +88,6 @@ blur-3xl
 
 
 
-
-        {/* Jewellery */}
-
-        <motion.img
-
-          src={jewellery}
-
-          className="
-absolute
-left-10
-bottom-0
-
-w-[350px]
-md:w-[500px]
-
-drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]
-"
-
-          initial={{
-
-            opacity: 0,
-            x: -100,
-            rotate: -10
-
-          }}
-
-          animate={{
-
-            opacity: 1,
-            x: 0,
-            rotate: 0,
-            y: [0, -25, 0]
-
-          }}
-
-          transition={{
-
-            duration: 2,
-            y: {
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }
-
-          }}
-
-        />
 
 
 

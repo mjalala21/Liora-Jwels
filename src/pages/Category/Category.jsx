@@ -22,7 +22,7 @@ function Category() {
 
   const [quickView,setQuickView] = useState(null);
 
-    const user = JSON.parse(localStorage.getItem("user"))
+    const user = JSON.parse(localStorage.getItem("user")) || null
 
   const {data : products=[], isProductLoading, error} = useQuery({
 
@@ -34,16 +34,18 @@ function Category() {
 
    const {data : cart, isCartLoading } = useQuery({
 
-    queryKey : ["cart", user.id],
-    queryFn : ()=>getCart(user.id)
+    queryKey : ["cart", user?.id],
+    queryFn : ()=>getCart(user.id),
+     enabled:!!user
 
   })
 
   const {data:wishlist=[]} = useQuery({
 
-  queryKey:["wishlist", user.id],
+  queryKey:["wishlist", user?.id],
 
-  queryFn:()=>getWishlist(user.id)
+  queryFn:()=>getWishlist(user.id),
+   enabled:!!user 
 
 });
 
@@ -110,7 +112,8 @@ const wishlistMutation = useMutation({
     product=>product.category===category
   );
 
-  
+  console.log(filteredProducts.length);
+console.log(filteredProducts);  
 
 
 

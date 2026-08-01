@@ -105,7 +105,7 @@ function Login() {
           "
           style={{
             backgroundImage:
-            "url('images/Hero/jwellery.jpg')"
+            "url('images/necklaces/jwellery.jpg')"
           }}
         >
 

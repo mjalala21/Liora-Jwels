@@ -17,7 +17,7 @@ function ProductDetails() {
 const queryClient = useQueryClient()
    const {id} = useParams()
 
-    const user = JSON.parse(localStorage.getItem("user"))
+    const user = JSON.parse(localStorage.getItem("user")) || null
 
     const[quantity, setQuantity] = useState(1)
 
@@ -27,15 +27,18 @@ const queryClient = useQueryClient()
     })
 
     const {data : cart, isCartLoading } = useQuery({
-  queryKey : ['cart', user.id],
-  queryFn : ()=>getCart(user.id)
+  queryKey : ['cart', user?.id],
+  queryFn : ()=>getCart(user.id),
+  enabled : !!user
 })
 
 const {data:wishlist=[]} = useQuery({
 
-  queryKey:["wishlist", user.id],
+  queryKey:["wishlist", user?.id],
 
-  queryFn:()=>getWishlist(user.id)
+  queryFn:()=>getWishlist(user.id),
+
+  enabled : !!user
 
 })
 
@@ -82,7 +85,7 @@ const removeWishlistMutation = useMutation({
 
 })
 
-  
+
   
    
     if(isLoading){

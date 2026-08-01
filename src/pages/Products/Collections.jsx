@@ -19,7 +19,7 @@ const collections = [
     image: "images/bangles/bangle11.png",
   },
   {
-    name: "Earring",
+    name: "Earing",
     image: "images/earings/earing22.png",
   },
 ];

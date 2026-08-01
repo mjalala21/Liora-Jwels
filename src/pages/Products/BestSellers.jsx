@@ -1,25 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function BestSellers() {
 
   const products = [
     {
-      id : 
+      id : "51", 
       name: "Royal Pearl Necklace",
       image: "images/necklaces/jwellery3.jpg",
     },
     {
-      id : 
+      id : "49",
       name: "Diamond Elegance",
-      image: "images/Hero/jwellery.jpg",
+      image: "images/necklaces/jwellery.jpg",
     },
     {
-      id : 
+      id : "57",
       name: "Classic Gold Ring",
       image: "images/rings/ring13.jpg",
     },
     {
-      id : 
+      id : "68",
       name: "Elegant Earrings",
       image: "images/earings/earing24.jpg",
     },
@@ -141,36 +142,37 @@ function BestSellers() {
           </div>
 
 
-          <button
-            className="
-              absolute
-              top-1/2
-              left-1/2
-              -translate-x-1/2
-              -translate-y-1/2
+         <Link
+to={`/products/${product.id}`}
+className="
+ absolute
+ top-1/2
+ left-1/2
+ -translate-x-1/2
+ -translate-y-1/2
 
-              bg-white/20
-              backdrop-blur-md
+ bg-white/20
+ backdrop-blur-md
 
-              text-white
-              border
-              border-white
+ text-white
+ border
+ border-white
 
-              px-8
-              py-3
-              rounded-full
+ px-8
+ py-3
+ rounded-full
 
-              opacity-0
-              group-hover:opacity-100
+ opacity-0
+ group-hover:opacity-100
 
-              transition-all
-              duration-500
+ transition-all
+ duration-500
 
-              hover:bg-white/40
-            "
-          >
-            Buy Now
-          </button>
+ hover:bg-white/40
+"
+>
+ Buy Now
+</Link>
 
 
 
