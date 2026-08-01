@@ -1,257 +1,524 @@
-import React from 'react'
-import { FaRegHeart, FaRegUser } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getCart, getWishlist } from "../../services/api";
 import { motion } from "framer-motion";
-import UserDropdown from './UserDropDown';
+import UserDropdown from "./UserDropDown";
 
 
 function Navbar() {
 
-  const navItems = [
-    {name:"Home", path:"/"},
-    {name:"Collections", path:"/products"},
-    {name:"Best Sellers", path:"/bestsellers"},
-    {name:"Orders", path:"/orders"}
-  ];
 
+const [openCollection,setOpenCollection] = useState(false);
 
-  return (
 
-    <nav className="
-      fixed
-      top-0
-      left-0
-      w-full
-      z-50
-      px-12
-      py-6
-      flex
-      justify-between
-      items-center
-    
-      backdrop-blur-md
-bg-white/10
-    ">
+const user = JSON.parse(
+localStorage.getItem("user")
+);
 
 
-      {/* Left Menu */}
 
-      <div className="flex gap-12">
+const {data:cart=[]}=useQuery({
 
-        {
-          navItems.map((item,index)=>(
+queryKey:["cart",user?.id],
 
-            <Link 
-            key={index}
-            to={item.path}
-            >
+queryFn:()=>getCart(user.id),
 
-              <motion.div
+enabled:!!user
 
-              whileHover={{
-                y:-3
-              }}
+});
 
-              className="
-              text-[#F5E6C8]
-              font-serif
-              text-sm
-              tracking-[0.2em]
-              uppercase
-              relative
-              group
-              "
 
-              >
 
-              {item.name}
+const {data:wishlist=[]}=useQuery({
 
+queryKey:["wishlist",user?.id],
 
-              {/* underline animation */}
+queryFn:()=>getWishlist(user.id),
 
-              <span
-              className="
-              absolute
-              left-0
-              bottom-[-8px]
-              w-0
-              h-[1px]
-              bg-[#E6C98C]
-              group-hover:w-full
-              transition-all
-              duration-500
-              "
-              />
+enabled:!!user
 
-              </motion.div>
+});
 
 
-            </Link>
 
-          ))
-        }
 
-      </div>
+const cartCount = cart.reduce(
+(sum,item)=>sum + item.quantity,
+0
+);
 
 
+const wishlistCount = wishlist.length;
 
-      {/* Logo */}
 
-      <motion.div
 
-      initial={{
-        opacity:0
-      }}
 
-      animate={{
-        opacity:1
-      }}
+const categories=[
+"Rings",
+"Bangles",
+"Necklaces",
+"Bracelets",
+"Earrings"
+];
 
-      transition={{
-        duration:1
-      }}
 
-      className="
-      text-[#E6C98C]
-      text-3xl
-      font-serif
-      tracking-[0.5em]
-      "
 
-      >
 
-        LIORA
+return (
 
-      </motion.div>
+<nav
+className="
+fixed
+top-0
+left-0
+w-full
+z-50
+px-12
+py-6
+flex
+justify-between
+items-center
+backdrop-blur-md
+bg-black/20
+"
+>
 
 
+{/* LEFT MENU */}
 
+<div className="flex gap-12">
 
-      {/* Right Section */}
 
+<Link
+to="/"
+className="
+text-[#F5E6C8]
+font-serif
+text-sm
+tracking-[0.2em]
+uppercase
+"
+>
 
-      <div className="
-      flex
-      items-center
-      gap-8
-      ">
+Home
 
+</Link>
 
-      {/* Search */}
 
-      <div
-      className="
-      flex
-      items-center
-      border-b
-      border-[#E6C98C]
-      pb-1
-      "
-      >
 
-      <input
 
-      placeholder="Search"
 
-      className="
-      bg-transparent
-      outline-none
-      text-[#F5E6C8]
-      placeholder:text-[#F5E6C8]/60
-      w-28
-      font-serif
-      text-sm
-      "
+{/* COLLECTION DROPDOWN */}
 
-      />
 
-      <IoSearch
-      className="
-      text-[#E6C98C]
-      "
-      />
+<div
+className="relative"
 
-      </div>
-
-
-
-
-      {/* Icons */}
-
-      <motion.div
-      whileHover={{scale:1.1}}
-      >
-
-      {/* <Link to="/login">
-
-      <FaRegUser
-      className="
-      text-[#F5E6C8]
-      text-xl
-      hover:text-[#E6C98C]
-      transition
-      duration-300
-      "
-      />
-
-      </Link> */}
-      <UserDropdown />
-
-      </motion.div>
-
-
-
-      <motion.div
-      whileHover={{scale:1.1}}
-      >
-
-      <Link to="/wishlist">
-
-      <FaRegHeart
-      className="
-      text-[#F5E6C8]
-      text-xl
-      hover:text-[#E6C98C]
-      transition
-      duration-300
-      "
-      />
-
-      </Link>
-
-      </motion.div>
-
-
-
-      <motion.div
-      whileHover={{scale:1.1}}
-      >
-
-      <Link to="/cart">
-
-      <LuShoppingCart
-      className="
-      text-[#F5E6C8]
-      text-xl
-      hover:text-[#E6C98C]
-      transition
-      duration-300
-      "
-      />
-
-      </Link>
-
-      </motion.div>
-
-
-      </div>
-
-
-    </nav>
-
-  )
+onMouseEnter={()=>
+setOpenCollection(true)
 }
 
-export default Navbar
+onMouseLeave={()=>
+setOpenCollection(false)
+}
+
+>
+
+
+<button
+
+className="
+text-[#F5E6C8]
+font-serif
+text-sm
+tracking-[0.2em]
+uppercase
+"
+
+>
+
+Collections
+
+</button>
+
+
+
+
+
+{
+openCollection &&
+
+<motion.div
+
+initial={{
+opacity:0,
+y:10
+}}
+
+animate={{
+opacity:1,
+y:0
+}}
+
+transition={{
+duration:.3
+}}
+
+
+className="
+absolute
+top-8
+left-0
+bg-white
+rounded-3xl
+shadow-2xl
+p-6
+w-56
+"
+
+>
+
+
+{
+categories.map(category=>(
+
+
+<Link
+
+key={category}
+
+to={`/products/${category}`}
+
+className="
+block
+py-3
+text-brand-brown
+font-serif
+hover:text-brand-gold
+hover:translate-x-2
+transition
+duration-300
+"
+
+>
+
+{category}
+
+</Link>
+
+
+))
+}
+
+
+
+</motion.div>
+
+}
+
+
+
+</div>
+
+
+
+
+
+<Link
+
+to="/bestsellers"
+
+className="
+text-[#F5E6C8]
+font-serif
+text-sm
+tracking-[0.2em]
+uppercase
+"
+
+>
+
+Best Sellers
+
+</Link>
+
+
+
+
+
+<Link
+
+to="/orders"
+
+className="
+text-[#F5E6C8]
+font-serif
+text-sm
+tracking-[0.2em]
+uppercase
+"
+
+>
+
+Orders
+
+</Link>
+
+
+
+</div>
+
+
+
+
+
+
+
+{/* LOGO */}
+
+
+<motion.div
+
+initial={{
+opacity:0
+}}
+
+animate={{
+opacity:1
+}}
+
+className="
+text-[#E6C98C]
+text-3xl
+font-serif
+tracking-[0.5em]
+"
+
+>
+
+LIORA
+
+</motion.div>
+
+
+
+
+
+
+
+{/* RIGHT SIDE */}
+
+
+
+<div
+className="
+flex
+items-center
+gap-8
+"
+>
+
+
+
+{/* SEARCH */}
+
+<div
+
+className="
+flex
+items-center
+border-b
+border-[#E6C98C]
+"
+
+>
+
+<input
+
+placeholder="Search"
+
+className="
+bg-transparent
+outline-none
+w-28
+text-[#F5E6C8]
+placeholder:text-[#F5E6C8]/60
+font-serif
+"
+
+/>
+
+
+<IoSearch
+className="
+text-[#E6C98C]
+"
+/>
+
+
+</div>
+
+
+
+
+
+
+
+{/* USER */}
+
+
+<UserDropdown/>
+
+
+
+
+
+
+
+{/* WISHLIST */}
+
+
+<Link
+
+to="/wishlist"
+
+className="
+relative
+"
+
+>
+
+
+<FaRegHeart
+
+className="
+text-[#F5E6C8]
+text-xl
+hover:text-[#E6C98C]
+transition
+"
+
+/>
+
+
+
+{
+wishlistCount > 0 &&
+
+<span
+
+className="
+absolute
+-top-3
+-right-3
+bg-[#E6C98C]
+text-brand-brown
+text-xs
+w-5
+h-5
+rounded-full
+flex
+items-center
+justify-center
+font-bold
+"
+
+>
+
+{wishlistCount}
+
+</span>
+
+}
+
+
+
+</Link>
+
+
+
+
+
+
+
+{/* CART */}
+
+
+<Link
+
+to="/cart"
+
+className="
+relative
+"
+
+>
+
+
+<LuShoppingCart
+
+className="
+text-[#F5E6C8]
+text-xl
+hover:text-[#E6C98C]
+transition
+"
+
+/>
+
+
+
+{
+cartCount >0 &&
+
+<span
+
+className="
+absolute
+-top-3
+-right-3
+bg-[#E6C98C]
+text-brand-brown
+text-xs
+w-5
+h-5
+rounded-full
+flex
+items-center
+justify-center
+font-bold
+"
+
+>
+
+{cartCount}
+
+</span>
+
+}
+
+
+
+</Link>
+
+
+
+
+
+</div>
+
+
+
+</nav>
+
+
+)
+
+}
+
+
+export default Navbar;

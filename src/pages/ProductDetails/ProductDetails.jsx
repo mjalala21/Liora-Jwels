@@ -1,17 +1,27 @@
 import React from 'react'
+import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useQuery, useMutation } from '@tanstack/react-query'
-import { addToCart, getProducts, getCart} from '../../services/api'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { addToCart, getProducts, getCart,  getWishlist, addToWishlist, removeFromWishlist, updateCart} from '../../services/api'
+import { FaHeart } from "react-icons/fa";
+
+import ProductHero from './productHero'
+import ProductServices from './productServices'
+import RelatedProducts from './relatedProducts'
+import ProductReviewsFAQ from './ProductReviewFAQ'
+
 
 function ProductDetails() {
 
   const navigate = useNavigate()
-
+const queryClient = useQueryClient()
    const {id} = useParams()
 
     const user = JSON.parse(localStorage.getItem("user"))
 
-    const {data : products, isLoading} = useQuery({
+    const[quantity, setQuantity] = useState(1)
+
+    const {data : products = [], isLoading} = useQuery({
         queryKey : ['product', id],
         queryFn : getProducts
     })
@@ -21,11 +31,58 @@ function ProductDetails() {
   queryFn : ()=>getCart(user.id)
 })
 
+const {data:wishlist=[]} = useQuery({
+
+  queryKey:["wishlist", user.id],
+
+  queryFn:()=>getWishlist(user.id)
+
+})
+
     const addCartMutation = useMutation({
         mutationFn : addToCart
     })
 
+    const updateCartMutation = useMutation({
+  mutationFn: ({ itemId, updatedData }) =>
+    updateCart(itemId, updatedData),
 
+  onSuccess: () => {
+    queryClient.invalidateQueries({
+      queryKey: ["cart", user.id],
+    });
+  },
+});
+
+const wishlistMutation = useMutation({
+
+  mutationFn:addToWishlist,
+
+  onSuccess:()=>{
+
+    queryClient.invalidateQueries({
+      queryKey:["wishlist", user.id]
+    })
+
+  }
+
+})
+
+const removeWishlistMutation = useMutation({
+
+  mutationFn: removeFromWishlist,
+
+  onSuccess:()=>{
+
+    queryClient.invalidateQueries({
+      queryKey:["wishlist", user.id]
+    })
+
+  }
+
+})
+
+  
   
    
     if(isLoading){
@@ -42,53 +99,147 @@ const product = products.find(p => String(p.id) === String(id));
         return <p>page not found</p>
      }
 
-    
-
-function handleAddCart(){
+function handleWishlist(product){
 
 
-      const checkCart = cart.find(item => {
- 
-  return (
+const existingItem = wishlist.find(item=>
 
-    item.userId ===user.id &&
-    item.productId === product.id
-  );
-});
+String(item.userId) === String(user.id)
+&&
+String(item.productId) === String(product.id)
 
-
-
-     if(checkCart){
-      alert("it's already a carted item ")
-     }
+)
   
 
-  const cartItem ={
+
+  // REMOVE FROM WISHLIST
+
+  if(existingItem){
+
+    removeWishlistMutation.mutate(existingItem.id)
+
+    return;
+
+  }
+
+
+
+  // ADD TO WISHLIST
+
+
+  const wishlistItem = {
+
+    userId:user.id,
+
+    productId:product.id
+
+  }
+
+
+  wishlistMutation.mutate(wishlistItem)
+
+
+}   
+
+function handleAddCart() {
+  const checkCart = cart.find(
+    (item) =>
+      String(item.userId) === String(user.id) &&
+      String(item.productId) === String(product.id)
+  );
+
+  // Product already in cart
+  if (checkCart) {
+    updateCartMutation.mutate({
+      itemId: checkCart.id,
+      updatedData: {
+        quantity: checkCart.quantity + quantity,
+      },
+    });
+
+    return;
+  }
+
+  // New product
+  addCartMutation.mutate(
+    {
       userId: user.id,
-    productId: product.id,
-    quantity: 1
+      productId: product.id,
+      quantity,
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["cart", user.id],
+        });
+      },
+    }
+  );
+}
+
+  function handleBuyNow(){
+
+const buyNowItem = {
+
+ userId:user.id,
+
+ productId:product.id,
+
+ quantity:1
+
+};
+
+
+localStorage.setItem(
+ "buyNowItem",
+ JSON.stringify(buyNowItem)
+);
+
+
+navigate("/checkout");
+
+
   }
 
-  addCartMutation.mutate(cartItem)
+//   return (
+//     <div>
+//         <h1>Product Details</h1>
+//         <img src={product.image} alt={product.name}/>
 
- 
-  }
+//       <h2>{product.name}</h2>
+
+//       <p>{product.description}</p>
+
+//       <p>{product.price}</p>
+//       <button className='px-4 py-2 bg-blue-300 text-white rounded-lg' onClick={handleAddCart}>Add to Cart</button>
+
+//     </div>
+//   )
+// }
+
+// export default ProductDetails
 
 
+
+// function ProductDetails() {
 
   return (
-    <div>
-        <h1>Product Details</h1>
-        <img src={product.image} alt={product.name}/>
-
-      <h2>{product.name}</h2>
-
-      <p>{product.description}</p>
-
-      <p>{product.price}</p>
-      <button className='px-4 py-2 bg-blue-300 text-white rounded-lg' onClick={handleAddCart}>Add to Cart</button>
-
-    </div>
+   <>
+   <ProductHero
+  product={product}
+  quantity={quantity}
+  setQuantity={setQuantity}
+  handleAddCart={handleAddCart}
+   handleBuyNow={handleBuyNow}
+  handleWishlist={handleWishlist}
+  isWishlisted={wishlist.some(
+    item => String(item.productId) === String(product.id)
+  )}
+/>
+   <ProductServices product = {product}/>
+   <RelatedProducts product={product} products={products}/>
+   <ProductReviewsFAQ/>
+   </>
   )
 }
 

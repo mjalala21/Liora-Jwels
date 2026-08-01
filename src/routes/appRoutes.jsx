@@ -17,6 +17,8 @@ import Checkout from '../pages/Checkout/Checkout'
 import MyOrders from '../pages/Orders/Orders'
 import ProtectedRoute from './ProtectedRoute'
 import Profile from '../pages/Profile/Profile'
+import OrderSuccess from '../components/order/OrderPlaced'
+
 
 
 function AppRoutes() {
@@ -30,6 +32,7 @@ function AppRoutes() {
               <Route path='/wishlist' element={<Wishlist/>}></Route>
               <Route path='/orders' element={<MyOrders/>}></Route>
         <Route path='/checkout' element={<Checkout/>}></Route>
+        <Route path='/orderplaced' element={<OrderSuccess/>}></Route>
           </Route>
 
       </Route>

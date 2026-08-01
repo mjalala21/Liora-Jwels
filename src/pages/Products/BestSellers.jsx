@@ -4,18 +4,22 @@ function BestSellers() {
 
   const products = [
     {
+      id : 
       name: "Royal Pearl Necklace",
       image: "images/necklaces/jwellery3.jpg",
     },
     {
+      id : 
       name: "Diamond Elegance",
       image: "images/Hero/jwellery.jpg",
     },
     {
+      id : 
       name: "Classic Gold Ring",
       image: "images/rings/ring13.jpg",
     },
     {
+      id : 
       name: "Elegant Earrings",
       image: "images/earings/earing24.jpg",
     },

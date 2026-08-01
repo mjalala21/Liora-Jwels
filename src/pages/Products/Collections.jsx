@@ -1,22 +1,25 @@
+import { Link } from "react-router-dom";
+
+
 const collections = [
   {
-    name: "Rings",
+    name: "Ring",
     image: "images/rings/ring18.jpg",
   },
   {
-    name: "Bracelets",
+    name: "Bracelet",
     image: "images/bracelets/bracelet13.png",
   },
   {
-    name: "Necklaces",
+    name: "Necklace",
     image: "images/necklaces/neklace10.png",
   },
   {
-    name: "Bangles",
+    name: "Bangle",
     image: "images/bangles/bangle11.png",
   },
   {
-    name: "Earrings",
+    name: "Earring",
     image: "images/earings/earing22.png",
   },
 ];
@@ -70,21 +73,23 @@ function Collections() {
 
         {collections.map((item,index)=>(
           
-          <div
-            key={index}
-            className={`
-              relative
-              group
-              transition-all
-              duration-500
-              hover:scale-[1.03]
-              ${index < 3 
-                ? "col-span-2" 
-                : "col-start-2 col-span-2"
-              }
-              ${index === 4 && "col-start-4"}
-            `}
-          >
+         <Link
+  key={index}
+  to={`/products/category/${item.name}`}
+  className={`
+    relative
+    group
+    transition-all
+    duration-500
+    hover:scale-[1.03]
+    block
+    ${index < 3
+      ? "col-span-2"
+      : "col-start-2 col-span-2"
+    }
+    ${index === 4 && "col-start-4"}
+  `}
+>
 
             <img
               src={item.image}
@@ -161,13 +166,13 @@ function Collections() {
                 hover:bg-white/30
               "
             >
-              Shop Now
+              Explore
             </button>
 
 
 
 
-          </div>
+        </Link>
 
         ))}
 

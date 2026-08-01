@@ -1,11 +1,11 @@
 import React from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { 
   getCart, 
   getProducts, 
   removeItemfromCart,
-  addToCart 
+   updateCart 
 } from "../../services/api";
 
 import { FaTrash, FaShoppingBag } from "react-icons/fa";
@@ -18,7 +18,7 @@ function Cart() {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-
+  const queryClient = useQueryClient();
 
   const {
     data: cart = [],
@@ -47,15 +47,26 @@ function Cart() {
 
 
 
-  const removeCartItemMutation = useMutation({
+ const removeCartItemMutation = useMutation({
+  mutationFn: removeItemfromCart,
 
-    mutationFn:removeItemfromCart
+  onSuccess: () => {
+    queryClient.invalidateQueries({
+      queryKey: ["cart", user.id]
+    });
+  }
+});
 
-  });
+const updateCartMutation = useMutation({
+  mutationFn: ({ id, quantity }) =>
+    updateCart(id, { quantity }),
 
-      const increaseCartMutation = useMutation({
-      mutationFn : addToCart
-    })
+  onSuccess: () => {
+    queryClient.invalidateQueries({
+      queryKey: ["cart", user.id]
+    });
+  }
+});
 
 
 
@@ -345,28 +356,59 @@ font-semibold
 
 
 
-<span className="
+<span
+className="
 mt-4
 flex
 justify-between
 items-center
-gap-4
+gap-6
 bg-brand-cream
 px-5
 py-3
 rounded-full
-">
-
-<button onClick={()=>increaseCartMutation.mutate(item)} className="font-extrabold">-</button>
-<p
-
+"
 >
 
+<button
+className="font-bold text-xl"
+onClick={() => {
+
+  if (item.quantity > 1) {
+
+    updateCartMutation.mutate({
+      id: item.id,
+      quantity: item.quantity - 1
+    });
+
+  } else {
+
+    removeCartItemMutation.mutate(item.id);
+
+  }
+
+}}
+>
+-
+</button>
+
+<p className="font-semibold">
 Quantity : {item.quantity}
+</p>
 
-</p> 
-<button onClick={()=>removeCartItemMutation.mutate(item.id)} className="font-extrabold">+</button>
+<button
+className="font-bold text-xl"
+onClick={() =>
 
+  updateCartMutation.mutate({
+    id: item.id,
+    quantity: item.quantity + 1
+  })
+
+}
+>
++
+</button>
 
 </span>
 

@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../services/api";
 
 
 function Products() {
+
+  const navigate = useNavigate()
 
 
   const { data, isLoading, error } = useQuery({
@@ -264,7 +266,7 @@ function Products() {
 
 
 
-                    <button
+                    <Link to={`/products/${product.id}`}><button 
                       className="
                         absolute
                         bottom-5
@@ -284,7 +286,7 @@ function Products() {
                       "
                     >
                       View Details
-                    </button>
+                    </button></Link>
 
 
 

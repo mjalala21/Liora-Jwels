@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProducts, addToCart, getCart } from "../../services/api";
+import { getProducts, addToCart, getCart, addToWishlist, getWishlist } from "../../services/api";
 import { 
   FaHeart,
   FaEye,
@@ -19,7 +19,6 @@ function Category() {
   const navigate = useNavigate()
 
 
-  const [wishlist,setWishlist] = useState([]);
 
   const [quickView,setQuickView] = useState(null);
 
@@ -40,6 +39,14 @@ function Category() {
 
   })
 
+  const {data:wishlist=[]} = useQuery({
+
+  queryKey:["wishlist", user.id],
+
+  queryFn:()=>getWishlist(user.id)
+
+});
+
   const addCartMutation = useMutation({
     mutationFn : addToCart,
 
@@ -55,7 +62,19 @@ function Category() {
   }
 });
 
+const wishlistMutation = useMutation({
 
+  mutationFn:addToWishlist,
+
+  onSuccess:()=>{
+
+    queryClient.invalidateQueries({
+      queryKey:["wishlist", user.id]
+    });
+
+  }
+
+});
 
 
   if(isProductLoading || isCartLoading){
@@ -138,7 +157,51 @@ if(existingItem){
 
 
  }
+function handleWishlist(product){
 
+
+if(!user){
+
+  navigate("/login");
+
+  return;
+
+}
+
+
+
+const alreadyAdded = wishlist.find(item=>
+
+ String(item.productId) === String(product.id)
+
+);
+
+
+
+if(alreadyAdded){
+
+ alert("Already added to wishlist");
+
+ return;
+
+}
+
+
+
+const wishlistItem={
+
+ userId:user.id,
+
+ productId:product.id
+
+};
+
+
+
+wishlistMutation.mutate(wishlistItem);
+
+
+}
 
 
   return (
@@ -305,24 +368,30 @@ if(existingItem){
           ">
 
 
-          <button
-          onClick={()=>
-            setWishlist([
-              ...wishlist,
-              product
-            ])
-          }
-          className="
-            bg-white
-            p-3
-            rounded-full
-            shadow
-            hover:text-red-500
-            transition
-          "
-          >
+        <button
 
-          <FaHeart/>
+onClick={()=>handleWishlist(product)}
+
+className="
+ bg-white
+ p-3
+ rounded-full
+ shadow
+ hover:text-red-500
+ transition
+"
+
+>
+
+         <FaHeart
+className={
+ wishlist.some(
+ item=>String(item.productId)===String(product.id)
+ )
+ ? "text-red-500"
+ : "text-gray-400"
+}
+/>
 
           </button>
 

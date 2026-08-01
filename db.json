@@ -1449,6 +1449,461 @@
       "status": "Pending",
       "createdAt": "2026-07-31",
       "id": "dW9H6caUQjk"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        [
+          {
+            "userId": "uongffLE9dE",
+            "productId": "38",
+            "quantity": 3,
+            "id": "0c-5Fkc_vgQ",
+            "product": {
+              "id": "38",
+              "name": "Royal Diamond Ring",
+              "category": "Bangle",
+              "price": 2999,
+              "originalPrice": 3499,
+              "rating": 4.8,
+              "reviews": 120,
+              "image": "/images/bangles/bangle2.jpg",
+              "material": "18K Gold",
+              "description": "Elegant handcrafted diamond ring.",
+              "inStock": true,
+              "featured": true
+            }
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "5",
+            "quantity": 1,
+            "id": "fg-hx_bc0-E"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 2,
+            "id": "Fp7AH4TOItQ"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "6",
+            "quantity": 8,
+            "id": "Z3JaFr-ojSk"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "11",
+            "quantity": 1,
+            "id": "NRL1jCDRK20"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "29",
+            "quantity": 1,
+            "id": "YNiQEOxf45w"
+          }
+        ]
+      ],
+      "totalAmount": 47984,
+      "shippingAddress": {
+        "fullName": "",
+        "phone": "",
+        "city": "",
+        "address": ""
+      },
+      "paymentMethod": null,
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "KdlCp809_H4"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        [
+          {
+            "userId": "uongffLE9dE",
+            "productId": "5",
+            "quantity": 1,
+            "id": "fg-hx_bc0-E"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 2,
+            "id": "Fp7AH4TOItQ"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "6",
+            "quantity": 8,
+            "id": "Z3JaFr-ojSk"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "11",
+            "quantity": 1,
+            "id": "NRL1jCDRK20"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "29",
+            "quantity": 1,
+            "id": "YNiQEOxf45w"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 1,
+            "id": "lH3UTTHswJY"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 1,
+            "id": "9LPKnoFWNBk"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 1,
+            "id": "ZbyjZbCTSOU"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "1",
+            "quantity": 1,
+            "id": "EbD74O-fums"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "4",
+            "quantity": 1,
+            "id": "jdXL_NDNMIU"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "7",
+            "quantity": 1,
+            "id": "dPbTAkw0PNY"
+          }
+        ]
+      ],
+      "totalAmount": 56981,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "578436586843",
+        "city": "malappuram",
+        "address": "fhhkjhdkjsjiwfhiwhuhfwh"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "WbuU3cRtkqk"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        [
+          {
+            "userId": "uongffLE9dE",
+            "productId": "5",
+            "quantity": 1,
+            "id": "fg-hx_bc0-E"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 2,
+            "id": "Fp7AH4TOItQ"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "6",
+            "quantity": 8,
+            "id": "Z3JaFr-ojSk"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "11",
+            "quantity": 1,
+            "id": "NRL1jCDRK20"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "29",
+            "quantity": 1,
+            "id": "YNiQEOxf45w"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 1,
+            "id": "lH3UTTHswJY"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 1,
+            "id": "9LPKnoFWNBk"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "3",
+            "quantity": 1,
+            "id": "ZbyjZbCTSOU"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "1",
+            "quantity": 1,
+            "id": "EbD74O-fums"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "4",
+            "quantity": 1,
+            "id": "jdXL_NDNMIU"
+          },
+          {
+            "userId": "uongffLE9dE",
+            "productId": "7",
+            "quantity": 1,
+            "id": "dPbTAkw0PNY"
+          }
+        ]
+      ],
+      "totalAmount": 56981,
+      "shippingAddress": {
+        "fullName": "allu2",
+        "phone": "8475465764765",
+        "city": "kochi",
+        "address": "kdsfksfkkfkhwkfkw"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "jJD-IOW5mII"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "5",
+          "quantity": 1,
+          "id": "fg-hx_bc0-E"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 2,
+          "id": "Fp7AH4TOItQ"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "6",
+          "quantity": 8,
+          "id": "Z3JaFr-ojSk"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "11",
+          "quantity": 1,
+          "id": "NRL1jCDRK20"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "29",
+          "quantity": 1,
+          "id": "YNiQEOxf45w"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "lH3UTTHswJY"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "9LPKnoFWNBk"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "ZbyjZbCTSOU"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "1",
+          "quantity": 1,
+          "id": "EbD74O-fums"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "4",
+          "quantity": 1,
+          "id": "jdXL_NDNMIU"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "7",
+          "quantity": 1,
+          "id": "dPbTAkw0PNY"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "U5Z-qBkNKZw"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "gYNlhythu2Q"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "QVgLZygsQJU"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "CVscYn76T_I"
+        },
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1,
+          "id": "DN9n6Wquo7c"
+        }
+      ],
+      "totalAmount": 71976,
+      "shippingAddress": {
+        "fullName": "minnuminnu",
+        "phone": "74582687632",
+        "city": "malappuram",
+        "address": "kkjwerjewjrljelj"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "iZYRXHvUp9M"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "4",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2999,
+      "shippingAddress": {
+        "fullName": "adhish",
+        "phone": "742686325872",
+        "city": "wjrfjgjfds",
+        "address": "sfsnfjjs"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "2N7NIbe1-LA"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "3",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2999,
+      "shippingAddress": {
+        "fullName": "",
+        "phone": "",
+        "city": "",
+        "address": ""
+      },
+      "paymentMethod": null,
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "0neCABav3bg"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "4",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2999,
+      "shippingAddress": {
+        "fullName": "minnuhi",
+        "phone": "83741937497324",
+        "city": "ehkjewfkjwer",
+        "address": "skjfdskjfkjjs"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "Mc0CGACN5GM"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "29",
+          "quantity": 2,
+          "id": "82KGgIxxSuY"
+        }
+      ],
+      "totalAmount": 5998,
+      "shippingAddress": {
+        "fullName": "",
+        "phone": "",
+        "city": "",
+        "address": ""
+      },
+      "paymentMethod": null,
+      "status": "Pending",
+      "createdAt": "2026-07-31",
+      "id": "nIFilRfiukg"
+    }
+  ],
+  "wishlist": [
+    {
+      "userId": "uongffLE9dE",
+      "productId": "29",
+      "id": "SN88cIWy4qc"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "productId": "1",
+      "id": "BTBIpUY9kK4"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "productId": "3",
+      "id": "hRn0T8XqSHk"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "productId": "28",
+      "id": "sAHB9lLmbQk"
     }
   ],
   "carts": [
@@ -1460,15 +1915,9 @@
     },
     {
       "userId": "uongffLE9dE",
-      "productId": "38",
-      "quantity": 1,
-      "id": "5zQAT_aOcRQ"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "6",
-      "quantity": 1,
-      "id": "DBQoegaWoPI"
+      "productId": "29",
+      "quantity": 2,
+      "id": "82KGgIxxSuY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

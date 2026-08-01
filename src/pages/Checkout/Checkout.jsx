@@ -3,7 +3,7 @@ import { FaLock, FaCreditCard, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { placeOrders, getCart, getProducts } from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Checkout() {
 
@@ -18,7 +18,11 @@ const navigate= useNavigate()
 
 const user = JSON.parse(localStorage.getItem("user"))
 
-const {data : products, isProductLoading} = useQuery({
+const buyNowItem = JSON.parse(
+  localStorage.getItem("buyNowItem")
+);
+
+const {data : products=[], isProductLoading} = useQuery({
     queryKey : ['products'],
     queryFn : ()=>getProducts()
 })
@@ -32,19 +36,22 @@ const placeOrderMutation = useMutation({
     mutationFn : placeOrders
 })
 
-const cartedProduct=cart.map(item=>
-  {
-    const product = products.find(
-        p=> String(p.id) === String(item.productId))
+const checkoutItems = buyNowItem 
+? [buyNowItem]
+: cart;
 
-        return {
-            ...item, 
-            product
-        }
-    
-  }
-  )
-  .filter(item=>item.product)
+const cartedProduct = checkoutItems
+  .map(item => {
+    const product = products.find(
+      p => String(p.id) === String(item.productId)
+    );
+
+    return {
+      ...item,
+      product
+    };
+  })
+  .filter(item => item.product);
 
 
   const total = cartedProduct.reduce(
@@ -63,7 +70,7 @@ function handlePlaceOrder(){
         {
  
   userId: user.id,
-  items: [cart],
+  items: checkoutItems,
   totalAmount: total,
   shippingAddress: {
     fullName: name,
@@ -76,10 +83,12 @@ function handlePlaceOrder(){
   createdAt: "2026-07-31"
 }
 
-placeOrderMutation.mutate(orderItem)
-
-navigate('/orders')
-    
+placeOrderMutation.mutate(orderItem, {
+  onSuccess: () => {
+    localStorage.removeItem("buyNowItem");
+    navigate("/orderplaced");
+  }
+});
 }
 
 
@@ -89,7 +98,7 @@ navigate('/orders')
 
       {/* Header */}
 
-      <div className=" pt-20 text-center mb-14">
+      <div className=" pt-50 text-center mb-14">
 
         <h1 className="
           text-5xl
