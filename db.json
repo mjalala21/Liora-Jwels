@@ -1466,51 +1466,9 @@
     },
     {
       "userId": "uongffLE9dE",
-      "productId": "3",
-      "quantity": 1,
-      "id": "HtpGHlAxTzU"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "1",
-      "quantity": 1,
-      "id": "G8oCAFFkBZI"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "4",
-      "quantity": 1,
-      "id": "mRC6Dh74lFM"
-    },
-    {
-      "userId": "uongffLE9dE",
       "productId": "6",
       "quantity": 1,
       "id": "DBQoegaWoPI"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "7",
-      "quantity": 1,
-      "id": "gzYWyiZ7C9Q"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "5",
-      "quantity": 1,
-      "id": "dr3TS1FLYJA"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "3",
-      "quantity": 1,
-      "id": "Xcq5USpXTUQ"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "25",
-      "quantity": 1,
-      "id": "cF8i6yLz31o"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

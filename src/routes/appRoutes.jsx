@@ -16,6 +16,7 @@ import PromiseSection from '../pages/Products/Promise'
 import Checkout from '../pages/Checkout/Checkout'
 import MyOrders from '../pages/Orders/Orders'
 import ProtectedRoute from './ProtectedRoute'
+import Profile from '../pages/Profile/Profile'
 
 
 function AppRoutes() {
@@ -24,6 +25,7 @@ function AppRoutes() {
     <Routes>
       <Route element={<ProtectedRoute/>}>
           <Route element={<UserLayout/>}>
+          <Route path='/profile' element={<Profile/>}/>
              <Route path='/cart' element={<Cart/>}></Route>
               <Route path='/wishlist' element={<Wishlist/>}></Route>
               <Route path='/orders' element={<MyOrders/>}></Route>

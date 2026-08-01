@@ -4,6 +4,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
+import UserDropdown from './UserDropDown';
 
 
 function Navbar() {
@@ -183,7 +184,7 @@ bg-white/10
       whileHover={{scale:1.1}}
       >
 
-      <Link to="/login">
+      {/* <Link to="/login">
 
       <FaRegUser
       className="
@@ -195,7 +196,8 @@ bg-white/10
       "
       />
 
-      </Link>
+      </Link> */}
+      <UserDropdown />
 
       </motion.div>
 

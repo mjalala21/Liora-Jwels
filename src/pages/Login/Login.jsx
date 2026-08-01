@@ -62,7 +62,7 @@ function Login() {
       JSON.stringify(loginUser)
     );
 
-    navigate("/");
+    navigate("/profile");
 
   }
 

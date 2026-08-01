@@ -1,9 +1,11 @@
 import React from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
+
 import { 
   getCart, 
   getProducts, 
-  removeItemfromCart 
+  removeItemfromCart,
+  addToCart 
 } from "../../services/api";
 
 import { FaTrash, FaShoppingBag } from "react-icons/fa";
@@ -50,6 +52,10 @@ function Cart() {
     mutationFn:removeItemfromCart
 
   });
+
+      const increaseCartMutation = useMutation({
+      mutationFn : addToCart
+    })
 
 
 
@@ -110,6 +116,7 @@ function Cart() {
       0
 
   );
+
 
 
 
@@ -338,27 +345,30 @@ font-semibold
 
 
 
-<div className="
+<span className="
 mt-4
 flex
+justify-between
 items-center
 gap-4
-">
-
-
-<span className="
-bg-brand-gold
+bg-brand-cream
 px-5
-py-2
+py-3
 rounded-full
 ">
 
+<button onClick={()=>increaseCartMutation.mutate(item)} className="font-extrabold">-</button>
+<p
+
+>
+
 Quantity : {item.quantity}
 
+</p> 
+<button onClick={()=>removeCartItemMutation.mutate(item.id)} className="font-extrabold">+</button>
+
+
 </span>
-
-
-</div>
 
 
 
