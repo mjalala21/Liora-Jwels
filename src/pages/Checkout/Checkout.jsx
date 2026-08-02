@@ -14,6 +14,15 @@ const[city, setCity] = useState("")
 const[address, setAddress] = useState("")
 const[payMethod, setPayMethod] = useState(null)
 
+const [error, setError] = useState({
+  name: "",
+  phone: "",
+  email: "",
+  city: "",
+  address: "",
+  payment: ""
+});
+
 const navigate= useNavigate()
 
 const user = JSON.parse(localStorage.getItem("user"))
@@ -66,29 +75,96 @@ const cartedProduct = checkoutItems
 
 function handlePlaceOrder(){
 
-    const orderItem = 
-        {
- 
-  userId: user.id,
-  items: checkoutItems,
-  totalAmount: total,
-  shippingAddress: {
-    fullName: name,
-    phone: phone,
-    city: city,
-    address: address
-  },
-  paymentMethod: payMethod,
-  status: "Pending",
-  createdAt: "2026-07-31"
-}
 
-placeOrderMutation.mutate(orderItem, {
-  onSuccess: () => {
-    localStorage.removeItem("buyNowItem");
-    navigate("/orderplaced");
+  const newErrors = {
+    name: "",
+    phone: "",
+    email: "",
+    city: "",
+    address: "",
+    payment: ""
+  };
+
+
+  if(!name.trim()){
+    newErrors.name = "Full name is required";
   }
-});
+
+
+  if(!phone.trim()){
+    newErrors.phone = "Phone number is required";
+  }
+  else if(phone.length !== 10){
+    newErrors.phone = "Enter a valid 10 digit phone number";
+  }
+
+
+  if(!email.trim()){
+    newErrors.email = "Email is required";
+  }
+  else if(!email.endsWith("@gmail.com")){
+    newErrors.email = "Enter a valid Gmail address";
+  }
+
+
+  if(!city.trim()){
+    newErrors.city = "City is required";
+  }
+
+
+  if(!address.trim()){
+    newErrors.address = "Address is required";
+  }
+
+
+  if(!payMethod){
+    newErrors.payment = "Please select payment method";
+  }
+
+
+
+  setError(newErrors);
+
+
+
+  if(
+    newErrors.name ||
+    newErrors.phone ||
+    newErrors.email ||
+    newErrors.city ||
+    newErrors.address ||
+    newErrors.payment
+  ){
+    return;
+  }
+
+
+
+  const orderItem = {
+    userId: user.id,
+    items: checkoutItems,
+    totalAmount: total,
+
+    shippingAddress:{
+      fullName:name,
+      phone,
+      city,
+      address
+    },
+
+    paymentMethod:payMethod,
+    status:"Pending",
+    createdAt:new Date().toISOString()
+  };
+
+
+  placeOrderMutation.mutate(orderItem,{
+    onSuccess:()=>{
+      localStorage.removeItem("buyNowItem");
+      navigate("/orderplaced");
+    }
+  });
+
 }
 
 
@@ -96,7 +172,7 @@ placeOrderMutation.mutate(orderItem, {
     <div className="min-h-screen bg-[#F8F4EC] px-6 py-16">
 
 
-      {/* Header */}
+     
 
       <div className=" pt-50 text-center mb-14">
 
@@ -132,7 +208,7 @@ placeOrderMutation.mutate(orderItem, {
 
 
 
-        {/* Customer Details */}
+       
 
         <div className="
           lg:col-span-2
@@ -172,8 +248,16 @@ placeOrderMutation.mutate(orderItem, {
             gap-6
           ">
 
+  <div>
+            <input onChange={(e)=>{
 
-            <input onChange={(e)=>setName(e.target.value)}
+ setName(e.target.value);
+
+ setError(prev=>({
+   ...prev,
+   name:""
+ })) 
+}}
               placeholder="Full Name"
               className="
                 border
@@ -181,15 +265,28 @@ placeOrderMutation.mutate(orderItem, {
                 rounded-xl
                 px-5
                 py-4
+                w-full
                 outline-none
                 focus:ring-2
                 focus:ring-[#B08D57]
               "
             />
-
+            <p className="text-red-500 text-sm mt-1">
+ {error.name}
+</p>
+</div>
+<div>
 
             <input
-            onChange={(e)=>setPhone(e.target.value)}
+            onChange={(e)=>{
+
+ setPhone(e.target.value);
+
+ setError(prev=>({
+   ...prev,
+   phone:""
+ })) 
+}}
               placeholder="Phone Number"
               className="
                 border
@@ -197,15 +294,28 @@ placeOrderMutation.mutate(orderItem, {
                 rounded-xl
                 px-5
                 py-4
+                w-full
                 outline-none
                 focus:ring-2
                 focus:ring-[#B08D57]
               "
             />
+            <p className="text-red-500 text-sm mt-1">
+ {error.phone}
+</p>
+</div>
 
-
+<div>
             <input
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e)=>{
+
+ setWEmail(e.target.value);
+
+ setError(prev=>({
+   ...prev,
+   email:""
+ })) 
+}}
               placeholder="Email Address"
               className="
                 border
@@ -213,15 +323,28 @@ placeOrderMutation.mutate(orderItem, {
                 rounded-xl
                 px-5
                 py-4
+                w-full
                 outline-none
                 focus:ring-2
                 focus:ring-[#B08D57]
               "
             />
-
+            <p className="text-red-500 text-sm mt-1">
+ {error.email}
+</p>
+</div>
+<div>
 
             <input
-            onChange={(e)=>setCity(e.target.value)}
+           onChange={(e)=>{
+
+ setCity(e.target.value);
+
+ setError(prev=>({
+   ...prev,
+   city:""
+ })) 
+}}
               placeholder="City"
               className="
                 border
@@ -229,12 +352,16 @@ placeOrderMutation.mutate(orderItem, {
                 rounded-xl
                 px-5
                 py-4
+                w-full
                 outline-none
                 focus:ring-2
                 focus:ring-[#B08D57]
               "
             />
-
+            <p className="text-red-500 text-sm mt-1">
+ {error.city}
+</p>
+</div>
 
 
           </div>
@@ -242,7 +369,15 @@ placeOrderMutation.mutate(orderItem, {
 
 
           <textarea
-          onChange={(e)=> setAddress(e.target.value)}
+          onChange={(e)=>{
+
+ setAddress(e.target.value);
+
+ setError(prev=>({
+   ...prev,
+   address:""
+ })) 
+}}
             placeholder="Complete Address"
             rows="4"
             className="
@@ -258,11 +393,14 @@ placeOrderMutation.mutate(orderItem, {
               focus:ring-[#B08D57]
             "
           />
+          <p className="text-red-500 text-sm mt-1">
+ {error.address}
+</p>
 
 
 
 
-          {/* Payment */}
+       
 
           <div className="mt-10">
 
@@ -337,7 +475,9 @@ placeOrderMutation.mutate(orderItem, {
 
 
             </div>
-
+ <p className="text-red-500 text-sm mt-3">
+ {error.payment}
+</p>
 
           </div>
 
@@ -352,124 +492,90 @@ placeOrderMutation.mutate(orderItem, {
 
         {/* Order Summary */}
 
+{/* Order Summary */}
 
-        <div className="
-          bg-[#3A2418]
-          text-white
-          rounded-3xl
-          p-8
-          h-fit
-          shadow-2xl
-        ">
-
-
-          <h2 className="
-            text-3xl
-            font-serif
-            mb-8
-          ">
-            Order Summary
-          </h2>
+<div className="
+  bg-[#3A2418]
+  text-white
+  rounded-3xl
+  p-8
+  h-fit
+  shadow-2xl
+">
 
 
-
-          <div className="
-            space-y-5
-            border-b
-            border-white/20
-            pb-6
-          ">
-
-
-            <div className="
-              flex
-              justify-between
-            ">
-              <span>
-                Necklace
-              </span>
-
-              <span>
-                ₹25,000
-              </span>
-
-            </div>
+  <h2 className="
+    text-3xl
+    font-serif
+    mb-8
+  ">
+    Order Summary
+  </h2>
 
 
 
-            <div className="
-              flex
-              justify-between
-            ">
-              <span>
-                Ring
-              </span>
-
-              <span>
-                ₹15,000
-              </span>
-
-            </div>
+  <div className="
+    border-t
+    border-white/20
+    pt-6
+    mt-6
+  ">
 
 
+    <div className="
+      flex
+      justify-between
+      text-xl
+      font-semibold
+    ">
 
-          </div>
+      <span>
+        Total Amount
+      </span>
+
+
+      <span className="text-[#D4AF37]">
+        ₹{total}
+      </span>
+
+
+    </div>
+
+
+  </div>
 
 
 
 
-          <div className="
-            flex
-            justify-between
-            text-xl
-            mt-6
-            font-semibold
-          ">
+  <button
+    onClick={handlePlaceOrder}
+    className="
+      mt-8
+      w-full
+      bg-[#D4AF37]
+      text-[#3A2418]
+      py-4
+      rounded-full
+      font-semibold
+      tracking-wide
+      hover:scale-105
+      transition
+      flex
+      justify-center
+      items-center
+      gap-3
+    "
+  >
 
-            <span>
-              Total
-            </span>
+    <FaLock/>
 
-            <span className="text-[#D4AF37]">
-              ₹40,000
-            </span>
+    Place Order
 
-
-          </div>
-
-
-
-
-
-          <button
-          onClick={handlePlaceOrder}
-            className="
-              mt-8
-              w-full
-              bg-[#D4AF37]
-              text-[#3A2418]
-              py-4
-              rounded-full
-              font-semibold
-              tracking-wide
-              hover:scale-105
-              transition
-              flex
-              justify-center
-              items-center
-              gap-3
-            "
-          >
-
-            <FaLock/>
-
-            Place Order
-
-          </button>
+  </button>
 
 
 
-        </div>
+</div>
 
 
 

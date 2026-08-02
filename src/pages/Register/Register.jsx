@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { registerUsers, getUsers } from "../../services/api";
+import { toast } from "react-toastify";
 
 
 function Register() {
@@ -26,78 +27,88 @@ function Register() {
   });
 
 
-  const registerMutation = useMutation({
-    mutationFn:registerUsers
-  });
+ const navigate = useNavigate();
+
+const registerMutation = useMutation({
+  mutationFn: registerUsers,
+
+  onSuccess: () => {
+ 
+
+    toast.success("Account created successfully!");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
+  },
+
+  onError: (error) => {
+    console.log(error);
+    toast.error("Something went wrong.");
+  },
+});
 
 
 
-  const handleRegister = ()=>{
+const handleRegister = () => {
 
-
-    const existingUser = data.find(
-      user=>user.email===email
-    );
-
-
-    if(existingUser){
-      setError({
-        ...error,
-        email:"User already exists"
-      });
-      return;
-    }
-
-
-    if(name===""){
-      setError({
-        ...error,
-        name:"Name is required"
-      });
-      return;
-    }
-
-
-    if(!email.endsWith("@gmail.com")){
-      setError({
-        ...error,
-        email:"Enter a valid Gmail address"
-      });
-      return;
-    }
-
-
-    if(password.length < 6){
-      setError({
-        ...error,
-        password:"Password must contain minimum 6 characters"
-      });
-      return;
-    }
-
-
-    if(password!==confirmPassword){
-      setError({
-        ...error,
-        confirmPassword:"Passwords do not match"
-      });
-      return;
-    }
-
-
-
-    const newUser={
-      name,
-      email,
-      password,
-      role:"user"
-    };
-
-
-    registerMutation.mutate(newUser);
-
-
+  const newErrors = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   };
+
+  if (!name.trim()) {
+    newErrors.name = "Full name is required";
+  }
+
+  if (!email.trim()) {
+    newErrors.email = "Email is required";
+  } else if (!email.endsWith("@gmail.com")) {
+    newErrors.email = "Enter a valid Gmail address";
+  }
+
+  if (!password) {
+    newErrors.password = "Password is required";
+  } else if (password.length < 6) {
+    newErrors.password = "Password must contain at least 6 characters";
+  }
+
+  if (!confirmPassword) {
+    newErrors.confirmPassword = "Please confirm your password";
+  } else if (password !== confirmPassword) {
+    newErrors.confirmPassword = "Passwords do not match";
+  }
+
+  const existingUser = data.find(
+    (user) => user.email.toLowerCase() === email.toLowerCase()
+  );
+
+  if (existingUser) {
+    newErrors.email = "User already exists";
+  }
+
+  setError(newErrors);
+
+  if (
+    newErrors.name ||
+    newErrors.email ||
+    newErrors.password ||
+    newErrors.confirmPassword
+  ) {
+    return;
+  }
+
+  const newUser = {
+    name,
+    email,
+    password,
+    role: "user",
+  };
+
+  registerMutation.mutate(newUser);
+};
 
 
 
@@ -236,7 +247,14 @@ function Register() {
               <input
                 type="text"
                 placeholder="Full name"
-                onChange={(e)=>setName(e.target.value)}
+                 onChange={(e) => {
+    setName(e.target.value);
+
+    setError((prev) => ({
+      ...prev,
+      name: "",
+    }));
+  }}
                 className="
                   w-full
                   p-4
@@ -264,8 +282,14 @@ function Register() {
               <input
                 type="email"
                 placeholder="Email address"
-                onChange={(e)=>setEmail(e.target.value)}
-                className="
+  onChange={(e) => {
+    setEmail(e.target.value);
+
+    setError((prev) => ({
+      ...prev,
+      email: "",
+    }));
+  }}                className="
                   w-full
                   p-4
                   rounded-xl
@@ -292,7 +316,14 @@ function Register() {
               <input
                 type="password"
                 placeholder="Password"
-                onChange={(e)=>setPassword(e.target.value)}
+                onChange={(e) => {
+    setPassword(e.target.value);
+
+    setError((prev) => ({
+      ...prev,
+      password: "",
+    }));
+  }}
                 className="
                   w-full
                   p-4
@@ -320,7 +351,14 @@ function Register() {
               <input
                 type="password"
                 placeholder="Confirm password"
-                onChange={(e)=>setConfirmPassword(e.target.value)}
+                  onChange={(e) => {
+    setConfirmPassword(e.target.value);
+
+    setError((prev) => ({
+      ...prev,
+      confirmPassword: "",
+    }));
+  }}
                 className="
                   w-full
                   p-4

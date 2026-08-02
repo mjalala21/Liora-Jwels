@@ -10,7 +10,7 @@ function RecentOrders() {
     {
       id:1,
       name:"Royal Diamond Ring",
-      image:"/images/products/ring1.jpg",
+      image:"/images/rings/ring1.jpg",
       price:74999,
       status:"Delivered",
       date:"July 25, 2026"
@@ -19,7 +19,7 @@ function RecentOrders() {
     {
       id:2,
       name:"Pearl Elegance Necklace",
-      image:"/images/products/necklace1.jpg",
+      image:"/images/necklaces/necklace1.jpg",
       price:45999,
       status:"Processing",
       date:"July 28, 2026"

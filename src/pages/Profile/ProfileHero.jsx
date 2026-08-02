@@ -4,7 +4,7 @@ function ProfileHero() {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const username = user?.fullName || "Guest";
+  const username = user?.name || "Guest";
 
   const firstLetter = username.charAt(0).toUpperCase();
 

@@ -31,7 +31,7 @@ function ProfileInfo() {
       >
 
 
-        {/* Heading */}
+       
 
         <div
         className="
@@ -73,13 +73,13 @@ function ProfileInfo() {
         <div
         className="
         grid
-        md:grid-cols-2
+        md:grid-cols-1
         gap-8
         "
         >
 
 
-          {/* Full Name */}
+        
 
           <div
           className="
@@ -109,16 +109,10 @@ function ProfileInfo() {
             text-[#5C4033]
             "
             >
-              {user?.fullName || "Guest User"}
+              {user?.name || "Guest User"}
             </h3>
 
           </div>
-
-
-
-
-
-          {/* Email */}
 
           <div
           className="
@@ -154,12 +148,6 @@ function ProfileInfo() {
 
 
           </div>
-
-
-
-
-
-          {/* Member Status */}
 
           <div
           className="
@@ -199,45 +187,9 @@ function ProfileInfo() {
 
 
 
-          {/* Joined Date */}
+         
 
-          <div
-          className="
-          p-6
-          rounded-2xl
-          bg-[#F8F4EC]
-          "
-          >
-
-            <p
-            className="
-            text-sm
-            text-gray-500
-            uppercase
-            tracking-wider
-            "
-            >
-              Member Since
-            </p>
-
-
-            <h3
-            className="
-            mt-2
-            text-xl
-            font-serif
-            text-[#5C4033]
-            "
-            >
-
-              {user?.createdAt
-              ? new Date(user.createdAt).toDateString()
-              : "July 2026"}
-
-            </h3>
-
-
-          </div>
+        
 
 
 

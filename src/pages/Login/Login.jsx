@@ -30,6 +30,25 @@ function Login() {
 
   function handleLogin(){
 
+    const newErrors = {
+  email: "",
+  password: ""
+};
+
+if (!email.trim()) {
+  newErrors.email = "Email is required";
+}
+
+if (!password) {
+  newErrors.password = "Password is required";
+}
+
+setError(newErrors);
+
+if (newErrors.email || newErrors.password) {
+  return;
+}
+
     const loginUser = data.find(
       user => user.email === email
     );
@@ -208,7 +227,14 @@ function Login() {
                   focus:ring-2
                   focus:ring-brand-gold
                 "
-                onChange={(e)=>setEmail(e.target.value)}
+               onChange={(e) => {
+  setEmail(e.target.value);
+
+  setError((prev) => ({
+    ...prev,
+    email: ""
+  }));
+}}
               />
 
               {
@@ -239,7 +265,14 @@ function Login() {
                   focus:ring-2
                   focus:ring-brand-gold
                 "
-                onChange={(e)=>setPassword(e.target.value)}
+               onChange={(e) => {
+  setPassword(e.target.value);
+
+  setError((prev) => ({
+    ...prev,
+    password: ""
+  }));
+}}
               />
 
               {

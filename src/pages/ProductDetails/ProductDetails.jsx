@@ -104,6 +104,9 @@ const product = products.find(p => String(p.id) === String(id));
 
 function handleWishlist(product){
 
+  if(!user){
+    navigate('/login')
+  }
 
 const existingItem = wishlist.find(item=>
 
@@ -145,6 +148,12 @@ String(item.productId) === String(product.id)
 }   
 
 function handleAddCart() {
+
+  
+  if(!user){
+    navigate('/login')
+  } 
+
   const checkCart = cart.find(
     (item) =>
       String(item.userId) === String(user.id) &&
@@ -181,6 +190,11 @@ function handleAddCart() {
 }
 
   function handleBuyNow(){
+
+    
+  if(!user){
+    navigate('/login')
+  }
 
 const buyNowItem = {
 

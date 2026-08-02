@@ -33,12 +33,7 @@ function QuickActions() {
       link:"/cart"
     },
 
-    {
-      title:"Settings",
-      description:"Manage your account",
-      icon:<FaUserCog />,
-      link:"/settings"
-    }
+  
   ]
 
 
@@ -63,7 +58,7 @@ function QuickActions() {
       >
 
 
-        {/* Title */}
+        
 
         <div
         className="
@@ -102,14 +97,14 @@ function QuickActions() {
 
 
 
-        {/* Cards */}
+       
 
         <div
         className="
         grid
         grid-cols-1
         sm:grid-cols-2
-        lg:grid-cols-4
+        lg:grid-cols-3
         gap-8
         "
         >
@@ -141,7 +136,7 @@ function QuickActions() {
               >
 
 
-                {/* Icon */}
+               
 
                 <div
                 className="

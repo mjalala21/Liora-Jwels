@@ -1,5 +1,6 @@
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import { 
   getCart, 
@@ -51,9 +52,12 @@ function Cart() {
   mutationFn: removeItemfromCart,
 
   onSuccess: () => {
+     console.log("Delete success");
     queryClient.invalidateQueries({
       queryKey: ["cart", user.id]
     });
+
+    toast.success("Item removed from your jewellery bag 🛍️")
   }
 });
 
@@ -423,7 +427,9 @@ onClick={() =>
 
 <button
 
-onClick={()=>removeCartItemMutation.mutate(item.id)}
+onClick={()=>{
+   console.log("Delete clicked", item.id)
+  removeCartItemMutation.mutate(item.id)}}
 
 className="
 bg-red-50
