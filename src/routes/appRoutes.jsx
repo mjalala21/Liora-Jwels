@@ -17,7 +17,9 @@ import Checkout from '../pages/Checkout/Checkout'
 import MyOrders from '../pages/Orders/Orders'
 import ProtectedRoute from './ProtectedRoute'
 import Profile from '../pages/Profile/Profile'
-import OrderSuccess from '../components/order/OrderPlaced'
+// import OrderSuccess from '../pages/Orders/OrderPlaced'
+import OrderPlaced from "../pages/Orders/OrderPlaced";
+import OrderDetails from "../pages/Orders/OrderDetails";
 
 
 
@@ -31,8 +33,10 @@ function AppRoutes() {
              <Route path='/cart' element={<Cart/>}></Route>
               <Route path='/wishlist' element={<Wishlist/>}></Route>
               <Route path='/orders' element={<MyOrders/>}></Route>
+              <Route path="/orderplaced/:id" element={<OrderPlaced/>}/>
+              <Route path="/orders/:id" element={<OrderDetails/>}/>
         <Route path='/checkout' element={<Checkout/>}></Route>
-        <Route path='/orderplaced' element={<OrderSuccess/>}></Route>
+        {/* <Route path='/orderplaced' element={<OrderSuccess/>}></Route> */}
           </Route>
 
       </Route>

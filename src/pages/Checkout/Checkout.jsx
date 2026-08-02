@@ -159,10 +159,13 @@ function handlePlaceOrder(){
 
 
   placeOrderMutation.mutate(orderItem,{
-    onSuccess:()=>{
-      localStorage.removeItem("buyNowItem");
-      navigate("/orderplaced");
-    }
+  onSuccess: (data) => {
+
+  localStorage.removeItem("buyNowItem");
+
+  navigate(`/orderplaced/${data.id}`);
+
+}
   });
 
 }

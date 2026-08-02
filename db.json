@@ -990,6 +990,49 @@
       "status": "Pending",
       "createdAt": "2026-08-02T10:40:09.513Z",
       "id": "BMvkyVbQ2u8"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "28",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2999,
+      "shippingAddress": {
+        "fullName": "minnu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "udskdskjhvskj"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-02T13:50:10.035Z",
+      "id": "tI14GOOj4YE"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "1",
+          "quantity": 1,
+          "id": "WrPMuENCJRU"
+        }
+      ],
+      "totalAmount": 2999,
+      "shippingAddress": {
+        "fullName": "allu amish",
+        "phone": "7687978787",
+        "city": "mala",
+        "address": "khkjjjkjkjlkjl"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-02T14:14:16.286Z",
+      "id": "R4Iy6YW7sok"
     }
   ],
   "wishlist": [
@@ -1070,6 +1113,12 @@
       "productId": "1",
       "quantity": 1,
       "id": "WrPMuENCJRU"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "2",
+      "quantity": 4,
+      "id": "tXMLr_1jwLo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

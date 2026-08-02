@@ -1,30 +1,78 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getOrders, getProducts } from "../../services/api";
 
 
 function RecentOrders() {
 
 
-  // Later replace this with your order API
-  const orders = [
-    {
-      id:1,
-      name:"Royal Diamond Ring",
-      image:"/images/rings/ring1.jpg",
-      price:74999,
-      status:"Delivered",
-      date:"July 25, 2026"
-    },
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    {
-      id:2,
-      name:"Pearl Elegance Necklace",
-      image:"/images/necklaces/necklace1.jpg",
-      price:45999,
-      status:"Processing",
-      date:"July 28, 2026"
-    }
-  ];
+
+
+  const { data: orders = [], isLoading } = useQuery({
+
+    queryKey:["orders", user?.id],
+
+    queryFn:()=>getOrders(user.id),
+
+    enabled:!!user
+
+  });
+
+
+
+  const { data: products = [] } = useQuery({
+
+    queryKey:["products"],
+
+    queryFn:getProducts
+
+  });
+
+
+
+  if(isLoading){
+
+    return (
+      <div className="text-center py-10">
+        Loading recent orders...
+      </div>
+    )
+
+  }
+
+
+
+  // Attach product details
+
+  const updatedOrders = orders.map(order=>({
+
+    ...order,
+
+    items: order.items.map(item=>({
+
+      ...item,
+
+      product: products.find(
+        p=>String(p.id)===String(item.productId)
+      )
+
+    }))
+
+  }));
+
+
+
+  // Show only latest 2 orders
+
+  const recentOrders = updatedOrders
+  .slice()
+  .reverse()
+  .slice(0,2);
+
+
 
 
 
@@ -85,7 +133,6 @@ function RecentOrders() {
               Recent Orders
             </h2>
 
-
           </div>
 
 
@@ -102,9 +149,7 @@ function RecentOrders() {
           transition
           "
           >
-
             VIEW ALL →
-
           </Link>
 
 
@@ -114,23 +159,42 @@ function RecentOrders() {
 
 
 
-
-
-        {/* Orders */}
-
-
-        <div
-        className="
-        space-y-6
-        "
-        >
-
-
         {
-          orders.map(order=>(
+          recentOrders.length === 0 ?
+
+          (
+            <div className="
+            bg-white
+            rounded-3xl
+            p-10
+            text-center
+            shadow-lg
+            ">
+
+              <p className="text-gray-500">
+                No orders yet
+              </p>
+
+            </div>
+          )
+
+
+          :
+
+          (
+
+          <div className="space-y-6">
+
+
+          {
+          recentOrders.map(order=>(
+
+            order.items.map((item,index)=>(
 
             <div
-            key={order.id}
+
+            key={`${order.id}-${index}`}
+
             className="
             bg-white
             rounded-3xl
@@ -145,35 +209,32 @@ function RecentOrders() {
             transition
             duration-500
             "
+
             >
 
 
 
-
-              {/* Product Image */}
-
               <img
-              src={order.image}
-              alt={order.name}
+
+              src={item.product?.image}
+
+              alt={item.product?.name}
+
               className="
               w-32
               h-32
               object-cover
               rounded-2xl
               "
+
               />
 
 
 
 
 
-              {/* Details */}
 
-              <div
-              className="
-              flex-1
-              "
-              >
+              <div className="flex-1">
 
 
                 <h3
@@ -184,22 +245,26 @@ function RecentOrders() {
                 "
                 >
 
-                {order.name}
+                {item.product?.name}
 
                 </h3>
 
 
 
-                <p
-                className="
+                <p className="
                 mt-2
                 text-gray-500
-                "
-                >
+                ">
 
-                Ordered on {order.date}
+                Ordered on{" "}
+
+                {
+                new Date(order.createdAt)
+                .toLocaleDateString("en-IN")
+                }
 
                 </p>
+
 
 
 
@@ -212,61 +277,64 @@ function RecentOrders() {
                 "
                 >
 
-                ₹ {order.price}
+                ₹ {item.product?.price}
 
                 </p>
 
 
-              </div>
-
-
-
-
-
-
-
-              {/* Status */}
-
-
-              <div>
-
-                <span
-                className={`
-                px-5
-                py-2
-                rounded-full
-                text-sm
-                tracking-wider
-                ${
-                  order.status==="Delivered"
-                  ?
-                  "bg-green-100 text-green-700"
-                  :
-                  "bg-yellow-100 text-yellow-700"
-                }
-                `}
-                >
-
-                {order.status}
-
-                </span>
-
 
               </div>
+
+
+
+
+
+
+              <span
+              className={`
+              px-5
+              py-2
+              rounded-full
+              text-sm
+              tracking-wider
+
+              ${
+              order.status==="Delivered"
+
+              ?
+
+              "bg-green-100 text-green-700"
+
+              :
+
+              "bg-yellow-100 text-yellow-700"
+
+              }
+
+              `}
+              >
+
+              {order.status}
+
+              </span>
+
 
 
 
             </div>
 
 
+            ))
+
           ))
+          }
+
+
+          </div>
+
+          )
+
         }
-
-
-        </div>
-
-
-
 
 
 
@@ -276,6 +344,7 @@ function RecentOrders() {
     </section>
 
   )
+
 }
 
 
