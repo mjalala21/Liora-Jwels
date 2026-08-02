@@ -1027,6 +1027,11 @@
       "userId": "uongffLE9dE",
       "productId": "68",
       "id": "Arww3OfWz-U"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "1",
+      "id": "yeN-6RyR9No"
     }
   ],
   "carts": [
@@ -1059,6 +1064,12 @@
       "productId": "68",
       "quantity": 1,
       "id": "TpSDVEukF4I"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "1",
+      "quantity": 1,
+      "id": "WrPMuENCJRU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

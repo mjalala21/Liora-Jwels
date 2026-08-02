@@ -122,10 +122,11 @@ onMouseEnter={()=>
 setOpenCollection(true)
 }
 
-onMouseLeave={()=>
-setOpenCollection(false)
-}
-
+onMouseLeave={()=>{
+    setTimeout(()=>{
+        setOpenCollection(false)
+    },500)
+}}
 >
 
 
@@ -193,6 +194,7 @@ categories.map(category=>(
 key={category}
 
 to={`/products/category/${category}`}
+ onClick={() => setOpenCollection(false)}
 
 className="
 block
