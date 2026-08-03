@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../services/api";
+import { useDispatch } from "react-redux";
+import { setUser} from "../../redux/slices/UserSlice";
+
+
 
 function Login() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,17 +79,19 @@ if (newErrors.email || newErrors.password) {
 
       return;
     }
-    
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-    id: loginUser.id,
-    name : loginUser.name,
-    email : loginUser.email
-    })
-    );
-    // localStorage.setItem("userId", loginUser.id);
+
+    // localStorage.setItem(
+    //   "user",
+    //   JSON.stringify({
+    // id: loginUser.id,
+    // name : loginUser.name,
+    // email : loginUser.email
+    // })
+    // );
+    localStorage.setItem("userId", loginUser.id);
+
+    dispatch(setUser(loginUser))
 
     navigate("/profile");
 

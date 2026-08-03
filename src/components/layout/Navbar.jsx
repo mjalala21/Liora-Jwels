@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getCart, getWishlist } from "../../services/api";
 import { motion } from "framer-motion";
@@ -17,11 +17,10 @@ function Navbar() {
 const [openCollection,setOpenCollection] = useState(false);
 
 const dispatch = useDispatch()
+const navigate = useNavigate()
 
 const search = useSelector(state=>state.search.search)
-const user = JSON.parse(
-localStorage.getItem("user")
-);
+const user = useSelector((state) => state.user.user);
 
 
 
@@ -357,7 +356,10 @@ items-center
   type="text"
   placeholder="Search jewellery..."
   value={search}
-  onChange={(e) => dispatch(setSearch(e.target.value))}
+  onChange={(e) => {dispatch(setSearch(e.target.value));
+     navigate('/allproducts')
+
+  }}
   className="
      
    outline-none

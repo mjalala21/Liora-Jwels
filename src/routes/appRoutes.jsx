@@ -20,6 +20,7 @@ import Profile from '../pages/Profile/Profile'
 // import OrderSuccess from '../pages/Orders/OrderPlaced'
 import OrderPlaced from "../pages/Orders/OrderPlaced";
 import OrderDetails from "../pages/Orders/OrderDetails";
+import AllProducts from '../pages/Products/AllProducts'
 
 
 
@@ -44,6 +45,7 @@ function AppRoutes() {
       <Route element = {<UserLayout/>}>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/products' element={<Products/>}></Route>
+        <Route path = '/allproducts' element = {<AllProducts/>}></Route>
         <Route path='/products/category/:category' element={<Category/>}></Route>
         <Route path='/products/:id' element={<ProductDetails/>}></Route>
         <Route path='/bestsellers' element={<BestSeller/>}></Route>

@@ -1,24 +1,31 @@
-import React from 'react'
-import Navbar from './components/layout/Navbar'
-import AppRoutes from './routes/AppRoutes'
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-         
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/slices/UserSlice";
+import { getUserById } from "./services/api";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return (
-    <div>
-  
 
-      <AppRoutes/>
-        <ToastContainer 
-        position="top-right"
-        autoClose={3000}
-      />
-    </div>
-  )
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+    async function loadUser() {
+
+      const userId = localStorage.getItem("userId");
+
+      if (!userId) return;
+
+      const user = await getUserById(userId);
+
+      dispatch(setUser(user));
+    }
+
+    loadUser();
+
+  }, [dispatch]);
+
+  return <AppRoutes />;
 }
 
-export default App
+export default App;

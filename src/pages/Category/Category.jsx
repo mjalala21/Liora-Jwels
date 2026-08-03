@@ -7,7 +7,7 @@ import {
   FaEye,
   FaShoppingBag
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
+
 
 
 
@@ -18,9 +18,7 @@ function Category() {
 
 
 
-const search = useSelector(
-  (state) => state.search.search
-);
+
 
   const {category} = useParams();
 
@@ -117,18 +115,11 @@ const wishlistMutation = useMutation({
 
 
 
+
+
 const filteredProducts = products.filter((product) => {
 
-  const matchesCategory =
-    product.category === category;
-
-const matchesSearch =
-  product.name
-    .toLowerCase()
-    .includes((search || "").toLowerCase());
-
-
-  return matchesCategory && matchesSearch;
+  return product.category === category;
 
 });
 

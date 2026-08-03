@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getOrders, getProducts } from "../../services/api";
+import { useSelector } from "react-redux";
 
 
 function RecentOrders() {
 
 
-  const user = JSON.parse(localStorage.getItem("user"));
+ const user = useSelector((state) => state.user.user);
 
 
 

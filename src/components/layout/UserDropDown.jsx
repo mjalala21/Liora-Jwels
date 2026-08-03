@@ -7,6 +7,7 @@ import {
   FaShoppingBag,
   FaSignOutAlt
 } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 
 function UserDropdown(){
@@ -14,6 +15,8 @@ function UserDropdown(){
   const [open,setOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch()
 
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -35,7 +38,9 @@ const firstLetter = user?.name?.charAt(0).toUpperCase();
 
   function logout(){
 
-    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+
+    dispatch(clearUser())
 
     navigate("/login");
 

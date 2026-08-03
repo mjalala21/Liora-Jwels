@@ -1094,6 +1094,27 @@
       "status": "Pending",
       "createdAt": "2026-08-03T04:08:35.925Z",
       "id": "o87NNGVs42A"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "3",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 3900,
+      "shippingAddress": {
+        "fullName": "afla shareen",
+        "phone": "1234567890",
+        "city": "vengara",
+        "address": "ridgeon"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-03T08:32:48.119Z",
+      "id": "OEhTnttFr90"
     }
   ],
   "wishlist": [

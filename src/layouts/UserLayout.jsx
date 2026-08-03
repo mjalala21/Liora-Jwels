@@ -6,11 +6,13 @@ import Footer from '../components/layout/Footer'
 function UserLayout() {
   return (
     <div className='relative'>
-      <div className='absolute top-0 left-0 w-full '>
-        <Navbar />
-        </div>
-        <Outlet/>
-        <Footer/>
+
+      <Navbar />
+
+      <Outlet />
+
+      <Footer />
+
     </div>
   )
 }
