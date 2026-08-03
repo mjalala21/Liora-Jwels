@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "./redux/slices/UserSlice";
+import { setUser} from "./redux/slices/UserSlice";
 import { getUserById } from "./services/api";
 import AppRoutes from "./routes/AppRoutes";
 
@@ -14,11 +14,15 @@ function App() {
 
       const userId = localStorage.getItem("userId");
 
-      if (!userId) return;
-
+      if (!userId){
+         dispatch(setUserLoaded());
+        return;
+      }
       const user = await getUserById(userId);
 
       dispatch(setUser(user));
+
+      // dispatch(setUserLoaded());
     }
 
     loadUser();

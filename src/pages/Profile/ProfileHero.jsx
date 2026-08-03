@@ -16,7 +16,7 @@ function ProfileHero() {
     <section
       className="
       relative
-      h-[55vh]
+      h-[80vh]
       bg-cover
       bg-center
       flex
@@ -26,7 +26,7 @@ function ProfileHero() {
       "
       style={{
         backgroundImage:
-        "url('/images/Hero/profileHero.jpg')"
+        "url('/images/Hero/profilehero5.png')"
       }}
     >
 

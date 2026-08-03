@@ -9,6 +9,7 @@ import ProductHero from './productHero'
 import ProductServices from './productServices'
 import RelatedProducts from './relatedProducts'
 import ProductReviewsFAQ from './ProductReviewFAQ'
+import { useSelector } from 'react-redux'
 
 
 function ProductDetails() {
@@ -17,7 +18,7 @@ function ProductDetails() {
 const queryClient = useQueryClient()
    const {id} = useParams()
 
-    const user = JSON.parse(localStorage.getItem("user")) || null
+   const user = useSelector((state) => state.user.user);
 
     const[quantity, setQuantity] = useState(1)
 

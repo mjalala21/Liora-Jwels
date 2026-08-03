@@ -8,6 +8,8 @@ import {
   FaShoppingBag
 } from "react-icons/fa";
 
+import { useSelector } from "react-redux";
+
 
 
 
@@ -30,7 +32,7 @@ function Category() {
 
   const [quickView,setQuickView] = useState(null);
 
-    const user = JSON.parse(localStorage.getItem("user")) || null
+  const user = useSelector((state) => state.user.user);
 
   const {data : products=[], isProductLoading, error} = useQuery({
 

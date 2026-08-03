@@ -32,7 +32,7 @@ function Collections() {
   className="
     min-h-screen
     py-20
-    bg-[radial-gradient(circle_at_top,#6b4a3a_0%,#3A2118_45%,#1D120D_100%)]
+    bg-[#6F4E37]
   "
     >
       

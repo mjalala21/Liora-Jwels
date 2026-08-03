@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../services/api";
@@ -93,7 +93,7 @@ if (newErrors.email || newErrors.password) {
 
     dispatch(setUser(loginUser))
 
-    navigate("/profile");
+    navigate("/");
 
   }
 

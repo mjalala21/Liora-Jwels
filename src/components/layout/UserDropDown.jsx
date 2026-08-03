@@ -8,6 +8,8 @@ import {
   FaSignOutAlt
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { clearUser } from "../../redux/slices/UserSlice";
 
 
 function UserDropdown(){
@@ -19,8 +21,7 @@ function UserDropdown(){
   const dispatch = useDispatch()
 
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
+const user = useSelector((state) => state.user.user);
 
 
   if(!user){

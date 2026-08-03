@@ -7,10 +7,13 @@ import {
   FaShoppingBag,
 } from "react-icons/fa";
 import { getOrders, getProducts } from "../../services/api";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 function MyOrders() {
 
 
-  const user = JSON.parse(localStorage.getItem("user"));
+const user = useSelector((state) => state.user.user);
 
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ["orders", user?.id],
@@ -124,11 +127,11 @@ function MyOrders() {
                       key={index}
                       className="flex gap-6 items-center border-b pb-5 last:border-none"
                     >
-                      <img
+                      <Link to={`/products/${item.product.id}`}><img
                         src={item.product?.image}
                         alt={item.product?.name}
                         className="w-28 h-28 object-cover rounded-2xl"
-                      />
+                      /></Link>
 
                       <div className="flex-1">
                         <h3 className="text-2xl font-serif text-brand-brown">

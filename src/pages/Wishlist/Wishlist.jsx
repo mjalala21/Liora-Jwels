@@ -19,15 +19,13 @@ import {
  FaTrash,
  FaShoppingBag
 } from "react-icons/fa";
-
+import { useSelector } from "react-redux";
 
 
 function Wishlist(){
 
 
-const user = JSON.parse(
- localStorage.getItem("user")
-);
+const user = useSelector((state) => state.user.user);
 
 
 
@@ -42,7 +40,7 @@ const {
 
 }=useQuery({
 
-queryKey:["wishlist",user.id],
+queryKey:["wishlist",user?.id],
 
 queryFn:()=>getWishlist(user.id)
 
@@ -74,12 +72,13 @@ mutationFn:removeFromWishlist,
 
 
 onSuccess:()=>{
-
+if(user){
 queryClient.invalidateQueries({
 
 queryKey:["wishlist",user.id]
 
 });
+}
 
 }
 

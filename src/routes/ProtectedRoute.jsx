@@ -7,9 +7,23 @@ import { useSelector } from 'react-redux';
 
 function ProtectedRoute() {
 
-const user = useSelector((state) => state.user.user);
+const userId = localStorage.getItem("userId")
 
-if(!user){
+// const {user, loading} = useSelector(
+// (state)=>state.user
+// );
+
+
+// if(!loading){
+//     return (
+//       <div className="h-screen flex items-center justify-center">
+//         Loading...
+//       </div>
+//     )
+// }
+
+
+if(!userId){
     return <Navigate to='/login' replace />
 }
 

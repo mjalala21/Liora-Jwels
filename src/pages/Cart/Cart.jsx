@@ -11,13 +11,14 @@ import {
 
 import { FaTrash, FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { getCartProducts } from "../../utilis/calculateTotal";
 
 
 function Cart() {
 
 
-  const user = JSON.parse(localStorage.getItem("user"));
+const user = useSelector((state) => state.user.user);
 
   const queryClient = useQueryClient();
 
@@ -26,7 +27,7 @@ function Cart() {
     isLoading: isCartLoading
   } = useQuery({
 
-    queryKey:["cart", user.id],
+    queryKey:["cart", user?.id],
 
     queryFn:()=>getCart(user.id)
 

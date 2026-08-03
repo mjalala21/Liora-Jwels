@@ -133,7 +133,7 @@ onMouseLeave={()=>{
 >
 
 
-<Link to='/products'><button
+<Link to='/allproducts'><button
 
 className="
 text-brand-brown

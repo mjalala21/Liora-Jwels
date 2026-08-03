@@ -1,11 +1,12 @@
 
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
 getOrders,
 getProducts
 } from "../../services/api";
+import { useSelector } from "react-redux";
 
 
 function OrderDetails(){
@@ -14,8 +15,7 @@ function OrderDetails(){
 const {id}=useParams();
 
 
-const user =
-JSON.parse(localStorage.getItem("user"));
+const user = useSelector((state) => state.user.user);
 
 
 
@@ -160,7 +160,7 @@ pb-5
 >
 
 
-<img
+<Link to={`/products/${item.product.id}`}><img
 
 src={item.product?.image}
 
@@ -171,7 +171,7 @@ rounded-2xl
 object-cover
 "
 
-/>
+/></Link>
 
 
 

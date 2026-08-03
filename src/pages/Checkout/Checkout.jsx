@@ -2,8 +2,9 @@ import React from "react";
 import { FaLock, FaCreditCard, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { placeOrders, getCart, getProducts } from "../../services/api";
+import { placeOrders, getCart, getProducts, cleanCartItems } from "../../services/api";
 import { useNavigate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Checkout() {
 
@@ -25,7 +26,7 @@ const [error, setError] = useState({
 
 const navigate= useNavigate()
 
-const user = JSON.parse(localStorage.getItem("user"))
+const user = useSelector((state) => state.user.user);
 
 const buyNowItem = JSON.parse(
   localStorage.getItem("buyNowItem")
@@ -43,6 +44,17 @@ const {data : cart=[], isCartLoading} = useQuery({
 
 const placeOrderMutation = useMutation({
     mutationFn : placeOrders
+})
+
+const clearCartMutation = useMutation({
+  mutationFn : cleanCartItems,
+
+    onSuccess:()=>{
+
+    console.log("Cart cleared");
+
+  }
+
 })
 
 const checkoutItems = buyNowItem 
@@ -163,6 +175,10 @@ function handlePlaceOrder(){
 
   localStorage.removeItem("buyNowItem");
 
+
+if(!buyNowItem){
+   clearCartMutation.mutate(cart);
+}
   navigate(`/orderplaced/${data.id}`);
 
 }

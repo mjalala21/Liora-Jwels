@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getProducts, getWishlist, addToWishlist } from "../../services/api";
 import { useSelector } from "react-redux";
@@ -19,6 +19,13 @@ const [quickView,setQuickView] = useState(null);
 const [currentPage, setCurrentPage] = useState(1);
 
 const productsPerPage = 8;
+
+const [showFilters, setShowFilters] = useState(false);
+
+const [categoryFilter, setCategoryFilter] = useState("All");
+const [ratingFilter, setRatingFilter] = useState(0);
+const [priceFilter, setPriceFilter] = useState("All");
+const [sortBy, setSortBy] = useState("");
 
 const queryClient = useQueryClient();
 
@@ -63,7 +70,9 @@ queryFn:getProducts
 
 });
 
-
+useEffect(() => {
+  setCurrentPage(1);
+}, [search]);
 
 
 if(isLoading){
@@ -79,15 +88,62 @@ Loading Products...
 
 
 
-const filteredProducts = products.filter(product =>
-  product.name
-    ?.toLowerCase()
-    .includes((search || "").toLowerCase())
+// const filteredProducts = products.filter(product =>
+//   product.name
+//     ?.toLowerCase()
+//     .includes((search || "").toLowerCase())
+// );
+
+let filteredProducts = products
+
+.filter(product =>
+product.name
+?.toLowerCase()
+.includes((search || "").toLowerCase())
+)
+
+
+.filter(product =>
+categoryFilter === "All"
+?
+true
+:
+product.category === categoryFilter
+)
+
+
+.filter(product =>
+priceFilter === "All"
+?
+true
+:
+priceFilter === "low"
+?
+product.price < 10000
+:
+product.price >= 10000
 );
 
-React.useEffect(()=>{
-  setCurrentPage(1);
-},[search]);
+
+
+if(sortBy==="priceLow"){
+
+filteredProducts.sort(
+(a,b)=>a.price-b.price
+);
+
+}
+
+
+if(sortBy==="priceHigh"){
+
+filteredProducts.sort(
+(a,b)=>b.price-a.price
+);
+
+}
+
+
 
 // Pagination
 
@@ -190,9 +246,267 @@ Discover our timeless jewellery pieces
 
 
 </div>
+{/* Filter Button */}
+
+<div className="flex justify-end mb-8 relative">
+
+
+<button
+
+onClick={()=>setShowFilters(!showFilters)}
+
+className="
+flex
+items-center
+gap-3
+bg-[#3A2418]
+text-white
+px-6
+py-3
+rounded-full
+hover:bg-[#D4AF37]
+transition
+duration-300
+shadow-lg
+"
+
+>
+
+<span>
+☰
+</span>
+
+Filters
+
+</button>
 
 
 
+
+{/* Filter Panel */}
+
+{
+showFilters &&
+
+<div
+className="
+absolute
+right-0
+top-16
+z-30
+w-80
+bg-[#F8F4EC]
+border
+border-[#D4AF37]
+rounded-3xl
+shadow-2xl
+p-6
+"
+>
+
+
+<h3 className="
+text-xl
+font-serif
+text-[#3A2418]
+mb-5
+">
+
+Refine Collection
+
+</h3>
+
+
+
+{/* Category */}
+
+<div className="mb-5">
+
+<label className="
+text-sm
+text-[#6F4E37]
+">
+
+Category
+
+</label>
+
+
+<select
+
+value={categoryFilter}
+
+onChange={(e)=>setCategoryFilter(e.target.value)}
+
+className="
+w-full
+mt-2
+px-4
+py-3
+rounded-full
+border
+border-[#D4AF37]
+bg-white
+outline-none
+"
+
+>
+
+
+<option value="All">
+All Jewellery
+</option>
+
+<option value="Ring">
+Rings
+</option>
+
+<option value="Necklace">
+Necklaces
+</option>
+
+<option value="Earing">
+Earings
+</option>
+
+<option value="Bracelet">
+Bracelets
+</option>
+
+<option value="Bangle">
+Bangles
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+{/* Price */}
+
+<div className="mb-5">
+
+
+<label className="
+text-sm
+text-[#6F4E37]
+">
+
+Price
+
+</label>
+
+
+<select
+
+value={priceFilter}
+
+onChange={(e)=>setPriceFilter(e.target.value)}
+
+className="
+w-full
+mt-2
+px-4
+py-3
+rounded-full
+border
+border-[#D4AF37]
+bg-white
+"
+
+
+>
+
+
+<option value="All">
+All Prices
+</option>
+
+<option value="low">
+Below ₹10000
+</option>
+
+<option value="high">
+Above ₹10000
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+{/* Sort */}
+
+<div>
+
+
+<label className="
+text-sm
+text-[#6F4E37]
+">
+
+Sort
+
+</label>
+
+
+<select
+
+value={sortBy}
+
+onChange={(e)=>setSortBy(e.target.value)}
+
+className="
+w-full
+mt-2
+px-4
+py-3
+rounded-full
+border
+border-[#D4AF37]
+bg-white
+"
+
+
+>
+
+<option value="">
+Sort By
+</option>
+
+<option value="priceLow">
+Price Low → High
+</option>
+
+<option value="priceHigh">
+Price High → Low
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+</div>
+
+
+}
+
+
+</div>
 
 
 {/* Products Grid */}
