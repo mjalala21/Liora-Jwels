@@ -4,15 +4,13 @@ import AppRoutes from './routes/AppRoutes'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+         
+
 
 function App() {
   return (
     <div>
-          <button
-        onClick={() => toast.success("Toast is working!")}
-      >
-        Test Toast
-      </button>
+  
 
       <AppRoutes/>
         <ToastContainer 

@@ -113,11 +113,11 @@ function ProductHero({
 
           {/* Quantity */}
 
-          {/* <div className="flex items-center gap-6 mt-12">
+          <div className="flex items-center gap-6 mt-12">
 
             <span className="text-brand-brown font-semibold">
 
-              Quantity
+              {/* Quantity */}
 
             </span>
 
@@ -150,7 +150,7 @@ function ProductHero({
 
             </div>
 
-          </div> */}
+          </div>
 
 
 

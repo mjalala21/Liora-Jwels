@@ -151,7 +151,7 @@ const updateCartMutation = useMutation({
 
 
 
-{/* Header */}
+
 
 
 <div className="
@@ -303,7 +303,7 @@ duration-500
 
 
 
-<img
+<Link to={`/products/${item.product.id}`}><img
 
 src={item.product.image}
 
@@ -316,7 +316,7 @@ rounded-2xl
 object-cover
 "
 
- />
+ /></Link>
 
 
 

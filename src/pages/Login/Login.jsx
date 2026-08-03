@@ -74,18 +74,21 @@ if (newErrors.email || newErrors.password) {
 
       return;
     }
-
+    
 
     localStorage.setItem(
       "user",
-      JSON.stringify(loginUser)
+      JSON.stringify({
+    id: loginUser.id,
+    name : loginUser.name,
+    email : loginUser.email
+    })
     );
+    // localStorage.setItem("userId", loginUser.id);
 
     navigate("/profile");
 
   }
-
-
 
   return (
 

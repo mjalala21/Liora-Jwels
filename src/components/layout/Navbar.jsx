@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getCart, getWishlist } from "../../services/api";
 import { motion } from "framer-motion";
 import UserDropdown from "./UserDropDown";
+import {useDispatch, useSelector} from 'react-redux'
+import { setSearch } from "../../redux/slices/SearchSlice";
 
 
 function Navbar() {
@@ -14,7 +16,9 @@ function Navbar() {
 
 const [openCollection,setOpenCollection] = useState(false);
 
+const dispatch = useDispatch()
 
+const search = useSelector(state=>state.search.search)
 const user = JSON.parse(
 localStorage.getItem("user")
 );
@@ -83,7 +87,7 @@ flex
 justify-between
 items-center
 backdrop-blur-md
-bg-black/20
+bg-white/20
 "
 >
 
@@ -96,7 +100,7 @@ bg-black/20
 <Link
 to="/"
 className="
-text-[#F5E6C8]
+text-brand-brown
 font-serif
 text-sm
 tracking-[0.2em]
@@ -133,7 +137,7 @@ onMouseLeave={()=>{
 <Link to='/products'><button
 
 className="
-text-[#F5E6C8]
+text-brand-brown
 font-serif
 text-sm
 tracking-[0.2em]
@@ -236,7 +240,7 @@ duration-300
 to="/bestsellers"
 
 className="
-text-[#F5E6C8]
+text-brand-brown
 font-serif
 text-sm
 tracking-[0.2em]
@@ -258,7 +262,7 @@ Best Sellers
 to="/orders"
 
 className="
-text-[#F5E6C8]
+text-brand-brown
 font-serif
 text-sm
 tracking-[0.2em]
@@ -333,26 +337,32 @@ gap-8
 
 className="
 flex
+justify-between
 items-center
-border-b
-border-[#E6C98C]
+
+  w-full
+    md:w-80
+    px-5
+    py-3
+    rounded-full
+    border
+    border-brand-gold
+    
+
 "
 
 >
 
 <input
-
-placeholder="Search"
-
-className="
-bg-transparent
-outline-none
-w-28
-text-[#F5E6C8]
-placeholder:text-[#F5E6C8]/60
-font-serif
-"
-
+  type="text"
+  placeholder="Search jewellery..."
+  value={search}
+  onChange={(e) => dispatch(setSearch(e.target.value))}
+  className="
+     
+   outline-none
+   text-[#E6C98C]
+  "
 />
 
 
@@ -367,22 +377,9 @@ text-[#E6C98C]
 
 
 
-
-
-
-
-{/* USER */}
-
-
 <UserDropdown/>
 
 
-
-
-
-
-
-{/* WISHLIST */}
 
 
 <Link
@@ -399,7 +396,7 @@ relative
 <FaRegHeart
 
 className="
-text-[#F5E6C8]
+text-brand-brown
 text-xl
 hover:text-[#E6C98C]
 transition
@@ -448,7 +445,7 @@ font-bold
 
 
 
-{/* CART */}
+
 
 
 <Link
@@ -465,7 +462,7 @@ relative
 <LuShoppingCart
 
 className="
-text-[#F5E6C8]
+text-brand-brown
 text-xl
 hover:text-[#E6C98C]
 transition

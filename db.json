@@ -16,7 +16,7 @@
     },
     {
       "id": "2",
-      "name": "Sunflower Earing",
+      "name": "golden Sun earing",
       "category": "Earing",
       "price": 4599,
       "originalPrice": 5200,
@@ -32,7 +32,7 @@
       "id": "3",
       "name": "Golden block Ring",
       "category": "Ring",
-      "price": 2999,
+      "price": 3900,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -46,7 +46,7 @@
       "id": "4",
       "name": "Golden pearl Ring",
       "category": "Ring",
-      "price": 2999,
+      "price": 9960,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -58,9 +58,9 @@
     },
     {
       "id": "5",
-      "name": "Royal Diamond Ring",
+      "name": "Leafy Diamond Ring",
       "category": "Ring",
-      "price": 2999,
+      "price": 2100,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -72,10 +72,10 @@
     },
     {
       "id": "6",
-      "name": "Feather Diamond Ring",
+      "name": "Golden Feathery Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 3299,
+      "originalPrice": 3599,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring5.jpg",
@@ -86,10 +86,10 @@
     },
     {
       "id": "7",
-      "name": "Royal Diamond Ring",
+      "name": "Royal Glace Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 3999,
+      "originalPrice": 3699,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring6.jpg",
@@ -100,10 +100,10 @@
     },
     {
       "id": "8",
-      "name": "Royal Diamond Ring",
+      "name": "four leaf Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 2239,
+      "originalPrice": 3099,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring7.jpg",
@@ -114,10 +114,10 @@
     },
     {
       "id": "9",
-      "name": "Royal Diamond Ring",
+      "name": "Pair Heart Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 1099,
+      "originalPrice": 1099,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring8.jpg",
@@ -130,8 +130,8 @@
       "id": "10",
       "name": "Royal Diamond Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 5999,
+      "originalPrice": 8799,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring9.jpg",
@@ -142,10 +142,10 @@
     },
     {
       "id": "54",
-      "name": "Royal Diamond Ring",
+      "name": "golden dumbell Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 2299,
+      "originalPrice": 10499,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring10.jpg",
@@ -156,10 +156,10 @@
     },
     {
       "id": "55",
-      "name": "Royal Diamond Ring",
+      "name": "butterfly Diamond Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 10999,
+      "originalPrice": 12999,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring11.avif",
@@ -170,10 +170,10 @@
     },
     {
       "id": "56",
-      "name": "Royal Diamond Ring",
+      "name": "Royal Feather Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 2399,
+      "originalPrice": 3999,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring12.jpg",
@@ -184,10 +184,10 @@
     },
     {
       "id": "57",
-      "name": "Royal Diamond Ring",
+      "name": "Classy Diamond Ring",
       "category": "Ring",
-      "price": 2999,
-      "originalPrice": 3499,
+      "price": 12999,
+      "originalPrice": 12999,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring13.jpg",
@@ -198,9 +198,9 @@
     },
     {
       "id": "58",
-      "name": "Royal Diamond Ring",
+      "name": "Rose Diamond Ring",
       "category": "Ring",
-      "price": 2999,
+      "price": 12199,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -212,9 +212,9 @@
     },
     {
       "id": "11",
-      "name": "Royal Diamond Ring",
+      "name": "Square Diamond Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 2299,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -226,9 +226,9 @@
     },
     {
       "id": "12",
-      "name": "Royal Diamond Ring",
+      "name": "Classy Diamond Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 6000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -240,9 +240,9 @@
     },
     {
       "id": "13",
-      "name": "Royal Diamond Ring",
+      "name": "Royal Flower Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 5000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -254,9 +254,9 @@
     },
     {
       "id": "15",
-      "name": "Royal Diamond Ring",
+      "name": "Classy Butterfly Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 4000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -268,9 +268,9 @@
     },
     {
       "id": "16",
-      "name": "Royal Diamond Ring",
+      "name": "Diamond Flower Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 12000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -282,9 +282,9 @@
     },
     {
       "id": "17",
-      "name": "Royal Diamond Ring",
+      "name": "Rose Diamond Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 3000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -296,9 +296,9 @@
     },
     {
       "id": "18",
-      "name": "Royal Diamond Ring",
+      "name": "Rain Drop Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 5000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -310,9 +310,9 @@
     },
     {
       "id": "19",
-      "name": "Royal Diamond Ring",
+      "name": "Tiny Butterfly Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 7000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -324,7 +324,7 @@
     },
     {
       "id": "14",
-      "name": "Royal Diamond Ring",
+      "name": "Diamond Ring Earing",
       "category": "Earing",
       "price": 2999,
       "originalPrice": 3499,
@@ -338,9 +338,9 @@
     },
     {
       "id": "20",
-      "name": "Royal Diamond Ring",
+      "name": "Classy Triangle Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 2000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -352,9 +352,9 @@
     },
     {
       "id": "21",
-      "name": "Royal Diamond Ring",
+      "name": "Moonl Diamond Ring",
       "category": "Earing",
-      "price": 2999,
+      "price": 1999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -366,9 +366,9 @@
     },
     {
       "id": "22",
-      "name": "Royal Diamond Ring",
+      "name": "White Pearl Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 3999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -380,9 +380,9 @@
     },
     {
       "id": "23",
-      "name": "Royal Diamond Ring",
+      "name": "Diamond block Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 5099,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -394,9 +394,9 @@
     },
     {
       "id": "59",
-      "name": "Royal Diamond Ring",
+      "name": "Pearly White Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 3000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -408,7 +408,7 @@
     },
     {
       "id": "60",
-      "name": "Royal Diamond Ring",
+      "name": "Dot Flower Earing",
       "category": "Earing",
       "price": 2999,
       "originalPrice": 3499,
@@ -422,9 +422,9 @@
     },
     {
       "id": "61",
-      "name": "Royal Diamond Ring",
+      "name": "Golden Pearl Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 3999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -436,9 +436,9 @@
     },
     {
       "id": "64",
-      "name": "Royal Diamond Ring",
+      "name": "Royal Petal Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 1999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -450,9 +450,9 @@
     },
     {
       "id": "65",
-      "name": "Royal Diamond Ring",
+      "name": "Shiny Butterfly Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 1400,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -464,7 +464,7 @@
     },
     {
       "id": "67",
-      "name": "Royal Diamond Ring",
+      "name": "Royal Glod Earing",
       "category": "Earing",
       "price": 2999,
       "originalPrice": 3499,
@@ -478,9 +478,9 @@
     },
     {
       "id": "68",
-      "name": "Royal Diamond Ring",
+      "name": "Elegent Ruby Earing",
       "category": "Earing",
-      "price": 2999,
+      "price": 5999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -492,9 +492,9 @@
     },
     {
       "id": "24",
-      "name": "Royal Diamond Ring",
+      "name": "Majestic Gold Pendant",
       "category": "Necklace",
-      "price": 2999,
+      "price": 10999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -506,9 +506,9 @@
     },
     {
       "id": "25",
-      "name": "Royal Diamond Ring",
+      "name": "Imperial Gold Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 12000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -520,9 +520,9 @@
     },
     {
       "id": "26",
-      "name": "Royal Diamond Ring",
+      "name": "Crystal Bloom Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 29999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -534,9 +534,9 @@
     },
     {
       "id": "45",
-      "name": "Royal Diamond Ring",
+      "name": "Moonlight Pearl Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 20999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -548,9 +548,9 @@
     },
     {
       "id": "46",
-      "name": "Royal Diamond Ring",
+      "name": "Blossom Charm Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 15999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -562,9 +562,9 @@
     },
     {
       "id": "47",
-      "name": "Royal Diamond Ring",
+      "name": "Imperial Grace Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 17999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -576,9 +576,9 @@
     },
     {
       "id": "48",
-      "name": "Royal Diamond Ring",
+      "name": "Infinity Diamond Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 29999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -590,9 +590,9 @@
     },
     {
       "id": "49",
-      "name": "Royal Diamond Ring",
+      "name": "Diamond Elegence Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 35000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -604,9 +604,9 @@
     },
     {
       "id": "50",
-      "name": "Royal Diamond Ring",
+      "name": "Pure Harmony Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 30999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -618,9 +618,9 @@
     },
     {
       "id": "51",
-      "name": "Royal Diamond Ring",
+      "name": "Luna Pearl Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 18000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -632,9 +632,9 @@
     },
     {
       "id": "52",
-      "name": "Royal Diamond Ring",
+      "name": "Golden Heritage Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 20000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -646,9 +646,9 @@
     },
     {
       "id": "53",
-      "name": "Royal Diamond Ring",
+      "name": "Pearl Elegance Necklace",
       "category": "Necklace",
-      "price": 2999,
+      "price": 22000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -660,9 +660,9 @@
     },
     {
       "id": "27",
-      "name": "Royal Diamond Ring",
+      "name": "Regal Charm Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 10000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -674,9 +674,9 @@
     },
     {
       "id": "28",
-      "name": "Royal Diamond Ring",
+      "name": "Grace Halo Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 5999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -688,9 +688,9 @@
     },
     {
       "id": "29",
-      "name": "Royal Diamond Ring",
+      "name": "Celeste Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 6000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -702,9 +702,9 @@
     },
     {
       "id": "30",
-      "name": "Royal Diamond Ring",
+      "name": "Star Charm Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 5999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -716,9 +716,9 @@
     },
     {
       "id": "31",
-      "name": "Royal Diamond Ring",
+      "name": "Signature Gold Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 5000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -730,9 +730,9 @@
     },
     {
       "id": "32",
-      "name": "Royal Diamond Ring",
+      "name": "Timeless Chain Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 8000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -744,9 +744,9 @@
     },
     {
       "id": "33",
-      "name": "Royal Diamond Ring",
+      "name": "Crystal Glow Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 10000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -758,9 +758,9 @@
     },
     {
       "id": "34",
-      "name": "Royal Diamond Ring",
+      "name": "Eternal Spark Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 7999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -772,9 +772,9 @@
     },
     {
       "id": "35",
-      "name": "Royal Diamond Ring",
+      "name": "Eternal Spark Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 6999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -786,9 +786,9 @@
     },
     {
       "id": "36",
-      "name": "Royal Diamond Ring",
+      "name": "Love Knot Bracelet",
       "category": "Bracelet",
-      "price": 2999,
+      "price": 8000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -800,9 +800,9 @@
     },
     {
       "id": "37",
-      "name": "Royal Diamond Ring",
+      "name": "Luxe Curve Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 4999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -814,9 +814,9 @@
     },
     {
       "id": "38",
-      "name": "Royal Diamond Ring",
+      "name": "ROpulent Gold Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 4000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -828,9 +828,9 @@
     },
     {
       "id": "39",
-      "name": "Royal Diamond Ring",
+      "name": "Aurora Luxe Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 4999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -842,9 +842,9 @@
     },
     {
       "id": "40",
-      "name": "Royal Diamond Ring",
+      "name": "Golden Heritage Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 7000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -856,9 +856,9 @@
     },
     {
       "id": "41",
-      "name": "Royal Diamond Ring",
+      "name": "Pure Pearl Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 6999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -870,9 +870,9 @@
     },
     {
       "id": "42",
-      "name": "Royal Diamond Ring",
+      "name": "Celeste Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 2000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -884,7 +884,7 @@
     },
     {
       "id": "43",
-      "name": "Royal Diamond Ring",
+      "name": "Radiance Bangle",
       "category": "Bangle",
       "price": 2999,
       "originalPrice": 3499,
@@ -898,9 +898,9 @@
     },
     {
       "id": "44",
-      "name": "Royal Diamond Ring",
+      "name": "Noble Elegance Bangle",
       "category": "Bangle",
-      "price": 2999,
+      "price": 4999,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -1033,6 +1033,67 @@
       "status": "Pending",
       "createdAt": "2026-08-02T14:14:16.286Z",
       "id": "R4Iy6YW7sok"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "49",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 35000,
+      "shippingAddress": {
+        "fullName": "rizal",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "bridgeon"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-03T04:07:30.295Z",
+      "id": "ELsmQs0Z164"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "1",
+          "quantity": 1,
+          "id": "WrPMuENCJRU"
+        },
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "2",
+          "quantity": 4,
+          "id": "tXMLr_1jwLo"
+        },
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "57",
+          "quantity": 1,
+          "id": "-f456ARQv8A"
+        },
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "55",
+          "quantity": 1,
+          "id": "D2jPeCDl_Kg"
+        }
+      ],
+      "totalAmount": 45393,
+      "shippingAddress": {
+        "fullName": "afla",
+        "phone": "1234567890",
+        "city": "vengara",
+        "address": "Bridgeon"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-03T04:08:35.925Z",
+      "id": "o87NNGVs42A"
     }
   ],
   "wishlist": [
@@ -1075,6 +1136,31 @@
       "userId": "bzbHA7LAzyM",
       "productId": "1",
       "id": "yeN-6RyR9No"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "3",
+      "id": "sqdzxlD0Gpc"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "8",
+      "id": "XxKMfLmVTuY"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "58",
+      "id": "L1m2mqgIV_A"
+    },
+    {
+      "userId": "WqVWpnK1dJ8",
+      "productId": "39",
+      "id": "xnFW_2kDbMQ"
+    },
+    {
+      "userId": "WqVWpnK1dJ8",
+      "productId": "38",
+      "id": "eJNJvIjmJG8"
     }
   ],
   "carts": [
@@ -1111,7 +1197,7 @@
     {
       "userId": "bzbHA7LAzyM",
       "productId": "1",
-      "quantity": 1,
+      "quantity": 6,
       "id": "WrPMuENCJRU"
     },
     {
@@ -1119,6 +1205,24 @@
       "productId": "2",
       "quantity": 4,
       "id": "tXMLr_1jwLo"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "57",
+      "quantity": 2,
+      "id": "-f456ARQv8A"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "55",
+      "quantity": 1,
+      "id": "D2jPeCDl_Kg"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "4",
+      "quantity": 1,
+      "id": "f3vgtECgafM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
