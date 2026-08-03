@@ -12,7 +12,7 @@ import {
 import { FaTrash, FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { getCartProducts } from "../../utilis/calculateTotal";
+import BackButton from "../../components/layout/BackButton";
 
 
 function Cart() {
@@ -150,7 +150,7 @@ const updateCartMutation = useMutation({
 
 
 
-
+<BackButton />
 
 
 

@@ -11,7 +11,6 @@ import RelatedProducts from './relatedProducts'
 import ProductReviewsFAQ from './ProductReviewFAQ'
 import { useSelector } from 'react-redux'
 
-
 function ProductDetails() {
 
   const navigate = useNavigate()
@@ -243,6 +242,7 @@ navigate("/checkout");
 
   return (
    <>
+   
    <ProductHero
   product={product}
   quantity={quantity}

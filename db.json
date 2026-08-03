@@ -1392,6 +1392,12 @@
       "productId": "68",
       "quantity": 1,
       "id": "TpSDVEukF4I"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "37",
+      "quantity": 1,
+      "id": "uLltufCt6DM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -11,6 +11,8 @@ import {
   FaMinus,
   FaPlus
 } from "react-icons/fa";
+import BackButton from "../../components/layout/BackButton";
+
 
 function ProductHero({
   product,
@@ -26,6 +28,8 @@ function ProductHero({
 
      if (!product) {
     return (
+
+      
       <div className="h-screen flex items-center justify-center">
         Loading product...
       </div>
@@ -33,9 +37,15 @@ function ProductHero({
 
 
   return (
+
+    
     <section className="bg-[#F8F4EC] min-h-screen pt-36 pb-24 px-8">
+    
+
+<BackButton />
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+        
 
         {/* LEFT IMAGE */}
 

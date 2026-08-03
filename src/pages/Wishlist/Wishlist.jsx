@@ -20,6 +20,8 @@ import {
  FaShoppingBag
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import BackButton from "../../components/layout/BackButton";
+
 
 
 function Wishlist(){
@@ -151,13 +153,13 @@ return (
 <div className="
 min-h-screen
 bg-[#F8F4EC]
-pt-32
+pt-25
 px-10
 pb-20
 ">
 
 
-
+<BackButton/>
 
 
 {/* HEADER */}
