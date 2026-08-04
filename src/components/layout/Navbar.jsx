@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
@@ -15,6 +15,8 @@ function Navbar() {
 
 
 const [openCollection,setOpenCollection] = useState(false);
+
+const[searchInput, setSearchInput] = useState("")
 
 const dispatch = useDispatch()
 const navigate = useNavigate()
@@ -67,6 +69,18 @@ const categories=[
 "Bracelet",
 "Earring"
 ];
+
+
+   
+  useEffect(()=>{
+
+const timer = setTimeout(()=>{
+  dispatch(setSearch(searchInput))
+},1000)
+
+return ()=>clearTimeout(timer)
+
+  },[searchInput])
 
 
 
@@ -355,11 +369,8 @@ items-center
 <input
   type="text"
   placeholder="Search jewellery..."
-  value={search}
-  onChange={(e) => {dispatch(setSearch(e.target.value));
-     navigate('/allproducts')
-
-  }}
+  value={searchInput}
+  onChange={(e)=>setSearchInput(e.target.value)}
   className="
      
    outline-none
