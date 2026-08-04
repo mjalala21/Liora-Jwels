@@ -15,19 +15,19 @@ function App() {
       const userId = localStorage.getItem("userId");
 
       if (!userId){
-         dispatch(setUserLoaded());
+        
         return;
       }
       const user = await getUserById(userId);
 
       dispatch(setUser(user));
 
-      // dispatch(setUserLoaded());
+   
     }
 
     loadUser();
 
-  }, [dispatch]);
+  }, []);
 
   return <AppRoutes />;
 }

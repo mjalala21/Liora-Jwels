@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     user: null,
-    // loading : true
+   
 }
 
 const userSlice = createSlice({
@@ -17,10 +17,8 @@ const userSlice = createSlice({
         clearUser(state){
             state.user = null
             
-        },
-//         setUserLoaded(state){
-//             state.loading = false;
-// }
+        }
+
 
         
     }

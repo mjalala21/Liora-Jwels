@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getProducts, getWishlist, addToWishlist } from "../../services/api";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaHeart } from "react-icons/fa";
+import { setSearch } from "../../redux/slices/SearchSlice";
 
 
 function AllProducts() {
 
-
+const dispatch = useDispatch()
 const search = useSelector(
 (state)=>state.search.search
 );
@@ -246,6 +247,10 @@ Discover our timeless jewellery pieces
 
 
 </div>
+
+
+
+
 {/* Filter Button */}
 
 <div className="flex justify-end mb-8 relative">
@@ -511,6 +516,9 @@ Price High → Low
 
 {/* Products Grid */}
 
+{filteredProducts.length > 0 ? (
+
+
 
 <div className="
 grid
@@ -738,6 +746,51 @@ View Product
 
 </div>
 
+) :  (
+
+
+
+<div className="py-24 text-center">
+
+  <h2 className="text-4xl font-serif text-brand-brown">
+    No Matching Jewellery Found
+  </h2>
+
+  <p className="mt-4 text-gray-500">
+    We couldn't find any pieces matching your selection.
+  </p>
+
+  <button
+    onClick={() => {
+      dispatch(setSearch(""))
+      setCategoryFilter("All");
+      setPriceFilter("All");
+      setSortBy("");
+    }}
+    className="
+      mt-8
+      px-8
+      py-3
+      rounded-full
+      bg-brand-brown
+      text-white
+      hover:bg-brand-gold
+      hover:text-brand-brown
+      transition
+    "
+  >
+    Clear Filters
+  </button>
+
+</div>
+
+
+
+)}
+
+{/* pagination */}
+
+{filteredProducts.length > 0 && (
 
 <div className="
 flex
@@ -828,6 +881,7 @@ Next
 
 
 </div>
+)}
 
 
 

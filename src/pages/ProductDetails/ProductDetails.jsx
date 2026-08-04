@@ -8,13 +8,14 @@ import { FaHeart } from "react-icons/fa";
 import ProductHero from './productHero'
 import ProductServices from './productServices'
 import RelatedProducts from './relatedProducts'
-import ProductReviewsFAQ from './ProductReviewFAQ'
 import { useSelector } from 'react-redux'
 
 function ProductDetails() {
 
   const navigate = useNavigate()
+
 const queryClient = useQueryClient()
+
    const {id} = useParams()
 
    const user = useSelector((state) => state.user.user);
@@ -177,7 +178,7 @@ function handleAddCart() {
     {
       userId: user.id,
       productId: product.id,
-      quantity,
+      quantity: quantity
     },
     {
       onSuccess: () => {
@@ -202,7 +203,7 @@ const buyNowItem = {
 
  productId:product.id,
 
- quantity:1
+ quantity:quantity
 
 };
 
@@ -218,27 +219,7 @@ navigate("/checkout");
 
   }
 
-//   return (
-//     <div>
-//         <h1>Product Details</h1>
-//         <img src={product.image} alt={product.name}/>
 
-//       <h2>{product.name}</h2>
-
-//       <p>{product.description}</p>
-
-//       <p>{product.price}</p>
-//       <button className='px-4 py-2 bg-blue-300 text-white rounded-lg' onClick={handleAddCart}>Add to Cart</button>
-
-//     </div>
-//   )
-// }
-
-// export default ProductDetails
-
-
-
-// function ProductDetails() {
 
   return (
    <>
@@ -256,7 +237,7 @@ navigate("/checkout");
 />
    <ProductServices product = {product}/>
    <RelatedProducts product={product} products={products}/>
-   <ProductReviewsFAQ/>
+  
    </>
   )
 }

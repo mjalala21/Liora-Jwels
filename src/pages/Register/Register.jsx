@@ -5,6 +5,7 @@ import { registerUsers, getUsers } from "../../services/api";
 import { toast } from "react-toastify";
 
 
+
 function Register() {
 
   const [name,setName] = useState("");
@@ -37,9 +38,9 @@ const registerMutation = useMutation({
 
     toast.success("Account created successfully!");
 
-    setTimeout(() => {
+   
       navigate("/login");
-    }, 2000);
+   
   },
 
   onError: (error) => {
@@ -109,6 +110,7 @@ const handleRegister = () => {
 
   registerMutation.mutate(newUser);
 };
+
 
 
 

@@ -363,7 +363,7 @@ items-center
   className="
      
    outline-none
-   text-[#E6C98C]
+   text-[#8f6b1d]
   "
 />
 
