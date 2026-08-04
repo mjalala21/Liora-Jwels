@@ -88,7 +88,7 @@ return (
 <div className="
 min-h-screen
 bg-[#F8F4EC]
-px-6
+px-32
 py-20
 ">
 

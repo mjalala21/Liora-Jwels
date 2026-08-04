@@ -23,7 +23,7 @@ const productsPerPage = 8;
 const [showFilters, setShowFilters] = useState(false);
 
 const [categoryFilter, setCategoryFilter] = useState("All");
-const [ratingFilter, setRatingFilter] = useState(0);
+
 const [priceFilter, setPriceFilter] = useState("All");
 const [sortBy, setSortBy] = useState("");
 

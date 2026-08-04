@@ -38,7 +38,7 @@ const {data : products=[], isProductLoading} = useQuery({
 })
 
 const {data : cart=[], isCartLoading} = useQuery({
-    queryKey : ['cart', user.id],
+    queryKey : ['cart', user?.id],
     queryFn : ()=>getCart(user.id)
 })
 

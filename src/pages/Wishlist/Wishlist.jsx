@@ -93,7 +93,13 @@ queryKey:["wishlist",user.id]
 
 const cartMutation = useMutation({
 
-mutationFn:addToCart
+mutationFn:addToCart,
+
+  onSuccess: () => {
+    queryClient.invalidateQueries({
+      queryKey: ["cart", user.id],
+    });
+  }
 
 });
 

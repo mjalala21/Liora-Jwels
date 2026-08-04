@@ -967,6 +967,13 @@
       "password": "123qwe#2",
       "role": "user",
       "id": "BQ1K92XflgI"
+    },
+    {
+      "name": "thahir",
+      "email": "thahir@gmail.com",
+      "password": "123qwe#@",
+      "role": "user",
+      "id": "tcJMlgk-C_g"
     }
   ],
   "orders": [
@@ -1303,6 +1310,91 @@
       "status": "Pending",
       "createdAt": "2026-08-03T17:50:47.452Z",
       "id": "EFSPcx6SpvY"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "37",
+          "quantity": 1,
+          "id": "uLltufCt6DM"
+        }
+      ],
+      "totalAmount": 4999,
+      "shippingAddress": {
+        "fullName": "aamish alam",
+        "phone": "1234567890",
+        "city": "malappuam",
+        "address": "jyadjagjfdz"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-03T19:25:56.189Z",
+      "id": "dHqtNLToIs8"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "items": [
+        {
+          "userId": "bzbHA7LAzyM",
+          "productId": "2",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 4599,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "1234567890",
+        "city": "lsjdlsajflk",
+        "address": "djfldfljldjflkjsalfjaljlkjf"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-03T19:43:09.813Z",
+      "id": "rHvXpgMQLWA"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "49",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 35000,
+      "shippingAddress": {
+        "fullName": "afla",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "iwrhiewuhufhewuuwerouewoiruqoieuroiuwroiueoi"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-04T03:14:09.779Z",
+      "id": "7hdLVuiF-GI"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "items": [
+        {
+          "userId": "uongffLE9dE",
+          "productId": "40",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 7000,
+      "shippingAddress": {
+        "fullName": "minnu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "jfkshkjhfrkjshkjdhskjhdkj"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-04T03:22:59.217Z",
+      "id": "OyBrkbjMoY8"
     }
   ],
   "wishlist": [
@@ -1360,6 +1452,11 @@
       "userId": "WqVWpnK1dJ8",
       "productId": "38",
       "id": "eJNJvIjmJG8"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "productId": "2",
+      "id": "w-b_up7h5Lk"
     }
   ],
   "carts": [
@@ -1392,12 +1489,6 @@
       "productId": "68",
       "quantity": 1,
       "id": "TpSDVEukF4I"
-    },
-    {
-      "userId": "bzbHA7LAzyM",
-      "productId": "37",
-      "quantity": 1,
-      "id": "uLltufCt6DM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

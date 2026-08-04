@@ -21,6 +21,7 @@ import Profile from '../pages/Profile/Profile'
 import OrderPlaced from "../pages/Orders/OrderPlaced";
 import OrderDetails from "../pages/Orders/OrderDetails";
 import AllProducts from '../pages/Products/AllProducts'
+import BlankLayout from "../layouts/BlankLayout";
 
 
 
@@ -29,6 +30,15 @@ function AppRoutes() {
     <div>
     <Routes>
       <Route element={<ProtectedRoute/>}>
+
+  <Route element={<BlankLayout/>}>
+    <Route 
+      path="/orderplaced/:id" 
+      element={<OrderPlaced/>}
+    />
+  </Route>
+
+
           <Route element={<UserLayout/>}>
           <Route path='/profile' element={<Profile/>}/>
              <Route path='/cart' element={<Cart/>}></Route>
