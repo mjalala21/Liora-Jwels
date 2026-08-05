@@ -87,113 +87,87 @@
 
 // export default OrderSuccess;
 
-
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 
+function OrderPlaced() {
+  const { id } = useParams();
 
-function OrderPlaced(){
-
-
-const {id}=useParams();
-
-
-
-return (
-
-<div className="
+  return (
+    <div
+      className="
 min-h-screen
 bg-[#F8F4EC]
 flex
 items-center
 justify-center
 px-6
-">
-
-
-<div className="
+"
+    >
+      <div
+        className="
 bg-white
 rounded-3xl
 shadow-2xl
 p-12
 text-center
 max-w-xl
-">
-
-
-<FaCheckCircle
-
-className="
+"
+      >
+        <FaCheckCircle
+          className="
 mx-auto
 text-7xl
 text-brand-gold
 "
+        />
 
-/>
-
-
-
-<h1 className="
+        <h1
+          className="
 text-5xl
 font-serif
 text-brand-brown
 mt-8
-">
+"
+        >
+          Order Placed Successfully
+        </h1>
 
-Order Placed Successfully
-
-</h1>
-
-
-
-<p className="
+        <p
+          className="
 text-gray-600
 mt-5
 text-lg
-">
+"
+        >
+          Thank you for choosing LIORA. Your jewellery journey begins here.
+        </p>
 
-Thank you for choosing LIORA.
-Your jewellery journey begins here.
-
-</p>
-
-
-
-<div className="
+        <div
+          className="
 mt-8
 bg-[#F8F4EC]
 rounded-xl
 p-5
-">
+"
+        >
+          <p className="text-gray-500">Order ID</p>
 
-<p className="text-gray-500">
-Order ID
-</p>
-
-
-<h2 className="
+          <h2
+            className="
 text-2xl
 font-semibold
 text-brand-brown
-">
+"
+          >
+            #{id}
+          </h2>
+        </div>
 
-#{id}
-
-</h2>
-
-
-</div>
-
-
-
-
-
-<Link
-
-to={`/orders/${id}`}
-
-className="
+        <Link
+          to={`/orders/${id}`}
+          className="
 block
 mt-8
 bg-brand-brown
@@ -204,43 +178,24 @@ tracking-widest
 hover:bg-brand-gold
 transition
 "
+        >
+          View Order Details
+        </Link>
 
->
-
-View Order Details
-
-</Link>
-
-
-
-<Link
-
-to="/products"
-
-className="
+        <Link
+          to="/products"
+          className="
 block
 mt-4
 text-brand-gold
 hover:underline
 "
-
->
-
-Continue Shopping
-
-</Link>
-
-
-
-</div>
-
-
-
-</div>
-
-)
-
+        >
+          Continue Shopping
+        </Link>
+      </div>
+    </div>
+  );
 }
-
 
 export default OrderPlaced;

@@ -448,3 +448,85 @@ const handleRegister = () => {
 
 
 export default Register;
+
+// import React from 'react'
+// import { useForm } from 'react-hook-form'
+// import { useQuery, useMutation } from '@tanstack/react-query'
+// import { registerUsers } from '../../services/api'
+
+// function Register() {
+
+
+//   const{register,
+//          handleSubmit, 
+//          watch,
+//          formState : {errors}
+//   } =useForm()
+
+//    const registerMutation = useMutation({
+//   mutationFn: registerUsers
+// })
+
+// const password = watch("password")
+
+//   function onSubmit(data){
+
+//     console.log(data)
+//  const newUser = {
+//     name: data.name,
+//     email: data.email,
+//     password: data.password,
+//     role: "user",
+//   };
+
+//    registerMutation.mutate(newUser)
+//   }
+
+//   console.log(password);
+//   return (
+//     <div>
+  
+//  <form action="" onSubmit={handleSubmit(onSubmit)}> 
+
+//   <input type="text" {...register("name",{
+//   required : "name is required"
+  
+// })}/>
+
+// <p>{errors.name?.message}</p>
+
+// <input type="email" {...register("email",{
+//   required : "Email is required",
+//   pattern: {
+//   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+//   message: "Invalid email"
+// }
+// })}/>
+
+// <p>{errors.email?.message}</p>
+
+// <input type="password" {...register("password",{
+//   required : "Password is required",
+//   minLength:{
+// value:6,
+
+// message:"Minimum 6 characters" }
+
+// })}/>
+
+// <p>{errors.password?.message}</p>
+
+// <input type="password" {...register("confirmPassword",{
+//   required : "confirmpPassword is required",
+//   validate : (value)=>value===password || "password do not match"
+// })}/>
+
+// <p>{errors.confirmPassword?.message}</p>
+//  <button type ="submit" onClick={()=>console.log("clicked")}>submit</button>
+
+//  </form>
+//     </div>
+//   )
+// }
+
+// export default Register

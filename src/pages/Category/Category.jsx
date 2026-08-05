@@ -1,235 +1,171 @@
 import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProducts, addToCart, getCart, addToWishlist, getWishlist } from "../../services/api";
-import { 
-  FaHeart,
-  FaEye,
-  FaShoppingBag
-} from "react-icons/fa";
+import {
+  getProducts,
+  addToCart,
+  getCart,
+  addToWishlist,
+  getWishlist,
+} from "../../services/api";
+import { FaHeart, FaEye, FaShoppingBag } from "react-icons/fa";
 
 import { useSelector } from "react-redux";
 
-
-
-
-
-
 function Category() {
+  const { category } = useParams();
 
+  const queryClient = useQueryClient();
 
+  const navigate = useNavigate();
 
-
-
-
-  const {category} = useParams();
-
-  const queryClient = useQueryClient()
-
-  const navigate = useNavigate()
-
-
-
-  const [quickView,setQuickView] = useState(null);
+  const [quickView, setQuickView] = useState(null);
 
   const user = useSelector((state) => state.user.user);
 
-  const {data : products=[], isProductLoading, error} = useQuery({
+  const {
+    data: products = [],
+    isProductLoading,
+    error,
+  } = useQuery({
+    queryKey: ["products", category],
 
-    queryKey:["products",category],
-
-    queryFn:getProducts
-
+    queryFn: getProducts,
   });
 
-   const {data : cart, isCartLoading } = useQuery({
+  const { data: cart, isCartLoading } = useQuery({
+    queryKey: ["cart", user?.id],
+    queryFn: () => getCart(user.id),
+    enabled: !!user,
+  });
 
-    queryKey : ["cart", user?.id],
-    queryFn : ()=>getCart(user.id),
-     enabled:!!user
+  const { data: wishlist = [] } = useQuery({
+    queryKey: ["wishlist", user?.id],
 
-  })
-
-  const {data:wishlist=[]} = useQuery({
-
-  queryKey:["wishlist", user?.id],
-
-  queryFn:()=>getWishlist(user.id),
-   enabled:!!user 
-
-});
+    queryFn: () => getWishlist(user.id),
+    enabled: !!user,
+  });
 
   const addCartMutation = useMutation({
-    mutationFn : addToCart,
+    mutationFn: addToCart,
 
-     onSuccess: (data) => {
-    console.log("Added successfully", data);
-     queryClient.invalidateQueries({
-      queryKey : ["cart", user.id]
-     }) 
-  },
+    onSuccess: (data) => {
+      console.log("Added successfully", data);
+      queryClient.invalidateQueries({
+        queryKey: ["cart", user.id],
+      });
+    },
 
-  onError: (error) => {
-    console.log("Error:", error);
-  }
-});
+    onError: (error) => {
+      console.log("Error:", error);
+    },
+  });
 
-const wishlistMutation = useMutation({
+  const wishlistMutation = useMutation({
+    mutationFn: addToWishlist,
 
-  mutationFn:addToWishlist,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["wishlist", user.id],
+      });
+    },
+  });
 
-  onSuccess:()=>{
-
-    queryClient.invalidateQueries({
-      queryKey:["wishlist", user.id]
-    });
-
-  }
-
-});
-
-
-  if(isProductLoading || isCartLoading){
-
+  if (isProductLoading || isCartLoading) {
     return (
-      <div className="
+      <div
+        className="
         h-screen
         flex
         justify-center
         items-center
-      ">
+      "
+      >
         Loading Collection...
       </div>
     );
-
   }
 
-  console.log(cart)
+  console.log(cart);
 
-
-
-  if(error){
-
-    return <p>{error.message}</p>
-
+  if (error) {
+    return <p>{error.message}</p>;
   }
 
+  const filteredProducts = products.filter((product) => {
+    return product.category === category;
+  });
 
-
-
-
-
-const filteredProducts = products.filter((product) => {
-
-  return product.category === category;
-
-});
-
-
-
- function handleAddCart(idToAdd){
-
-if(!user){
-  navigate("/login")
-  return;
-}
-
-  const cartedProduct= products.find(p=>
-    String(p.id)=== String(idToAdd))
-
-
-const existingItem = cart.find(item=> 
-   String(item.userId) === String(user.id) &&
-  String(item.productId) === String(idToAdd)
-  
-)
-console.log("Current cart:", cart);
-console.log("Clicked product:", idToAdd);
-console.log("Current user:", user.id);
-
-
-if(existingItem){
-  alert("this item already added to te cart")
-
-  return;
-}
-  
-  
-
-
-    const cartedItem = {
-      userId: user.id ,
-      productId : cartedProduct.id ,
-      quantity : 1
+  function handleAddCart(idToAdd) {
+    if (!user) {
+      navigate("/login");
+      return;
     }
 
+    const cartedProduct = products.find(
+      (p) => String(p.id) === String(idToAdd),
+    );
 
-    addCartMutation.mutate(cartedItem)
+    const existingItem = cart.find(
+      (item) =>
+        String(item.userId) === String(user.id) &&
+        String(item.productId) === String(idToAdd),
+    );
+    console.log("Current cart:", cart);
+    console.log("Clicked product:", idToAdd);
+    console.log("Current user:", user.id);
 
+    if (existingItem) {
+      alert("this item already added to te cart");
 
+      return;
+    }
 
- }
-function handleWishlist(product){
+    const cartedItem = {
+      userId: user.id,
+      productId: cartedProduct.id,
+      quantity: 1,
+    };
 
+    addCartMutation.mutate(cartedItem);
+  }
+  function handleWishlist(product) {
+    if (!user) {
+      navigate("/login");
 
-if(!user){
+      return;
+    }
 
-  navigate("/login");
+    const alreadyAdded = wishlist.find(
+      (item) => String(item.productId) === String(product.id),
+    );
 
-  return;
+    if (alreadyAdded) {
+      alert("Already added to wishlist");
 
-}
+      return;
+    }
 
+    const wishlistItem = {
+      userId: user.id,
 
+      productId: product.id,
+    };
 
-const alreadyAdded = wishlist.find(item=>
-
- String(item.productId) === String(product.id)
-
-);
-
-
-
-if(alreadyAdded){
-
- alert("Already added to wishlist");
-
- return;
-
-}
-
-
-
-const wishlistItem={
-
- userId:user.id,
-
- productId:product.id
-
-};
-
-
-
-wishlistMutation.mutate(wishlistItem);
-
-
-}
-
+    wishlistMutation.mutate(wishlistItem);
+  }
 
   return (
-
-    <div className="
+    <div
+      className="
       bg-[#F8F4EC]
       min-h-screen
-    ">
-
-
-
+    "
+    >
       {/* Header */}
 
-
       <div
-      className="
+        className="
         h-[45vh]
         bg-cover
         bg-center
@@ -238,89 +174,67 @@ wishlistMutation.mutate(wishlistItem);
         items-center
         relative
       "
-      style={{
-        backgroundImage:
-        "url('/images/Hero/hero1.jpg')"
-      }}
+        style={{
+          backgroundImage: "url('/images/Hero/hero1.jpg')",
+        }}
       >
-
-
-        <div className="
+        <div
+          className="
           absolute
           inset-0
           bg-black/40
-        "></div>
+        "
+        ></div>
 
-
-
-        <div className="
+        <div
+          className="
           relative
           text-center
           text-white
-        ">
-
-
-          <h1 className="
+        "
+        >
+          <h1
+            className="
             text-6xl
             font-serif
             tracking-wide
-          ">
-
+          "
+          >
             {category} Collection
-
           </h1>
 
-
-
-          <p className="
+          <p
+            className="
             mt-5
             text-lg
-          ">
-
-            Discover timeless pieces crafted
-            for unforgettable moments.
-
+          "
+          >
+            Discover timeless pieces crafted for unforgettable moments.
           </p>
-
-
         </div>
-
-
       </div>
-
-
-
-
-
-
 
       {/* Products */}
 
-
-      <div className="
+      <div
+        className="
         px-10
         py-20
-      ">
-
-
-
-      <div className="
+      "
+      >
+        <div
+          className="
         grid
         grid-cols-1
         md:grid-cols-2
         xl:grid-cols-4
         gap-10
-      ">
-
-
-
-      {
-        filteredProducts.map(product=>(
-
-
-          <div
-          key={product.id}
-          className="
+      "
+        >
+          {filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="
             group
             bg-white
             rounded-3xl
@@ -330,28 +244,20 @@ wishlistMutation.mutate(wishlistItem);
             transition
             duration-500
           "
-          >
+            >
+              {/* Image */}
 
-
-
-          {/* Image */}
-
-
-          <div className="
+              <div
+                className="
             relative
             overflow-hidden
-          ">
-
-
-          <Link
-          to={`/products/${product.id}`}
-          >
-
-
-          <img
-          src={product.image}
-          alt={product.name}
-          className="
+          "
+              >
+                <Link to={`/products/${product.id}`}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="
             w-full
             h-[380px]
             object-cover
@@ -359,32 +265,24 @@ wishlistMutation.mutate(wishlistItem);
             transition
             duration-700
           "
-          />
+                  />
+                </Link>
 
+                {/* Icons */}
 
-          </Link>
-
-
-
-
-          {/* Icons */}
-
-
-          <div className="
+                <div
+                  className="
             absolute
             top-5
             right-5
             flex
             flex-col
             gap-3
-          ">
-
-
-        <button
-
-onClick={()=>handleWishlist(product)}
-
-className="
+          "
+                >
+                  <button
+                    onClick={() => handleWishlist(product)}
+                    className="
  bg-white
  p-3
  rounded-full
@@ -392,107 +290,79 @@ className="
  hover:text-red-500
  transition
 "
+                  >
+                    <FaHeart
+                      className={
+                        wishlist.some(
+                          (item) =>
+                            String(item.productId) === String(product.id),
+                        )
+                          ? "text-red-500"
+                          : "text-gray-400"
+                      }
+                    />
+                  </button>
 
->
-
-         <FaHeart
-className={
- wishlist.some(
- item=>String(item.productId)===String(product.id)
- )
- ? "text-red-500"
- : "text-gray-400"
-}
-/>
-
-          </button>
-
-
-
-
-
-          <button
-          onClick={()=>
-            setQuickView(product)
-          }
-          className="
+                  <button
+                    onClick={() => setQuickView(product)}
+                    className="
             bg-white
             p-3
             rounded-full
             shadow
           "
-          >
+                  >
+                    <FaEye />
+                  </button>
+                </div>
+              </div>
 
-          <FaEye/>
+              {/* Details */}
 
-          </button>
-
-
-
-          </div>
-
-
-
-          </div>
-
-
-
-
-
-
-
-          {/* Details */}
-
-
-
-          <div className="
+              <div
+                className="
             p-6
             text-center
-          ">
-
-
-          <h2 className="
+          "
+              >
+                <h2
+                  className="
             text-xl
             font-serif
             text-brand-brown
-          ">
+          "
+                >
+                  {product.name}
+                </h2>
 
-          {product.name}
-
-          </h2>
-
-
-
-
-          <p className="
+                <p
+                  className="
             text-brand-gold
             mt-2
-          ">
-            ★★★★★
-          </p>
+          "
+                >
+                  ★★★★★
+                </p>
 
-
-
-
-          <p className="
+                <p
+                  className="
             text-lg
             font-semibold
             text-brand-brown
             mt-2
-          ">
+          "
+                >
+                  ₹ {product.price}
+                </p>
 
-          ₹ {product.price}
-
-          </p>
-
-
-
-
-          <button disabled={isCartLoading}
-          type='button'  onClick={()=>{
-            console.log("clicked")
-          handleAddCart(product.id)}}
-          className="
+                <button
+                  disabled={isCartLoading}
+                  type="button"
+                  onClick={() => {
+                    console.log("clicked");
+                    handleAddCart(product.id);
+                  }}
+                  className="
             mt-5
             w-full
             flex
@@ -506,49 +376,21 @@ className={
             hover:bg-brand-gold
             transition
           "
-          >
-
-          <FaShoppingBag/>
-
-          Add To Cart
-
-          </button>
-
-
-
-          </div>
-
-
-
-          </div>
-
-
-        ))
-      }
-
-
-
+                >
+                  <FaShoppingBag />
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
-
-      </div>
-
-
-
-
-
-
-
-
 
       {/* Quick View */}
 
-
-
-      {
-        quickView &&
-
-        <div className="
+      {quickView && (
+        <div
+          className="
           fixed
           inset-0
           bg-black/50
@@ -556,101 +398,72 @@ className={
           justify-center
           items-center
           z-50
-        ">
-
-
-        <div className="
+        "
+        >
+          <div
+            className="
           bg-white
           rounded-3xl
           p-10
           max-w-lg
           relative
-        ">
-
-
-        <button
-
-        onClick={()=>
-          setQuickView(null)
-        }
-
-        className="
+        "
+          >
+            <button
+              onClick={() => setQuickView(null)}
+              className="
           absolute
           right-5
           top-5
         "
+            >
+              ✕
+            </button>
 
-        >
-
-        ✕
-
-
-        </button>
-
-
-
-        <img
-        src={quickView.image}
-        className="
+            <img
+              src={quickView.image}
+              className="
           w-72
           h-72
           object-cover
           rounded-xl
           mx-auto
         "
-        />
+            />
 
-
-
-        <h2 className="
+            <h2
+              className="
           text-3xl
           font-serif
           text-brand-brown
           mt-5
-        ">
+        "
+            >
+              {quickView.name}
+            </h2>
 
-        {quickView.name}
-
-        </h2>
-
-
-
-        <p className="
+            <p
+              className="
           mt-3
-        ">
+        "
+            >
+              {quickView.description}
+            </p>
 
-        {quickView.description}
-
-        </p>
-
-
-
-        <p className="
+            <p
+              className="
           text-brand-gold
           text-xl
           mt-3
-        ">
-
-        ₹ {quickView.price}
-
-        </p>
-
-
-
+        "
+            >
+              ₹ {quickView.price}
+            </p>
+          </div>
         </div>
-
-
-
-        </div>
-
-      }
-
-
-
+      )}
     </div>
-
-  )
+  );
 }
-
 
 export default Category;

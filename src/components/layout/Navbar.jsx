@@ -370,7 +370,9 @@ items-center
   type="text"
   placeholder="Search jewellery..."
   value={searchInput}
-  onChange={(e)=>setSearchInput(e.target.value)}
+  onChange={(e)=>{setSearchInput(e.target.value);
+     navigate('/allproducts')
+  }}
   className="
      
    outline-none
