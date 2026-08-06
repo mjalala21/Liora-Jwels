@@ -17,6 +17,8 @@ import BackButton from "../../components/layout/BackButton";
 function Cart() {
   const user = useSelector((state) => state.user.user);
 
+  console.log(user);
+
   const queryClient = useQueryClient();
 
   const { data: cart = [], isLoading: isCartLoading } = useQuery({

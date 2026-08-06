@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { 
   useQuery,
   useMutation,
@@ -10,7 +11,9 @@ import {
  getWishlist,
  getProducts,
  removeFromWishlist,
- addToCart
+ addToCart,
+ getCart,
+ updateCart
 } from "../../services/api";
 
 
@@ -20,6 +23,7 @@ import {
  FaShoppingBag
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import BackButton from "../../components/layout/BackButton";
 
 
@@ -28,6 +32,8 @@ function Wishlist(){
 
 
 const user = useSelector((state) => state.user.user);
+
+const[quantity, setQuantity]= useState(1)
 
 
 
@@ -64,11 +70,16 @@ queryFn:getProducts
 });
 
 
+const{
+  data : cart=[]
+}= useQuery({
+  queryKey : ['cart', user?.id],
+  queryFn : ()=>getCart(user.id)
+})
 
 
 
-
-const removeMutation = useMutation({
+const removeWishlistMutation = useMutation({
 
 mutationFn:removeFromWishlist,
 
@@ -91,9 +102,9 @@ queryKey:["wishlist",user.id]
 
 
 
-const cartMutation = useMutation({
+const addCartMutation = useMutation({
 
-mutationFn:addToCart,
+mutationFn:(item)=>addToCart(item),
 
   onSuccess: () => {
     queryClient.invalidateQueries({
@@ -103,7 +114,14 @@ mutationFn:addToCart,
 
 });
 
+const updateCartMutation = useMutation({
+  mutationFn : ({itemId, updatedData})=>updateCart(itemId, updatedData),
 
+  onSuccess : ()=>
+    queryClient.invalidateQueries({
+      queryKey : ['cart', user?.id]
+    })
+})
 
 
 
@@ -134,8 +152,9 @@ Loading Wishlist...
 
 const wishlistProducts = wishlist.map(item=>{
 
-const product = products.find(
-p=>String(p.id)===String(item.productId)
+const product = products.find(p=>
+  String(user.id) === String(item.userId) &&
+String(p.id)===String(item.productId)
 );
 
 
@@ -150,7 +169,43 @@ product
 }).filter(item=>item.product);
 
 
+function handleAddCart(item){
+  
+  const checkCart = cart.find(cartItem=>
+    String(user.id)===String(cartItem.userId) &&
+    String(item.productId)===String(cartItem.productId)
+   )
 
+ 
+  console.log(checkCart)
+
+
+if(checkCart){  
+
+
+
+  updateCartMutation.mutate(
+    {
+      itemId : checkCart.id,
+      updatedData : { 
+        quantity : checkCart.quantity + quantity}
+    }
+  )
+  return;
+}
+
+const cartedItem = {
+  userId : user.id,
+  productId : item.productId,
+  quantity : quantity
+}
+addCartMutation.mutate(cartedItem,{
+  onSuccess : ()=>{
+       removeWishlistMutation.mutate(item.id)
+  }
+})
+  
+}
 
 
 
@@ -308,7 +363,7 @@ group
 relative
 ">
 
-
+<Link to={`/products/${item.product.id}`}>
 <img
 
 src={item.product.image}
@@ -325,13 +380,13 @@ duration-700
 "
 
 />
-
+</Link>
 
 
 
 <button
 
-onClick={()=>removeMutation.mutate(item.id)}
+onClick={()=>removeWishlistMutation.mutate(item.id)}
 
 className="
 absolute
@@ -407,15 +462,7 @@ mt-3
 
 <button
 
-onClick={()=>cartMutation.mutate({
-
-userId:user.id,
-
-productId:item.product.id,
-
-quantity:1
-
-})}
+onClick={()=>handleAddCart(item)}
 
 className="
 mt-6

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getProducts, getWishlist, addToWishlist } from "../../services/api";
+import { getProducts, getWishlist, addToWishlist, removeFromWishlist } from "../../services/api";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaHeart } from "react-icons/fa";
@@ -70,6 +70,16 @@ queryKey:["products"],
 queryFn:getProducts
 
 });
+
+const removeWishlistMutation = useMutation({
+  mutationFn : removeFromWishlist,
+ onSuccess : ()=>{
+  queryClient.invalidateQueries({
+    queryKey : ['wishlist', user.id]
+  })
+ }
+  
+})
 
 useEffect(() => {
   setCurrentPage(1);
@@ -183,7 +193,7 @@ String(item.productId) === String(product.id)
 
 if(alreadyAdded){
 
-alert("Already added to wishlist");
+  removeWishlistMutation.mutate(alreadyAdded.id)
 
 return;
 

@@ -7,6 +7,7 @@ import {
   getCart,
   addToWishlist,
   getWishlist,
+  removeFromWishlist,
 } from "../../services/api";
 import { FaHeart, FaEye, FaShoppingBag } from "react-icons/fa";
 
@@ -71,6 +72,16 @@ function Category() {
     },
   });
 
+  const removeWishlistMutation = useMutation({
+    mutationFn : removeFromWishlist,
+
+    onSuccess : ()=>{
+      queryClient.invalidateQueries({
+        queryKey : ['wishlist', user.id]
+      })
+    }
+  })
+
   if (isProductLoading || isCartLoading) {
     return (
       <div
@@ -111,12 +122,10 @@ function Category() {
         String(item.userId) === String(user.id) &&
         String(item.productId) === String(idToAdd),
     );
-    console.log("Current cart:", cart);
-    console.log("Clicked product:", idToAdd);
-    console.log("Current user:", user.id);
+
 
     if (existingItem) {
-      alert("this item already added to te cart");
+    
 
       return;
     }
@@ -141,7 +150,7 @@ function Category() {
     );
 
     if (alreadyAdded) {
-      alert("Already added to wishlist");
+removeWishlistMutation.mutate(alreadyAdded.id)
 
       return;
     }

@@ -1661,16 +1661,6 @@
       "id": "BTBIpUY9kK4"
     },
     {
-      "userId": "bzbHA7LAzyM",
-      "productId": "1",
-      "id": "yeN-6RyR9No"
-    },
-    {
-      "userId": "bzbHA7LAzyM",
-      "productId": "58",
-      "id": "L1m2mqgIV_A"
-    },
-    {
       "userId": "WqVWpnK1dJ8",
       "productId": "39",
       "id": "xnFW_2kDbMQ"
@@ -1699,6 +1689,21 @@
       "userId": "uongffLE9dE",
       "productId": "2",
       "id": "mTCE88-dzuk"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "27",
+      "id": "Sn1EEKh5yEM"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "1",
+      "id": "nzOcZE5wvW4"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "6",
+      "id": "PqcBBqVacaU"
     }
   ],
   "carts": [
@@ -1706,61 +1711,43 @@
       "id": "lkWORahoJhA",
       "userId": 2,
       "productId": "39",
-      "quandity": 1
+      "quantity": 1
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "1",
+      "quantity": 5,
+      "id": "-q0LPtAqxMo"
     },
     {
       "userId": "uongffLE9dE",
+      "productId": "1",
+      "quantity": 4,
+      "id": "KPjFyLXwJDI"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
       "productId": "3",
-      "quantity": 2,
-      "id": "fv6P53IWao4"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "40",
-      "quantity": 1,
-      "id": "4jsSeBKWfeo"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "68",
-      "quantity": 1,
-      "id": "TpSDVEukF4I"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "6",
-      "quantity": 1,
-      "id": "GyOjfN0qPiY"
-    },
-    {
-      "userId": "uongffLE9dE",
-      "productId": "26",
-      "quantity": 1,
-      "id": "uj3cramIefI"
+      "quantity": 5,
+      "id": "1FlpEI87JVE"
     },
     {
       "userId": "bzbHA7LAzyM",
-      "productId": "58",
+      "productId": "55",
       "quantity": 1,
-      "id": "jKhYW_nE5eI"
+      "id": "n-D_5X0nvdg"
     },
     {
       "userId": "bzbHA7LAzyM",
-      "productId": "58",
+      "productId": "2",
       "quantity": 1,
-      "id": "XepDs4GIet8"
+      "id": "SjpDCHNkMuk"
     },
     {
       "userId": "bzbHA7LAzyM",
-      "productId": "1",
+      "productId": "7",
       "quantity": 1,
-      "id": "fv_CB87QCig"
-    },
-    {
-      "userId": "bzbHA7LAzyM",
-      "productId": "1",
-      "quantity": 1,
-      "id": "qcYvsi2fKzU"
+      "id": "Mk9eXf-mMHw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
