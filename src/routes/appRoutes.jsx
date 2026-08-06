@@ -22,6 +22,12 @@ import OrderPlaced from "../pages/Orders/OrderPlaced";
 import OrderDetails from "../pages/Orders/OrderDetails";
 import AllProducts from '../pages/Products/AllProducts'
 import BlankLayout from "../layouts/BlankLayout";
+import AdminLayout from '../layouts/AdminLayout'
+import Dashbord from './../pages/Admin/Dashbord'
+import AdminProducts from './../pages/Admin/Products'
+import Orders from './../pages/Admin/Orders'
+import Users from './../pages/Admin/Users'
+import Analytics from './../pages/Admin/Analytics'
 
 
 
@@ -64,6 +70,15 @@ function AppRoutes() {
       <Route element={<AuthLayout/>}>
          <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
+        </Route>
+
+        <Route path='/admin' element={<AdminLayout/>}>
+           <Route path='dashbord' element={<Dashbord/>}></Route>
+           <Route path='adminproducts' element={<AdminProducts/>}></Route>
+           <Route path='orders' element={<Orders/>}></Route>
+           <Route path='users' element={<Users/>}></Route>
+           <Route path='analytics' element={<Analytics/>}></Route>
+
         </Route>
 
         <Route path="*" element={<NotFound/>}></Route>
