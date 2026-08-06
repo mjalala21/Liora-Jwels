@@ -66,6 +66,12 @@ export async function getOrders(userId) {
   return response.data;
 }
 
+export async function getAllOrders(){
+  const response = await axios.get("http://localhost:3000/orders")
+
+  return response.data;
+}
+
 
 
 export async function updateCart(itemId, updatedData) {

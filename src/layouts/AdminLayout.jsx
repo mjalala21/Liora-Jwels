@@ -4,7 +4,7 @@ import Sidebar from '../components/layout/Sidebar'
 
 function AdminLayout() {
   return (
-    <div className='flex'>
+    <div className='flex gap-30'>
         <Sidebar/>
         <Outlet/>
 

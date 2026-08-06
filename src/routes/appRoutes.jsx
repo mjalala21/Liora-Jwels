@@ -24,8 +24,8 @@ import AllProducts from '../pages/Products/AllProducts'
 import BlankLayout from "../layouts/BlankLayout";
 import AdminLayout from '../layouts/AdminLayout'
 import Dashbord from './../pages/Admin/Dashbord'
-import AdminProducts from './../pages/Admin/Products'
-import Orders from './../pages/Admin/Orders'
+import AdminProducts from '../pages/Admin/AdminProducts'
+import AdminOrders from '../pages/Admin/AdminOrders'
 import Users from './../pages/Admin/Users'
 import Analytics from './../pages/Admin/Analytics'
 
@@ -75,7 +75,7 @@ function AppRoutes() {
         <Route path='/admin' element={<AdminLayout/>}>
            <Route path='dashbord' element={<Dashbord/>}></Route>
            <Route path='adminproducts' element={<AdminProducts/>}></Route>
-           <Route path='orders' element={<Orders/>}></Route>
+           <Route path='adminorders' element={<AdminOrders/>}></Route>
            <Route path='users' element={<Users/>}></Route>
            <Route path='analytics' element={<Analytics/>}></Route>
 

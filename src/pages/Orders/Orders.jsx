@@ -127,7 +127,7 @@ const user = useSelector((state) => state.user.user);
                       key={index}
                       className="flex gap-6 items-center border-b pb-5 last:border-none"
                     >
-                      <Link to={`/products/${item.product.id}`}><img
+                      <Link to={`/products/${item.product?.id}`}><img
                         src={item.product?.image}
                         alt={item.product?.name}
                         className="w-28 h-28 object-cover rounded-2xl"
