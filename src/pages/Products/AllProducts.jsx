@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getProducts, getWishlist, addToWishlist, removeFromWishlist } from "../../services/api";
+// import { getProducts, getWishlist, addToWishlist, removeFromWishlist } from "../../services/api";
+import { getProducts } from "../../services/productsApi";
+import { getWishlist, addToWishlist, removeFromWishlist } from "../../services/wishlistApi";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaHeart } from "react-icons/fa";

@@ -2,7 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { addToCart, getProducts, getCart,  getWishlist, addToWishlist, removeFromWishlist, updateCart} from '../../services/api'
+// import { addToCart, getProducts, getCart,  getWishlist, addToWishlist, removeFromWishlist, updateCart} from '../../services/api'
+import { addToCart, getCart,updateCart } from '../../services/cartApi'
+import { getProducts } from '../../services/productsApi'
+import { getWishlist, addToWishlist, removeFromWishlist } from '../../services/wishlistApi'
 import { FaHeart } from "react-icons/fa";
 
 import ProductHero from './productHero'

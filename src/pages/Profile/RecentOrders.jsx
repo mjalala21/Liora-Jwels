@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getOrders, getProducts } from "../../services/api";
+// import { getOrders, getProducts } from "../../services/api";
+import { getOrders } from "../../services/ordersApi";
+import { getProducts } from "../../services/productsApi";
 import { useSelector } from "react-redux";
 
 

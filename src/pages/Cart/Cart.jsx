@@ -2,12 +2,15 @@ import React from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import {
-  getCart,
-  getProducts,
-  removeItemfromCart,
-  updateCart,
-} from "../../services/api";
+// import {
+//   getCart,
+//   getProducts,
+//   removeItemfromCart,
+//   updateCart,
+// } from "../../services/api";
+
+import { getProducts } from "../../services/productsApi";
+import { getCart, removeItemfromCart, updateCart } from "../../services/cartApi";
 
 import { FaTrash, FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";

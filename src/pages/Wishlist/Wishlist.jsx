@@ -7,14 +7,18 @@ import {
 } from "@tanstack/react-query";
 
 
-import {
- getWishlist,
- getProducts,
- removeFromWishlist,
- addToCart,
- getCart,
- updateCart
-} from "../../services/api";
+// import {
+//  getWishlist,
+//  getProducts,
+//  removeFromWishlist,
+//  addToCart,
+//  getCart,
+//  updateCart
+// } from "../../services/api";
+
+import { getWishlist, removeFromWishlist } from "../../services/wishlistApi";
+import { getProducts } from "../../services/productsApi";
+import { addToCart, getCart, updateCart } from "../../services/cartApi";
 
 
 import {

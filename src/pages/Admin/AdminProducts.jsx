@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getProducts } from '../../services/api'
+// import { getProducts } from '../../services/api'
+import { getProducts } from '../../services/productsApi'
 
 function AdminProducts() {
 

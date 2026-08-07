@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  getProducts,
-  addToCart,
-  getCart,
-  addToWishlist,
-  getWishlist,
-  removeFromWishlist,
-} from "../../services/api";
+// import {
+//   getProducts,
+//   addToCart,
+//   getCart,
+//   addToWishlist,
+//   getWishlist,
+//   removeFromWishlist,
+// } from "../../services/api";
+
+import { getProducts } from "../../services/productsApi";
+import { getCart, addToCart } from "../../services/cartApi";
+import { addToWishlist, getWishlist, removeFromWishlist } from "../../services/wishlistApi";
+
 import { FaHeart, FaEye, FaShoppingBag } from "react-icons/fa";
 
 import { useSelector } from "react-redux";

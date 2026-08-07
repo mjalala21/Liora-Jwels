@@ -4,7 +4,9 @@ import { LuShoppingCart } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
 import { Link, useNavigate} from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getCart, getWishlist } from "../../services/api";
+// import { getCart, getWishlist } from "../../services/api";
+import { getCart } from "../../services/cartApi";
+import { getWishlist } from "../../services/wishlistApi";
 import { motion } from "framer-motion";
 import UserDropdown from "./UserDropDown";
 import {useDispatch, useSelector} from 'react-redux'

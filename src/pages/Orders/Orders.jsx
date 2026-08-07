@@ -6,7 +6,9 @@ import {
   FaCalendarAlt,
   FaShoppingBag,
 } from "react-icons/fa";
-import { getOrders, getProducts } from "../../services/api";
+// import { getOrders, getProducts } from "../../services/api";
+import { getProducts } from "../../services/productsApi";
+import { getOrders } from "../../services/ordersApi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 

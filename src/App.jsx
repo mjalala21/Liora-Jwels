@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser} from "./redux/slices/UserSlice";
-import { getUserById } from "./services/api";
+// import { getUserById } from "./services/api";
+import { getUserById } from "./services/userApi";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {

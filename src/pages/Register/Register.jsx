@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { registerUsers, getUsers } from "../../services/api";
+// import { registerUsers, getUsers } from "../../services/api";
+import { registerUsers, getUsers } from "../../services/userApi";
 import { toast } from "react-toastify";
 
 
