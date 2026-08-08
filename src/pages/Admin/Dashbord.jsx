@@ -205,10 +205,15 @@ function Dashboard() {
 
             <tbody>
 
-                {recentOrders.map(order=>
+                {recentOrders.map(order=>{
+
+                    const customer = users.find(user=>user.id===order.userId)
+
+                    return (
+
                     <tr className="border-b hover:bg-[#F8F4EC]">
                          <td className="py-4">{order.id}</td>
-                         <td>{order.userId}</td>
+                         <td>{customer?.name}</td>
                          <td>{order.totalAmount}</td>
                          <td>
                             <span className="bg-[#D4AF37]/20 text-[#8B6B25] px-4 py-1 rounded-full text-sm">
@@ -217,7 +222,10 @@ function Dashboard() {
                             </td>
 
                     </tr>
-                )}
+                    )
+ } )
+                
+                }
 
             
             </tbody>

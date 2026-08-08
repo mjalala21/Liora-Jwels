@@ -34,7 +34,7 @@ function Sidebar() {
     },
     {
       name: "Analytics",
-      path: "/admin/analytics",
+      path: "/admin/adminanalytics",
       icon: <FaChartLine />,
     },
   ];

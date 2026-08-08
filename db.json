@@ -11,6 +11,7 @@
       "image": "/images/rings/ring1.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 0,
       "inStock": true,
       "featured": true
     },
@@ -25,6 +26,7 @@
       "image": "/images/earings/earing1.jpg",
       "material": "22K Gold",
       "description": "Luxury pearl necklace.",
+      "stock": 25,
       "inStock": true,
       "featured": false
     },
@@ -39,6 +41,7 @@
       "image": "/images/rings/ring2.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 15,
       "inStock": true,
       "featured": true
     },
@@ -53,6 +56,7 @@
       "image": "/images/rings/ring3.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 18,
       "inStock": true,
       "featured": true
     },
@@ -67,6 +71,7 @@
       "image": "/images/rings/ring4.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 10,
       "inStock": true,
       "featured": true
     },
@@ -81,6 +86,7 @@
       "image": "/images/rings/ring5.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 12,
       "inStock": true,
       "featured": true
     },
@@ -95,6 +101,7 @@
       "image": "/images/rings/ring6.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 20,
       "inStock": true,
       "featured": true
     },
@@ -109,6 +116,7 @@
       "image": "/images/rings/ring7.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 15,
       "inStock": true,
       "featured": true
     },
@@ -123,6 +131,7 @@
       "image": "/images/rings/ring8.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 5,
       "inStock": true,
       "featured": true
     },
@@ -137,6 +146,7 @@
       "image": "/images/rings/ring9.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 10,
       "inStock": true,
       "featured": true
     },
@@ -151,6 +161,7 @@
       "image": "/images/rings/ring10.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 13,
       "inStock": true,
       "featured": true
     },
@@ -165,6 +176,7 @@
       "image": "/images/rings/ring11.avif",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 25,
       "inStock": true,
       "featured": true
     },
@@ -179,6 +191,7 @@
       "image": "/images/rings/ring12.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 3,
       "inStock": true,
       "featured": true
     },
@@ -193,6 +206,7 @@
       "image": "/images/rings/ring13.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 14,
       "inStock": true,
       "featured": true
     },
@@ -207,6 +221,7 @@
       "image": "/images/rings/ring14.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 30,
       "inStock": true,
       "featured": true
     },
@@ -221,6 +236,7 @@
       "image": "/images/earings/earing2.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 8,
       "inStock": true,
       "featured": true
     },
@@ -235,6 +251,7 @@
       "image": "/images/earings/earing3.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 16,
       "inStock": true,
       "featured": true
     },
@@ -249,6 +266,7 @@
       "image": "/images/earings/earing4.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 17,
       "inStock": true,
       "featured": true
     },
@@ -263,6 +281,7 @@
       "image": "/images/earings/earing6.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 26,
       "inStock": true,
       "featured": true
     },
@@ -277,6 +296,7 @@
       "image": "/images/earings/earing7.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 30,
       "inStock": true,
       "featured": true
     },
@@ -291,6 +311,7 @@
       "image": "/images/earings/earing8.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 13,
       "inStock": true,
       "featured": true
     },
@@ -305,6 +326,7 @@
       "image": "/images/earings/earing9.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 19,
       "inStock": true,
       "featured": true
     },
@@ -319,6 +341,7 @@
       "image": "/images/earings/earing5.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 12,
       "inStock": true,
       "featured": true
     },
@@ -333,6 +356,7 @@
       "image": "/images/earings/earing10.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 32,
       "inStock": true,
       "featured": true
     },
@@ -347,6 +371,7 @@
       "image": "/images/earings/earing11.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 23,
       "inStock": true,
       "featured": true
     },
@@ -361,6 +386,7 @@
       "image": "/images/earings/earing12.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 14,
       "inStock": true,
       "featured": true
     },
@@ -375,6 +401,7 @@
       "image": "/images/earings/earing13.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 21,
       "inStock": true,
       "featured": true
     },
@@ -389,6 +416,7 @@
       "image": "/images/earings/earing16.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 23,
       "inStock": true,
       "featured": true
     },
@@ -403,6 +431,7 @@
       "image": "/images/earings/earing13.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 2,
       "inStock": true,
       "featured": true
     },
@@ -417,6 +446,7 @@
       "image": "/images/earings/earing15.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 1,
       "inStock": true,
       "featured": true
     },
@@ -431,6 +461,7 @@
       "image": "/images/earings/earing17.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 22,
       "inStock": true,
       "featured": true
     },
@@ -445,6 +476,7 @@
       "image": "/images/earings/earing20.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 25,
       "inStock": true,
       "featured": true
     },
@@ -459,6 +491,7 @@
       "image": "/images/earings/earing21.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 24,
       "inStock": true,
       "featured": true
     },
@@ -473,6 +506,7 @@
       "image": "/images/earings/earing23.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 22,
       "inStock": true,
       "featured": true
     },
@@ -487,6 +521,7 @@
       "image": "/images/earings/earing24.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 13,
       "inStock": true,
       "featured": true
     },
@@ -501,6 +536,7 @@
       "image": "/images/necklaces/necklace1.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 14,
       "inStock": true,
       "featured": true
     },
@@ -515,6 +551,7 @@
       "image": "/images/necklaces/necklace2.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 15,
       "inStock": true,
       "featured": true
     },
@@ -529,6 +566,7 @@
       "image": "/images/necklaces/necklace5.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 16,
       "inStock": true,
       "featured": true
     },
@@ -543,6 +581,7 @@
       "image": "/images/necklaces/necklace6.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 17,
       "inStock": true,
       "featured": true
     },
@@ -557,6 +596,7 @@
       "image": "/images/necklaces/necklace7.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 18,
       "inStock": true,
       "featured": true
     },
@@ -571,6 +611,7 @@
       "image": "/images/necklaces/necklace8.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 19,
       "inStock": true,
       "featured": true
     },
@@ -585,6 +626,7 @@
       "image": "/images/necklaces/necklace9.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 28,
       "inStock": true,
       "featured": true
     },
@@ -599,6 +641,7 @@
       "image": "/images/necklaces/jwellery.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 8,
       "inStock": true,
       "featured": true
     },
@@ -613,6 +656,7 @@
       "image": "/images/necklaces/jwellery2.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 12,
       "inStock": true,
       "featured": true
     },
@@ -627,6 +671,7 @@
       "image": "/images/necklaces/jwellery3.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 4,
       "inStock": true,
       "featured": true
     },
@@ -641,6 +686,7 @@
       "image": "/images/necklaces/necklace3.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 14,
       "inStock": true,
       "featured": true
     },
@@ -655,6 +701,7 @@
       "image": "/images/necklaces/necklace4.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 24,
       "inStock": true,
       "featured": true
     },
@@ -669,6 +716,7 @@
       "image": "/images/bracelets/bracelet.webp",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 2,
       "inStock": true,
       "featured": true
     },
@@ -683,6 +731,7 @@
       "image": "/images/bracelets/bracelet2.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 34,
       "inStock": true,
       "featured": true
     },
@@ -697,6 +746,7 @@
       "image": "/images/bracelets/bracelet3.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 6,
       "inStock": true,
       "featured": true
     },
@@ -711,6 +761,7 @@
       "image": "/images/bracelets/bracelet4.webp",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 17,
       "inStock": true,
       "featured": true
     },
@@ -725,6 +776,7 @@
       "image": "/images/bracelets/bracelet5.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 24,
       "inStock": true,
       "featured": true
     },
@@ -739,6 +791,7 @@
       "image": "/images/bracelets/bracelet6.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 22,
       "inStock": true,
       "featured": true
     },
@@ -753,6 +806,7 @@
       "image": "/images/bracelets/bracelet7.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 25,
       "inStock": true,
       "featured": true
     },
@@ -767,6 +821,7 @@
       "image": "/images/bracelets/bracelet8.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 12,
       "inStock": true,
       "featured": true
     },
@@ -781,6 +836,7 @@
       "image": "/images/bracelets/bracelet9.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 2,
       "inStock": true,
       "featured": true
     },
@@ -795,6 +851,7 @@
       "image": "/images/bracelets/bracelet10.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 23,
       "inStock": true,
       "featured": true
     },
@@ -809,6 +866,7 @@
       "image": "/images/bangles/bangle1.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 24,
       "inStock": true,
       "featured": true
     },
@@ -823,6 +881,7 @@
       "image": "/images/bangles/bangle2.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 3,
       "inStock": true,
       "featured": true
     },
@@ -837,6 +896,7 @@
       "image": "/images/bangles/bangle4.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 24,
       "inStock": true,
       "featured": true
     },
@@ -851,6 +911,7 @@
       "image": "/images/bangles/bangle5.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 2,
       "inStock": true,
       "featured": true
     },
@@ -865,6 +926,7 @@
       "image": "/images/bangles/bangle6.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 2,
       "inStock": true,
       "featured": true
     },
@@ -879,6 +941,7 @@
       "image": "/images/bangles/bangle7.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 24,
       "inStock": true,
       "featured": true
     },
@@ -893,6 +956,7 @@
       "image": "/images/bangles/bangle8.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 18,
       "inStock": true,
       "featured": true
     },
@@ -907,8 +971,57 @@
       "image": "/images/bangles/bangle9.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
+      "stock": 22,
       "inStock": true,
       "featured": true
+    },
+    {
+      "name": "elegent diamond ring",
+      "category": "Ring",
+      "price": "5000",
+      "originalPrice": "4500",
+      "material": "Silver",
+      "stock": "13",
+      "image": "/images/rings/ring19.jpg",
+      "description": "rich and most elegent wedding ring",
+      "inStock": true,
+      "id": "4AGmxaZ2gCk"
+    },
+    {
+      "name": "diamond bangle",
+      "category": "Bangle",
+      "price": "13000",
+      "originalPrice": "15000",
+      "material": "Gold",
+      "stock": "14",
+      "image": "/images/bangles/bangle12.jpg",
+      "description": "sfjjwerqeouqoiuewoiquwoueoiuwiquweoiuqwoueoiw",
+      "inStock": true,
+      "id": "JqaquoRAWWs"
+    },
+    {
+      "name": "rizal ring",
+      "category": "Ring",
+      "price": "2499",
+      "originalPrice": "3500",
+      "material": "Gold",
+      "stock": "12",
+      "image": "/images/rings/ring19.jpg",
+      "description": "dkjsahkjhafhkdkjkfhkjfkjdskjfkjsdf",
+      "inStock": true,
+      "id": "AEfSdthd1Lg"
+    },
+    {
+      "name": "minnu Ring",
+      "category": "Necklace",
+      "price": "734937",
+      "originalPrice": "8347813",
+      "material": "fgkdg",
+      "stock": "28",
+      "image": "/images/rings/ring3.jpg",
+      "description": "uwetrywtyrwytiwyrtywyit",
+      "inStock": true,
+      "id": "MSL5Q8rIRYI"
     }
   ],
   "users": [
@@ -1790,11 +1903,6 @@
     },
     {
       "userId": "bzbHA7LAzyM",
-      "productId": "6",
-      "id": "PqcBBqVacaU"
-    },
-    {
-      "userId": "bzbHA7LAzyM",
       "productId": "2",
       "id": "0wYwZBdd-V4"
     },
@@ -1816,6 +1924,12 @@
       "productId": "1",
       "quantity": 4,
       "id": "KPjFyLXwJDI"
+    },
+    {
+      "userId": "bzbHA7LAzyM",
+      "productId": "6",
+      "quantity": 1,
+      "id": "A3D9f6gAUZU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

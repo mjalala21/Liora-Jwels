@@ -25,6 +25,7 @@
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.18.1",
     "react-toastify": "^11.1.0",
+    "recharts": "^3.10.1",
     "root": "github:tanstack/react-query",
     "tailwindcss": "^4.3.3"
   },
