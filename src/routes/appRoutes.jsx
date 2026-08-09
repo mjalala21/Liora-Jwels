@@ -30,6 +30,8 @@ import Users from './../pages/Admin/Users'
 // import An from './../pages/Admin/Analytics'
 import AdminAnalytics from '../pages/Admin/AdminAnalytics'
 import ProductForm from '../pages/Admin/components/ProductForm'
+import AdminRoute from './AdminRoute'
+
 
 
 
@@ -73,7 +75,7 @@ function AppRoutes() {
          <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         </Route>
-
+    <Route element={<AdminRoute />}>
         <Route path='/admin' element={<AdminLayout/>}>
            <Route path='dashbord' element={<Dashbord/>}></Route>
            <Route path='adminproducts' element={<AdminProducts/>}></Route>
@@ -82,6 +84,7 @@ function AppRoutes() {
            <Route path='users' element={<Users/>}></Route>
            <Route path='adminanalytics' element={<AdminAnalytics/>}></Route>
 
+        </Route>
         </Route>
 
         <Route path="*" element={<NotFound/>}></Route>

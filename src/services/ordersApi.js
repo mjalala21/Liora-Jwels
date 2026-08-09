@@ -18,3 +18,14 @@ export async function getAllOrders(){
 
   return response.data;
 }
+
+export async function updateOrderStatus(orderId, status) {
+  const response = await axios.patch(
+    `http://localhost:3000/orders/${orderId}`,
+    {
+      status
+    }
+  );
+
+  return response.data;
+}

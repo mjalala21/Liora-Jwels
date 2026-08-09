@@ -29,7 +29,7 @@
 // export default AdminOrders
 
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery , useMutation} from "@tanstack/react-query";
 import {
   FaSearch,
   FaShoppingBag,
@@ -39,13 +39,18 @@ import {
   FaEye,
 } from "react-icons/fa";
 
-import { getAllOrders } from '../../services/ordersApi'
+import { getAllOrders, updateOrderStatus } from '../../services/ordersApi'
+import { useQueryClient } from "@tanstack/react-query";
 // import useSearch from "../../hooks/useSearch";
 // import SearchBar from "../../components/layout/SearchBar";
 // import usePagination from "../../hooks/usePagination";
 // import Pagination from "./components/Pagination";
 
 function AdminOrders() {
+
+  const queryClient = useQueryClient()
+
+
   const {
     data: orders = [],
     isLoading,
@@ -53,6 +58,15 @@ function AdminOrders() {
     queryKey: ["orders"],
     queryFn: getAllOrders,
   });
+  const orderStatusMutation = useMutation({
+    mutationFn : ({orderId, status})=>updateOrderStatus(orderId, status),
+
+    onSuccess : ()=>{
+      queryClient.invalidateQueries({
+      queryKey: ['orders']
+      })
+    }
+  })
 
   // const { search, setSearch, searchedProducts } = useSearch(orders);
 
@@ -73,6 +87,15 @@ function AdminOrders() {
         </h1>
       </div>
     );
+  }
+
+  function handleStatusChange(orderId, status){
+     
+   orderStatusMutation.mutate({
+    orderId,
+    status
+   })
+
   }
 
   const pendingOrders = orders.filter(
@@ -380,7 +403,7 @@ function AdminOrders() {
 
                   <td>
 
-                    <span
+                    {/* <span
                       className={`px-3 py-1 rounded-full text-sm font-medium
                       ${
                         order.status === "Pending"
@@ -393,7 +416,33 @@ function AdminOrders() {
                       }`}
                     >
                       {order.status}
-                    </span>
+                    </span> */}
+
+                    <select
+                      value={order.status}
+                      onChange={(e)=>handleStatusChange(order.id, e.target.value)}
+                      className={`border rounded-2xl px-3 py-2 font-medium
+                        ${ 
+                          order.status==="Pending" 
+                          ?"bg-yellow-50 text-yellow-700"
+                          :order.status ==="Processing"
+                          ? " bg-blue-50 text-blue-700"
+                          :order.status === "Shipped"
+                          ? "bg-purple-50 text-purple-700"
+                          :order.status==="Delivered"
+                          ?"bg-green-50 text-green-700"
+                          :"bg-red-50 text-red-700"
+                        }
+                      `}
+                    >
+                      <option value="Pending">Pending</option>
+                      <option value="Processing">Processing</option>
+                      <option value="Shipped">Shipped</option>
+                      <option value="Delivered">Delivered</option>
+                      <option value="Cancelled">Cancelled</option>
+
+
+                    </select>
 
                   </td>
 

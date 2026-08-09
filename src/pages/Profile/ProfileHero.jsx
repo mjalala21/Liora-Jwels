@@ -5,7 +5,7 @@ function ProfileHero() {
 
  const user = useSelector((state) => state.user.user);
 
-  
+  console.log(user)
 
   const username = user?.name || "Guest";
 

@@ -60,6 +60,9 @@ if (newErrors.email || newErrors.password) {
       user => user.email === email
     );
 
+    console.log("LOGIN USER:", loginUser);
+   console.log("ROLE:", loginUser?.role);
+
 
     if(!loginUser){
 
@@ -95,8 +98,13 @@ if (newErrors.email || newErrors.password) {
 
     dispatch(setUser(loginUser))
 
-    navigate("/");
+    if(loginUser?.role === "admin"){
+      navigate('/admin/dashbord')
+    }
+    else {
 
+    navigate("/");
+}
   }
 
   return (

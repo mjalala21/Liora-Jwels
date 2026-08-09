@@ -1029,7 +1029,7 @@
       "name": "mustharijalala",
       "email": "example@gmail.com",
       "password": "123qwe#@",
-      "role": "user",
+      "role": "admin",
       "id": "uongffLE9dE"
     },
     {
@@ -1204,7 +1204,7 @@
         "address": "khkjjjkjkjlkjl"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-02T14:14:16.286Z",
       "id": "R4Iy6YW7sok"
     },
@@ -1225,7 +1225,7 @@
         "address": "bridgeon"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Shipped",
       "createdAt": "2026-08-03T04:07:30.295Z",
       "id": "ELsmQs0Z164"
     },
@@ -1265,7 +1265,7 @@
         "address": "Bridgeon"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Processing",
       "createdAt": "2026-08-03T04:08:35.925Z",
       "id": "o87NNGVs42A"
     },
@@ -1286,7 +1286,7 @@
         "address": "ridgeon"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Processing",
       "createdAt": "2026-08-03T08:32:48.119Z",
       "id": "OEhTnttFr90"
     },
@@ -1347,7 +1347,7 @@
         "address": "efkkehkkjjfdslafhjd"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Delivered",
       "createdAt": "2026-08-03T14:12:08.792Z",
       "id": "kWG_u_Oh2ck"
     },
@@ -1375,7 +1375,7 @@
         "address": "iureuyruqwgdhqfkjsfkj"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Delivered",
       "createdAt": "2026-08-03T14:15:25.325Z",
       "id": "jrLgK1o1uVU"
     },
@@ -1403,7 +1403,7 @@
         "address": "kufkuekfukudshf"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Processing",
       "createdAt": "2026-08-03T14:31:35.843Z",
       "id": "Y1K3cf-Q8iY"
     },
@@ -1452,7 +1452,7 @@
         "address": "kaefafudkfjhdsfjadkjfhkajdhf"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Shipped",
       "createdAt": "2026-08-03T14:54:13.438Z",
       "id": "6JOBlw22COY"
     },
@@ -1496,7 +1496,7 @@
         "address": "jyadjagjfdz"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Delivered",
       "createdAt": "2026-08-03T19:25:56.189Z",
       "id": "dHqtNLToIs8"
     },
@@ -1538,7 +1538,7 @@
         "address": "iwrhiewuhufhewuuwerouewoiruqoieuroiuwroiueoi"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Processing",
       "createdAt": "2026-08-04T03:14:09.779Z",
       "id": "7hdLVuiF-GI"
     },
@@ -1580,7 +1580,7 @@
         "address": "dfhdhfs"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-04T09:27:40.077Z",
       "id": "fbNNNsOWX-A"
     },
@@ -1623,7 +1623,7 @@
         "address": "jhfkjhdfkhkfhk"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-05T10:07:22.972Z",
       "id": "3aSEX4pBUoc"
     },
@@ -1645,7 +1645,7 @@
         "address": "fhsdfkdfieirywie"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Delivered",
       "createdAt": "2026-08-05T10:08:44.644Z",
       "id": "Jmjytb0fa6g"
     },
@@ -1757,7 +1757,7 @@
         "address": "ewfwfwfwfwfw"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Shipped",
       "createdAt": "2026-08-05T11:23:55.919Z",
       "id": "wztWlq4ZfBY"
     },
@@ -1799,7 +1799,7 @@
         "address": "irgewrkerkrkjwe"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Shipped",
       "createdAt": "2026-08-07T05:13:37.711Z",
       "id": "GPslL3_vAmg"
     },
@@ -1873,11 +1873,6 @@
     },
     {
       "userId": "uongffLE9dE",
-      "productId": "4",
-      "id": "k0uD39eeMOY"
-    },
-    {
-      "userId": "uongffLE9dE",
       "productId": "33",
       "id": "VOgfj2IK4FM"
     },
@@ -1920,16 +1915,16 @@
       "quantity": 1
     },
     {
-      "userId": "uongffLE9dE",
-      "productId": "1",
-      "quantity": 4,
-      "id": "KPjFyLXwJDI"
-    },
-    {
       "userId": "bzbHA7LAzyM",
       "productId": "6",
       "quantity": 1,
       "id": "A3D9f6gAUZU"
+    },
+    {
+      "userId": "uongffLE9dE",
+      "productId": "4",
+      "quantity": 5,
+      "id": "LGGqGeW3qo0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
