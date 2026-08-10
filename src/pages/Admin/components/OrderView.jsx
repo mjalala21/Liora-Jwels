@@ -1,9 +1,19 @@
 
 import React from "react";
 import { FaTimes, FaBoxOpen, FaMapMarkerAlt, FaCreditCard } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "../../../services/productsApi";
 
 function OrderView({ order, onClose }) {
   if (!order) return null;
+
+  const {data : products = [], isLoading , error} = useQuery({
+    queryKey : ['products'],
+    queryFn : getProducts
+
+  })
+
+  const product = products.find(p=>p.id===order.items.productId)
 
   return (
     <div className="fixed inset-0 z-50">
@@ -152,6 +162,7 @@ function OrderView({ order, onClose }) {
 
               {order.items?.length > 0 ? (
                 order.items.map((item, index) => (
+                    
 
                   <div
                     key={item.id || index}

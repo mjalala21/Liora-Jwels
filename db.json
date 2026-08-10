@@ -12,7 +12,7 @@
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
       "stock": 0,
-      "inStock": true,
+      "inStock": false,
       "featured": true
     },
     {
@@ -1022,6 +1022,30 @@
       "description": "uwetrywtyrwytiwyrtywyit",
       "inStock": true,
       "id": "MSL5Q8rIRYI"
+    },
+    {
+      "name": "royal diamond necklace",
+      "category": "Necklace",
+      "price": "29000",
+      "originalPrice": "120000",
+      "material": "pure diamond",
+      "stock": "5",
+      "image": "/images/necklaces/necklace3.jpg",
+      "description": "luxury feels pure diamond necklace",
+      "inStock": false,
+      "id": "j3tEgYpFz6U"
+    },
+    {
+      "name": "golden sparkle bangle",
+      "category": "Bangle",
+      "price": "15000",
+      "originalPrice": "17000",
+      "material": "18K gold",
+      "stock": "",
+      "image": "/images/angles/bangle5.jpg",
+      "description": "golden sparkle bangle",
+      "inStock": false,
+      "id": "vrtdgmPjB9I"
     }
   ],
   "users": [
@@ -1161,7 +1185,7 @@
         "address": "bridgeon solution"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Processing",
       "createdAt": "2026-08-02T10:40:09.513Z",
       "id": "BMvkyVbQ2u8"
     },
@@ -1204,7 +1228,7 @@
         "address": "khkjjjkjkjlkjl"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Delivered",
       "createdAt": "2026-08-02T14:14:16.286Z",
       "id": "R4Iy6YW7sok"
     },
@@ -1225,7 +1249,7 @@
         "address": "bridgeon"
       },
       "paymentMethod": "card",
-      "status": "Shipped",
+      "status": "Processing",
       "createdAt": "2026-08-03T04:07:30.295Z",
       "id": "ELsmQs0Z164"
     },
@@ -1682,28 +1706,6 @@
       "status": "Pending",
       "createdAt": "2026-08-05T10:10:14.826Z",
       "id": "DmNzcESMq08"
-    },
-    {
-      "userId": "bzbHA7LAzyM",
-      "items": [
-        {
-          "userId": "bzbHA7LAzyM",
-          "productId": "58",
-          "quantity": 1,
-          "id": "EBaLk063u-s"
-        }
-      ],
-      "totalAmount": 12199,
-      "shippingAddress": {
-        "fullName": "salih",
-        "phone": "1234567890",
-        "city": "malappuram",
-        "address": "tghkhifguerfiguhifguhsdiufhiudshfui"
-      },
-      "paymentMethod": "card",
-      "status": "Pending",
-      "createdAt": "2026-08-05T10:28:33.153Z",
-      "id": "FLJewgmNIzA"
     },
     {
       "userId": "bzbHA7LAzyM",

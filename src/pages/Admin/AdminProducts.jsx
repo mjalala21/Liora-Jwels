@@ -88,7 +88,7 @@
 
 // export default AdminProducts
 
-import React from "react";
+import React,{useState} from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../services/productsApi";
 import ProductsTable from "./components/ProductsTable";
@@ -104,15 +104,42 @@ import { Link } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 import SearchBar from "../../components/layout/SearchBar";
 
+
 function AdminProducts() {
 
-  
+
+  const[stockFilter, setStockFilter] = useState("All Stock")
+  const[categoryFilter, setCategoryFilter]= useState("All Category")
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
 
 const {search, setSearch, searchedData : searchedProducts} = useSearch(products, (product)=>product.name || "")
+
+
+
+const categoryFilteredProducts = searchedProducts.filter(product =>
+  categoryFilter === "All Category" ||
+  categoryFilter === product.category
+);
+
+const filteredProducts = categoryFilteredProducts.filter(product => {
+
+  if (stockFilter === "All Stock") {
+    return true;
+  }
+
+  if (stockFilter === "In Stock") {
+    return product.inStock === true;
+  }
+
+  if (stockFilter === "Out of Stock") {
+    return product.inStock === false;
+  }
+
+  return false;
+});
 
   if (isLoading) {
     return (
@@ -260,22 +287,26 @@ const {search, setSearch, searchedData : searchedProducts} = useSearch(products,
 
       <div className="flex flex-wrap gap-4 mb-8">
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
+        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
+        onChange={(e)=>setCategoryFilter(e.target.value)}
+        >
 
-          <option>All Categories</option>
-          <option>Ring</option>
-          <option>Necklace</option>
-          <option>Bracelet</option>
-          <option>Earring</option>
-          <option>Bangle</option>
+          <option value = "All Category">All Categories</option>
+          <option value ="Ring">Ring</option>
+          <option value = "Necklace">Necklace</option>
+          <option value = "Bracelet">Bracelet</option>
+          <option value = "Earing">Earring</option>
+          <option value="Bangle">Bangle</option>
 
         </select>
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
+        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
+        onChange={(e)=>setStockFilter(e.target.value)}
+        >
 
-          <option>All Stock</option>
-          <option>In Stock</option>
-          <option>Out of Stock</option>
+          <option value = "All Stock">All Stock</option>
+          <option value = "In Stock">In Stock</option>
+          <option value = "Out of Stock">Out of Stock</option>
 
         </select>
 
@@ -285,7 +316,7 @@ const {search, setSearch, searchedData : searchedProducts} = useSearch(products,
 
       <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
 
-        <ProductsTable products={products} searchedProducts={searchedProducts} />
+        <ProductsTable products={products} searchedProducts={filteredProducts} />
 
       </div>
 
