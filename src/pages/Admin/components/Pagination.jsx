@@ -18,7 +18,7 @@ function Pagination({
         {
             Array.from({length : totalPages},(_,index)=>(
                 <button key={index} onClick={()=>setPage(index+1)} className={`w-10 h-10 rounded-xl ${page===index+1 ? "bg-[#D4AF37]" : "bg-white"}`}>{index+1}</button>
-            ))
+            ))  
         }
         </div>
 

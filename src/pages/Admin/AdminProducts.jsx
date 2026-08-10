@@ -112,7 +112,7 @@ function AdminProducts() {
     queryFn: getProducts,
   });
 
-const {search, setSearch, searchedProducts} = useSearch(products)
+const {search, setSearch, searchedData : searchedProducts} = useSearch(products, (product)=>product.name || "")
 
   if (isLoading) {
     return (

@@ -1204,7 +1204,7 @@
         "address": "khkjjjkjkjlkjl"
       },
       "paymentMethod": "cod",
-      "status": "Cancelled",
+      "status": "Pending",
       "createdAt": "2026-08-02T14:14:16.286Z",
       "id": "R4Iy6YW7sok"
     },
@@ -1538,7 +1538,7 @@
         "address": "iwrhiewuhufhewuuwerouewoiruqoieuroiuwroiueoi"
       },
       "paymentMethod": "cod",
-      "status": "Processing",
+      "status": "Cancelled",
       "createdAt": "2026-08-04T03:14:09.779Z",
       "id": "7hdLVuiF-GI"
     },

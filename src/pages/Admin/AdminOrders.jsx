@@ -28,7 +28,7 @@
 
 // export default AdminOrders
 
-import React from "react";
+import React ,{useState, useCallback, useMemo}from "react";
 import { useQuery , useMutation} from "@tanstack/react-query";
 import {
   FaSearch,
@@ -41,14 +41,20 @@ import {
 
 import { getAllOrders, updateOrderStatus } from '../../services/ordersApi'
 import { useQueryClient } from "@tanstack/react-query";
-// import useSearch from "../../hooks/useSearch";
-// import SearchBar from "../../components/layout/SearchBar";
-// import usePagination from "../../hooks/usePagination";
-// import Pagination from "./components/Pagination";
+import useSearch from "../../hooks/useSearch";
+import SearchBar from "../../components/layout/SearchBar";
+import usePagination from "../../hooks/usePagination";
+import Pagination from "./components/Pagination";
+import OrderView from "./components/OrderView";
 
 function AdminOrders() {
 
   const queryClient = useQueryClient()
+
+  const[statusFilter, setSatatusFilter] = useState("All Status")
+  const[paymentFilter, setPaymentFilter] = useState("All Payment")
+
+  const[selectedOrder, setSelectedOrder] = useState(null)
 
 
   const {
@@ -68,16 +74,57 @@ function AdminOrders() {
     }
   })
 
-  // const { search, setSearch, searchedProducts } = useSearch(orders);
+  const getOrderSearchValue = useCallback((order)=>
+    ` ${order.shippingAddress?.fullName || ""  }
+     ${order.id || ""}
+     ${order.shippingAddress?.city}
+     ${order.paymentMethod || ""}
+     ${order.status || ""}
+   `,[]
+  ) 
+  const { search, setSearch, searchedData : searchedOrders } = useSearch(orders, getOrderSearchValue);
 
-  // const {
-  //   page,
-  //   setPage,
-  //   totalPages,
-  //   currentItems,
-  //   nextPage,
-  //   previousPage,
-  // } = usePagination(searchedProducts, 5);
+   const paymentFilteredOrders = useMemo(()=>{
+      return searchedOrders.filter(order=>
+        paymentFilter === "All Payment" ?
+        order :
+        paymentFilter === "COD" ? 
+        order.paymentMethod ==="cod":
+    
+        order.paymentMethod === "card"
+
+      )
+   
+   },[searchedOrders, paymentFilter])
+
+
+  const filteredOrders = useMemo(()=>{
+     return  paymentFilteredOrders.filter(order=>
+    statusFilter === "All Status" ? 
+    order :
+    statusFilter==="Pending" 
+    ? order.status === "Pending": 
+    statusFilter==="Processing" ?
+    order.status==="Processing" :
+    statusFilter === "Shipped" ?
+    order.status==="Shipped":
+    statusFilter === "Delivered" ? 
+    order.status ==="Delivered":
+    order.status==="Cancelled"
+  )
+  },[paymentFilteredOrders, statusFilter])
+
+ 
+  const {
+    page,
+    setPage,
+    totalPages,
+    currentItems,
+    nextPage,
+    previousPage,
+  } = usePagination(filteredOrders, 5);
+
+
 
   if (isLoading) {
     return (
@@ -103,7 +150,7 @@ function AdminOrders() {
   ).length;
 
   const completedOrders = orders.filter(
-    (order) => order.status === "Completed"
+    (order) => order.status === "Delivered"
   ).length;
 
   const cancelledOrders = orders.filter(
@@ -234,32 +281,37 @@ function AdminOrders() {
 
       {/* Search */}
 
-      {/* <SearchBar
+      <SearchBar
         search={search}
         setSearch={setSearch}
-      /> */}
+      />
 
 
       {/* Filters */}
 
       <div className="flex flex-wrap gap-4 mb-8">
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
+        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
+        onChange={(e)=>setSatatusFilter(e.target.value)}
+        >
 
-          <option>All Status</option>
-          <option>Pending</option>
-          <option>Processing</option>
-          <option>Completed</option>
-          <option>Cancelled</option>
+          <option value="All Status">All Status</option>
+          <option value = "Pending">Pending</option>
+          <option value = "Processing">Processing</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Delivered">Completed</option>
+          <option value="Cancelled">Cancelled</option>
 
         </select>
 
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
+        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
+        onChange={(e)=>setPaymentFilter(e.target.value)}
+        >
 
-          <option>All Payments</option>
-          <option>COD</option>
-          <option>Card</option>
+          <option value="All Payment">All Payments</option>
+          <option vlaue="COD">COD</option>
+          <option value="Card">Card</option>
 
         </select>
 
@@ -317,7 +369,7 @@ function AdminOrders() {
 
             <tbody>
 
-              {orders.map((order) => (
+              {currentItems.map((order) => (
 
                 <tr
                   key={order.id}
@@ -403,20 +455,7 @@ function AdminOrders() {
 
                   <td>
 
-                    {/* <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium
-                      ${
-                        order.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-700"
-                          : order.status === "Completed"
-                          ? "bg-green-100 text-green-700"
-                          : order.status === "Cancelled"
-                          ? "bg-red-100 text-red-700"
-                          : "bg-blue-100 text-blue-700"
-                      }`}
-                    >
-                      {order.status}
-                    </span> */}
+                 
 
                     <select
                       value={order.status}
@@ -455,7 +494,7 @@ function AdminOrders() {
 
                       <button
                         className="w-10 h-10 rounded-xl bg-[#F8F4EC] hover:bg-[#D4AF37] hover:text-white transition-all flex items-center justify-center"
-                        title="View Order"
+                        onClick={()=>setSelectedOrder(order)}
                       >
                         <FaEye />
                       </button>
@@ -474,16 +513,21 @@ function AdminOrders() {
 
         </div>
 
+        {/* View Order */}
+
+        {
+          selectedOrder && <OrderView order = {selectedOrder} onClose = {()=>setSelectedOrder(null)}/>
+        }
 
         {/* Pagination */}
 
-        {/* <Pagination
+        <Pagination
           page={page}
           setPage={setPage}
           totalPages={totalPages}
           nextPage={nextPage}
           previousPage={previousPage}
-        /> */}
+        />
 
       </div>
 
