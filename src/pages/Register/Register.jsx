@@ -107,6 +107,8 @@ const handleRegister = () => {
     email,
     password,
     role: "user",
+    isActive : "active",
+    createdAt: new Date().toISOString()
   };
 
   registerMutation.mutate(newUser);

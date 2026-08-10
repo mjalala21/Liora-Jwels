@@ -23,7 +23,7 @@ function AdminUsers() {
     queryFn: getUsers,
   });
 
-//   const { search, setSearch, searchedData } = useSearch(users, "fullName");
+  const { search, setSearch, searchedData } = useSearch(users, "name");
 
 //   const {
 //     page,
@@ -55,7 +55,7 @@ function AdminUsers() {
   ).length;
 
   const customerUsers = users.filter(
-    (user) => user.role === "customer"
+    (user) => user.role === "user"
   ).length;
 
   return (
@@ -158,7 +158,7 @@ function AdminUsers() {
 
       {/* Search */}
 
-      {/* <div className="bg-white rounded-2xl shadow-lg p-5 flex items-center gap-4 mb-8">
+      <div className="bg-white rounded-2xl shadow-lg p-5 flex items-center gap-4 mb-8">
 
         <FaSearch className="text-gray-400 text-xl" />
 
@@ -170,7 +170,7 @@ function AdminUsers() {
           className="flex-1 outline-none text-[#3B2418] placeholder:text-gray-400"
         />
 
-      </div> */}
+      </div>
 
 
       {/* Filters */}
@@ -257,14 +257,14 @@ function AdminUsers() {
 
                         <img
                           src={user.avatar}
-                          alt={user.fullName}
+                          alt={user.name}
                           className="w-12 h-12 rounded-full object-cover"
                         />
 
                       ) : (
 
                         <div className="w-12 h-12 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#3B2418] font-bold">
-                          {user.fullName?.charAt(0)}
+                          {user.name?.charAt(0)}
                         </div>
 
                       )}
@@ -272,11 +272,11 @@ function AdminUsers() {
                       <div>
 
                         <p className="font-semibold text-[#3B2418]">
-                          {user.fullName}
+                          {user.name}
                         </p>
 
                         <p className="text-sm text-gray-400">
-                          @{user.username}
+                          @{user.name}
                         </p>
 
                       </div>
@@ -330,9 +330,11 @@ function AdminUsers() {
                   {/* Created */}
 
                   <td className="text-gray-500">
-                    {user.createdAt
-                      ? new Date(user.createdAt).toLocaleDateString("en-IN")
-                      : "-"}
+                  {new Date(user.createdAt).toLocaleDateString("en-IN", {
+                               day: "2-digit",
+                               month: "short",
+                                year: "numeric"
+                                             })}
                   </td>
 
 

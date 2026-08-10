@@ -1041,7 +1041,7 @@
       "price": "15000",
       "originalPrice": "17000",
       "material": "18K gold",
-      "stock": "",
+      "stock": 0,
       "image": "/images/angles/bangle5.jpg",
       "description": "golden sparkle bangle",
       "inStock": false,
@@ -1054,6 +1054,8 @@
       "email": "example@gmail.com",
       "password": "123qwe#@",
       "role": "admin",
+      "status" : "active",
+        "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "uongffLE9dE"
     },
     {
@@ -1061,6 +1063,8 @@
       "email": "dkjakja@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "I5X5_N985UE"
     },
     {
@@ -1068,6 +1072,8 @@
       "email": "minnu@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "bzbHA7LAzyM"
     },
     {
@@ -1075,6 +1081,8 @@
       "email": "examplee@gmail.com",
       "password": "123qwe#@",
       "role": "admin",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "yq7BoIB7FZU"
     },
     {
@@ -1082,6 +1090,8 @@
       "email": "allu@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active", 
+        "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "WqVWpnK1dJ8"
     },
     {
@@ -1089,6 +1099,8 @@
       "email": "aamish@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "I0GJwW1H7HY"
     },
     {
@@ -1096,6 +1108,8 @@
       "email": "alluallu@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "zS8eLYNYLgQ"
     },
     {
@@ -1103,6 +1117,8 @@
       "email": "anfal@gmail.com",
       "password": "123qwe#2",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "BQ1K92XflgI"
     },
     {
@@ -1110,6 +1126,8 @@
       "email": "thahir@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "tcJMlgk-C_g"
     },
     {
@@ -1117,25 +1135,19 @@
       "email": "thahirvp@gmail.com",
       "password": "123qwe#@",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "GUu-ODs33A4"
     },
-    {
-      "name": "rida",
-      "email": "rida@gmail.com",
-      "password": "123qwe#@",
-      "id": "m8nHbszqe60"
-    },
-    {
-      "name": "dssds",
-      "email": "ddssd@gmail.com",
-      "password": "123qwe#@",
-      "id": "sliC8XPjkCU"
-    },
+
+   
     {
       "name": "rtewt",
       "email": "erwrw@gmail.com",
       "password": "12345678",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "cio39c0KANw"
     },
     {
@@ -1143,6 +1155,8 @@
       "email": "erwrw@gmail.com",
       "password": "12345678",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "zr34g3BkT4k"
     },
     {
@@ -1150,6 +1164,8 @@
       "email": "erwrw@gmail.com",
       "password": "12345678",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "4A-VAasjT34"
     },
     {
@@ -1157,6 +1173,8 @@
       "email": "ererr@gmail.com",
       "password": "123456",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "5SFlhy6bTLo"
     },
     {
@@ -1164,6 +1182,8 @@
       "email": "rewwerr@gmail.com",
       "password": "123123",
       "role": "user",
+       "status" : "active",
+         "createdAt": "2026-08-10T16:45:32.518Z",
       "id": "_tJ1gBmiM7Y"
     }
   ],
@@ -1185,7 +1205,7 @@
         "address": "bridgeon solution"
       },
       "paymentMethod": "card",
-      "status": "Processing",
+      "status": "Delivered",
       "createdAt": "2026-08-02T10:40:09.513Z",
       "id": "BMvkyVbQ2u8"
     },
@@ -1206,7 +1226,7 @@
         "address": "udskdskjhvskj"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-02T13:50:10.035Z",
       "id": "tI14GOOj4YE"
     },
