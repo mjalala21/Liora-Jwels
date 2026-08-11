@@ -14,3 +14,18 @@ export async function getUserById(id) {
   const response = await axios.get(`http://localhost:3000/users/${id}`);
   return response.data;
 }
+
+export async function deleteUserById(id){
+   const response = await axios.delete(`http://localhost:3000/users/${id}`);
+   return response.data
+}
+
+export async function updateUserById(user){
+    const response = await axios.patch(`http://localhost:3000/users/${user.id}`,
+        {
+            status : user.status
+        }
+    )
+
+    return response.data
+}

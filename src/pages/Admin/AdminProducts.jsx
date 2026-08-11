@@ -89,8 +89,8 @@
 // export default AdminProducts
 
 import React,{useState} from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../services/productsApi";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { getProducts, updateProductById } from "../../services/productsApi";
 import ProductsTable from "./components/ProductsTable";
 import {
   FaSearch,
@@ -103,9 +103,16 @@ import { HiOutlineCollection } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 import SearchBar from "../../components/layout/SearchBar";
+import ProductView from "./components/ProductView";
+import EditProduct from "./components/EditProduct";
 
 
 function AdminProducts() {
+
+  const queryClient = useQueryClient();
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+const [editingProduct, setEditingProduct] = useState(null);
 
 
   const[stockFilter, setStockFilter] = useState("All Stock")
@@ -114,6 +121,21 @@ function AdminProducts() {
     queryKey: ["products"],
     queryFn: getProducts,
   });
+
+  const updateProductMutation = useMutation({
+
+  mutationFn: updateProductById,
+
+  onSuccess: () => {
+
+    queryClient.invalidateQueries({
+      queryKey: ["products"],
+    });
+
+    setEditingProduct(null);
+  },
+
+});
 
 const {search, setSearch, searchedData : searchedProducts} = useSearch(products, (product)=>product.name || "")
 
@@ -157,6 +179,21 @@ const filteredProducts = categoryFilteredProducts.filter(product => {
 
   // const searchFilterProducts = products.filter(product=>
   //   product.name.toLowerCase().includes(search.toLowerCase()))
+
+  const handleEditProduct = (product) => {
+
+  setSelectedProduct(null);
+
+  setEditingProduct(product);
+
+};
+
+
+const handleSaveProduct = (updatedProduct) => {
+
+  updateProductMutation.mutate(updatedProduct);
+
+};
 
   return (
     <div className="min-h-screen bg-[#F8F4EC] p-8">
@@ -316,9 +353,34 @@ const filteredProducts = categoryFilteredProducts.filter(product => {
 
       <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
 
-        <ProductsTable products={products} searchedProducts={filteredProducts} />
+       <ProductsTable
+  products={products}
+  searchedProducts={filteredProducts}
+  onView={(product) => setSelectedProduct(product)}
+/>
 
       </div>
+
+      {/* Product View */}
+
+{selectedProduct && (
+  <ProductView
+    product={selectedProduct}
+    onClose={() => setSelectedProduct(null)}
+    onEdit={handleEditProduct}
+  />
+)}
+
+{/* Edit Product */}
+
+{editingProduct && (
+  <EditProduct
+    product={editingProduct}
+    onClose={() => setEditingProduct(null)}
+    onSave={handleSaveProduct}
+    isSaving={updateProductMutation.isPending}
+  />
+)}
 
     </div>
   );

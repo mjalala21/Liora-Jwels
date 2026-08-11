@@ -1046,61 +1046,27 @@
       "description": "golden sparkle bangle",
       "inStock": false,
       "id": "vrtdgmPjB9I"
+    },
+    {
+      "name": "Aamish Alam Diamond Bangle",
+      "category": "Bangle",
+      "price": "13000",
+      "originalPrice": "15000",
+      "material": "Diamond",
+      "stock": "8",
+      "image": "/images/bangles/bangle10.jpg",
+      "description": "Luxury and Elegent Bangle with Premium Look",
+      "inStock": false,
+      "id": "cjzqmhMdMTg"
     }
   ],
   "users": [
     {
-      "name": "mustharijalala",
-      "email": "example@gmail.com",
-      "password": "123qwe#@",
-      "role": "admin",
-      "status" : "active",
-        "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "uongffLE9dE"
-    },
-    {
-      "name": "rijtiwruoituwoi",
-      "email": "dkjakja@gmail.com",
-      "password": "123qwe#@",
-      "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "I5X5_N985UE"
-    },
-    {
-      "name": "minnu",
-      "email": "minnu@gmail.com",
-      "password": "123qwe#@",
-      "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "bzbHA7LAzyM"
-    },
-    {
-      "name": "mustharijalalaa",
-      "email": "examplee@gmail.com",
-      "password": "123qwe#@",
-      "role": "admin",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "yq7BoIB7FZU"
-    },
-    {
-      "name": "allu",
-      "email": "allu@gmail.com",
-      "password": "123qwe#@",
-      "role": "user",
-       "status" : "active", 
-        "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "WqVWpnK1dJ8"
-    },
-    {
       "name": "aamishalam",
       "email": "aamish@gmail.com",
       "password": "123qwe#@",
-      "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "role": "admin",
+      "status": "active",
       "id": "I0GJwW1H7HY"
     },
     {
@@ -1108,17 +1074,15 @@
       "email": "alluallu@gmail.com",
       "password": "123qwe#@",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "active",
       "id": "zS8eLYNYLgQ"
     },
     {
-      "name": "anfal",
+      "name": "anfal Moammed",
       "email": "anfal@gmail.com",
       "password": "123qwe#2",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "active",
       "id": "BQ1K92XflgI"
     },
     {
@@ -1126,8 +1090,7 @@
       "email": "thahir@gmail.com",
       "password": "123qwe#@",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "blocked",
       "id": "tcJMlgk-C_g"
     },
     {
@@ -1135,28 +1098,15 @@
       "email": "thahirvp@gmail.com",
       "password": "123qwe#@",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "active",
       "id": "GUu-ODs33A4"
     },
-
-   
     {
       "name": "rtewt",
       "email": "erwrw@gmail.com",
       "password": "12345678",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "cio39c0KANw"
-    },
-    {
-      "name": "rtewt",
-      "email": "erwrw@gmail.com",
-      "password": "12345678",
-      "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "active",
       "id": "zr34g3BkT4k"
     },
     {
@@ -1164,32 +1114,21 @@
       "email": "erwrw@gmail.com",
       "password": "12345678",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "blocked",
       "id": "4A-VAasjT34"
-    },
-    {
-      "name": "weeewe",
-      "email": "ererr@gmail.com",
-      "password": "123456",
-      "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
-      "id": "5SFlhy6bTLo"
     },
     {
       "name": "erwrw",
       "email": "rewwerr@gmail.com",
       "password": "123123",
       "role": "user",
-       "status" : "active",
-         "createdAt": "2026-08-10T16:45:32.518Z",
+      "status": "active",
       "id": "_tJ1gBmiM7Y"
     }
   ],
   "orders": [
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "items": [
         {
           "userId": "uongffLE9dE",
@@ -1205,12 +1144,12 @@
         "address": "bridgeon solution"
       },
       "paymentMethod": "card",
-      "status": "Delivered",
+      "status": "Processing",
       "createdAt": "2026-08-02T10:40:09.513Z",
       "id": "BMvkyVbQ2u8"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1226,12 +1165,12 @@
         "address": "udskdskjhvskj"
       },
       "paymentMethod": "cod",
-      "status": "Cancelled",
+      "status": "Shipped",
       "createdAt": "2026-08-02T13:50:10.035Z",
       "id": "tI14GOOj4YE"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1253,7 +1192,7 @@
       "id": "R4Iy6YW7sok"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1269,12 +1208,12 @@
         "address": "bridgeon"
       },
       "paymentMethod": "card",
-      "status": "Processing",
+      "status": "Shipped",
       "createdAt": "2026-08-03T04:07:30.295Z",
       "id": "ELsmQs0Z164"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1309,12 +1248,12 @@
         "address": "Bridgeon"
       },
       "paymentMethod": "cod",
-      "status": "Processing",
+      "status": "Cancelled",
       "createdAt": "2026-08-03T04:08:35.925Z",
       "id": "o87NNGVs42A"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1335,7 +1274,7 @@
       "id": "OEhTnttFr90"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1375,7 +1314,7 @@
       "id": "p2Bb-g-3dag"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1396,7 +1335,7 @@
       "id": "kWG_u_Oh2ck"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1424,7 +1363,7 @@
       "id": "jrLgK1o1uVU"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1452,7 +1391,7 @@
       "id": "Y1K3cf-Q8iY"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1480,7 +1419,7 @@
       "id": "CoZfGHzR1v0"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1501,7 +1440,7 @@
       "id": "6JOBlw22COY"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1523,7 +1462,7 @@
       "id": "EFSPcx6SpvY"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1545,7 +1484,7 @@
       "id": "dHqtNLToIs8"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1566,7 +1505,7 @@
       "id": "rHvXpgMQLWA"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "items": [
         {
           "userId": "uongffLE9dE",
@@ -1587,7 +1526,7 @@
       "id": "7hdLVuiF-GI"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "items": [
         {
           "userId": "uongffLE9dE",
@@ -1608,7 +1547,7 @@
       "id": "OyBrkbjMoY8"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1629,7 +1568,7 @@
       "id": "fbNNNsOWX-A"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "uongffLE9dE",
@@ -1650,7 +1589,7 @@
       "id": "SqpKfUEpjYE"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1672,7 +1611,7 @@
       "id": "3aSEX4pBUoc"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1694,7 +1633,7 @@
       "id": "Jmjytb0fa6g"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1728,7 +1667,7 @@
       "id": "DmNzcESMq08"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1762,7 +1701,7 @@
       "id": "3f1xVxwWX5Q"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1784,7 +1723,7 @@
       "id": "wztWlq4ZfBY"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1805,7 +1744,7 @@
       "id": "YNT-KN32Bbc"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1821,12 +1760,12 @@
         "address": "irgewrkerkrkjwe"
       },
       "paymentMethod": "cod",
-      "status": "Shipped",
+      "status": "Delivered",
       "createdAt": "2026-08-07T05:13:37.711Z",
       "id": "GPslL3_vAmg"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "items": [
         {
           "userId": "bzbHA7LAzyM",
@@ -1874,57 +1813,57 @@
   ],
   "wishlist": [
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "productId": "29",
       "id": "SN88cIWy4qc"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "productId": "1",
       "id": "BTBIpUY9kK4"
     },
     {
-      "userId": "WqVWpnK1dJ8",
+      "userId": null,
       "productId": "39",
       "id": "xnFW_2kDbMQ"
     },
     {
-      "userId": "WqVWpnK1dJ8",
+      "userId": null,
       "productId": "38",
       "id": "eJNJvIjmJG8"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "productId": "33",
       "id": "VOgfj2IK4FM"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "productId": "6",
       "id": "KB_Vc_VUfPM"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "productId": "2",
       "id": "mTCE88-dzuk"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "productId": "27",
       "id": "Sn1EEKh5yEM"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "productId": "1",
       "id": "nzOcZE5wvW4"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "productId": "2",
       "id": "0wYwZBdd-V4"
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "productId": "3",
       "id": "jRVJXUWWNQM"
     }
@@ -1937,13 +1876,13 @@
       "quantity": 1
     },
     {
-      "userId": "bzbHA7LAzyM",
+      "userId": null,
       "productId": "6",
       "quantity": 1,
       "id": "A3D9f6gAUZU"
     },
     {
-      "userId": "uongffLE9dE",
+      "userId": null,
       "productId": "4",
       "quantity": 5,
       "id": "LGGqGeW3qo0"

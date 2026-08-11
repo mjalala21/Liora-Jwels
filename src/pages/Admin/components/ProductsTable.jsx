@@ -79,15 +79,20 @@ import Pagination from "./Pagination";
 import { useMutation } from "@tanstack/react-query";
 import { deleteProduct } from "../../../services/productsApi";
 import { useQueryClient } from "@tanstack/react-query";
-import ProductView from './ProductView';
 
-function ProductsTable({ products, searchedProducts }) {
+
+function ProductsTable({
+  products,
+  searchedProducts,
+  onView,
+  onEdit,
+}) {
 
     const {page, setPage,  totalPages, currentItems, nextPage, previousPage} = usePagination(searchedProducts, 5)
 
     const queryClient = useQueryClient()
 
-    const [selectedProduct, setSelectedProduct] = useState(null);
+
 
     const permenentDeleteMutation = useMutation({
         mutationFn : deleteProduct,
@@ -204,7 +209,7 @@ function ProductsTable({ products, searchedProducts }) {
 
     {/* View */}
     <button
-      onClick={() => setSelectedProduct(product)}
+     onClick={() => onView(product)}
       className="w-10 h-10 rounded-xl bg-[#F8F4EC] hover:bg-[#D4AF37] hover:text-white transition-all duration-300 flex items-center justify-center"
       title="View Product"
     >
@@ -212,12 +217,12 @@ function ProductsTable({ products, searchedProducts }) {
     </button>
 
     {/* Edit */}
-    <button
+    {/* <button
       className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
       title="Edit Product"
     >
       <FaEdit />
-    </button>
+    </button> */}
 
     {/* Delete */}
     <button 
@@ -238,13 +243,6 @@ function ProductsTable({ products, searchedProducts }) {
           </tbody>
 
         </table>
-
-        {selectedProduct && (
-  <ProductView
-    product={selectedProduct}
-    onClose={() => setSelectedProduct(null)}
-  />
-)}
 
       </div>
 

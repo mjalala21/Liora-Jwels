@@ -1,38 +1,92 @@
 
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import React,{useState, useMemo, useCallback} from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   FaUsers,
   FaUserCheck,
   FaUserShield,
+  FaLock,
   FaUserPlus,
   FaEye,
+  FaUserLock,
   FaEdit,
   FaTrashAlt,
   FaSearch,
 } from "react-icons/fa";
 
-import { getUsers } from "../../services/userApi";
-// import useSearch from "../../hooks/useSearch";
-// import usePagination from "../../hooks/usePagination";
-// import Pagination from "./components/Pagination";
+import { deleteUserById, getUsers, updateUserById } from "../../services/userApi";
+import useSearch from "../../hooks/useSearch";
+import usePagination from "../../hooks/usePagination";
+import Pagination from "./components/Pagination";
+import UserView from "./components/UserView";
+
 
 function AdminUsers() {
+
+  const queryClient = useQueryClient()
+
+const[roleFilter, setRoleFilter] = useState("All Users")
+const[statusFilter, setStatusFilter] = useState("All Status")
+
+const [selectedUser, setSelectedUser] = useState(null);
+const [editingUser, setEditingUser] = useState(null);
+
+
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });
 
-  const { search, setSearch, searchedData } = useSearch(users, "name");
+  const getUserSearchValue = useCallback((user)=>
+    `${user.name}
+     ${user.status}
+     ${user.email}
+  `
+  ,[])
 
-//   const {
-//     page,
-//     setPage,
-//     totalPages,
-//     currentItems,
-//     nextPage,
-//     previousPage,
-//   } = usePagination(searchedData, 5);
+  const { search, setSearch, searchedData : searchedUsers } = useSearch(users, getUserSearchValue);
+
+  
+
+  const roleFilteredUsers =useMemo(()=>{
+   return searchedUsers.filter(user=>
+    roleFilter==="All Users" || 
+   ( user.role==="admin"&& roleFilter === "Admin") ||
+   (user.role === "user" && roleFilter === "Customer")
+  )
+},[roleFilter, searchedUsers])
+  const filteredUsers = useMemo(()=>{
+  return roleFilteredUsers.filter(user=>
+      statusFilter=== "All Status" ||
+      (user.status === "active" && statusFilter === "Active") ||
+      (user.status === "blocked" && statusFilter === "Blocked")
+  )
+},[roleFilteredUsers, statusFilter])
+
+const onlyUsers = useMemo(()=>{
+  return filteredUsers.filter(user=>user.role!=="admin")
+},[filteredUsers]) 
+
+  const {
+    page,
+    setPage,
+    totalPages,
+    currentItems,
+    nextPage,
+    previousPage,
+  } = usePagination(onlyUsers, 5);
+
+
+const updateStatusMutation = useMutation({
+  mutationFn : updateUserById,
+
+  onSuccess : ()=>{
+    queryClient.invalidateQueries({
+      queryKey : ['users']
+    })
+  }
+})
+
 
   if (isLoading) {
     return (
@@ -44,19 +98,33 @@ function AdminUsers() {
     );
   }
 
-  const totalUsers = users.length;
+  const totalUsers = onlyUsers.length;
 
   const activeUsers = users.filter(
     (user) => user.status === "active"
   ).length;
 
-  const adminUsers = users.filter(
-    (user) => user.role === "admin"
+  const blockedUsers = users.filter(
+    (user) => user.status === "blocked"
   ).length;
 
   const customerUsers = users.filter(
     (user) => user.role === "user"
   ).length;
+
+  const handleStatusChange = (user) => {
+
+  const updatedUser = {
+    ...user,
+    status: user.status === "active"
+      ? "blocked"
+      : "active"
+  };
+
+  updateStatusMutation.mutate(updatedUser);
+};
+
+
 
   return (
     <div className="min-h-screen bg-[#F8F4EC] p-8">
@@ -116,20 +184,20 @@ function AdminUsers() {
         </div>
 
 
-        {/* Admins */}
+        {/* Blocked*/}
 
         <div className="bg-white rounded-3xl p-7 shadow-lg">
 
-          <div className="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center">
-            <FaUserShield className="text-purple-500 text-2xl" />
-          </div>
+          <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
+                <FaUserLock className="text-red-500 text-2xl" />
+             </div>
 
           <h2 className="text-4xl font-bold mt-6 text-[#3B2418]">
-            {adminUsers}
+            {blockedUsers}
           </h2>
 
           <p className="text-gray-500 mt-2">
-            Administrators
+            Blocked Users
           </p>
 
         </div>
@@ -177,20 +245,24 @@ function AdminUsers() {
 
       <div className="flex flex-wrap gap-4 mb-8">
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
+        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
+        onChange={(e)=>setRoleFilter(e.target.value)}
+        >
 
-          <option>All Roles</option>
-          <option>Customer</option>
-          <option>Admin</option>
+          <option value = "All Users">All Roles</option>
+          <option value = "Customer">Customer</option>
+          <option value = "Admin">Admin</option>
 
         </select>
 
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
+        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
+        onChange={(e)=>setStatusFilter(e.target.value)}
+        >
 
-          <option>All Status</option>
-          <option>Active</option>
-          <option>Blocked</option>
+          <option value = "All Status">All Status</option>
+          <option value = "Active">Active</option>
+          <option value = "Blocked">Blocked</option>
 
         </select>
 
@@ -217,9 +289,9 @@ function AdminUsers() {
                   Email
                 </th>
 
-                <th>
+                {/* <th>
                   Role
-                </th>
+                </th> */}
 
                 <th>
                   Status
@@ -240,7 +312,7 @@ function AdminUsers() {
 
             <tbody>
 
-              {users.map((user) => (
+              {currentItems.map((user) => (
 
                 <tr
                   key={user.id}
@@ -295,7 +367,7 @@ function AdminUsers() {
 
                   {/* Role */}
 
-                  <td>
+                  {/* <td>
 
                     <span
                       className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -307,22 +379,24 @@ function AdminUsers() {
                       {user.role}
                     </span>
 
-                  </td>
+                  </td> */}
 
 
                   {/* Status */}
 
                   <td>
 
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        user.status === "active"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-700"
-                      }`}
-                    >
-                      {user.status || "active"}
-                    </span>
+                    <button
+  onClick={() => handleStatusChange(user)}
+  disabled={updateStatusMutation.isPending}
+  className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition ${
+    user.status === "active"
+      ? "bg-green-100 text-green-700 hover:bg-green-200"
+      : "bg-red-100 text-red-700 hover:bg-red-200"
+  }`}
+>
+  {user.status === "active" ? "Active" : "Blocked"}
+</button>
 
                   </td>
 
@@ -345,34 +419,23 @@ function AdminUsers() {
                     <div className="flex justify-center items-center gap-3">
 
                       {/* View */}
+<button
+  onClick={() => setSelectedUser(user)}
+  className="w-10 h-10 rounded-xl bg-[#F8F4EC] hover:bg-[#D4AF37] hover:text-white transition-all duration-300 flex items-center justify-center"
+  title="View User"
+>
+  <FaEye />
+</button>
 
-                      <button
-                        className="w-10 h-10 rounded-xl bg-[#F8F4EC] hover:bg-[#D4AF37] hover:text-white transition-all duration-300 flex items-center justify-center"
-                        title="View User"
-                      >
-                        <FaEye />
-                      </button>
 
+        
 
-                      {/* Edit */}
-
-                      <button
-                        className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
-                        title="Edit User"
-                      >
-                        <FaEdit />
-                      </button>
+                  
 
 
                       {/* Delete */}
 
-                      <button
-                        className="w-10 h-10 rounded-xl bg-red-50 text-red-600 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center"
-                        title="Delete User"
-                      >
-                        <FaTrashAlt />
-                      </button>
-
+                    
                     </div>
 
                   </td>
@@ -387,9 +450,18 @@ function AdminUsers() {
 
         </div>
 
+        {/* user View  */}
+
+        {selectedUser && (
+  <UserView
+    user={selectedUser}
+    onClose={() => setSelectedUser(null)}
+  />
+)}
+
 
         {/* Pagination */}
-{/* 
+
         <Pagination
           page={page}
           setPage={setPage}
@@ -397,7 +469,7 @@ function AdminUsers() {
           currentItems={currentItems}
           nextPage={nextPage}
           previousPage={previousPage}
-        /> */}
+        />
 
       </div>
 
@@ -406,4 +478,5 @@ function AdminUsers() {
 }
 
 export default AdminUsers;
+
 
