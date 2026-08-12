@@ -5,15 +5,19 @@ import { addProducts } from "../../../services/productsApi";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 function AddProduct() {
+
+
+
   const [product, setProduct] = useState({
     name: "",
     category: "",
     price: "",
     originalPrice: "",
     material: "",
-    stock: "",
+    stock: 0,
     image: "",
     description: "",
+    active : true,
     inStock: true,
   });
 
@@ -42,15 +46,23 @@ function AddProduct() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    console.log(product);
+  const stock = Number(product.stock);
 
-   addProductMutation.mutate(product)
-
-   
+  const finalProduct = {
+    ...product,
+    stock,
+    inStock: stock > 0,
+    active: stock > 0,
   };
+
+  console.log(finalProduct);
+
+  addProductMutation.mutate(finalProduct);
+};
    const handleCancel=()=>{
     navigate('/admin/adminproducts')
    }
@@ -244,7 +256,7 @@ function AddProduct() {
         </div>
 
         {/* Product Status */}
-        <div className="mb-10">
+        {/* <div className="mb-10">
 
           <h2 className="text-2xl font-serif text-[#3B2418] mb-6">
             Product Status
@@ -252,7 +264,7 @@ function AddProduct() {
 
           <div className="bg-[#F8F4EC] rounded-2xl p-5">
 
-            <label className="flex items-center gap-3 cursor-pointer">
+            {/* <label className="flex items-center gap-3 cursor-pointer">
 
               <input
                 type="checkbox"
@@ -272,11 +284,54 @@ function AddProduct() {
                 </p>
               </div>
 
-            </label>
+            </label> */}
 
-          </div>
+          {/* </div>
 
-        </div>
+        </div> */} 
+
+        {/* Product Status */}
+<div className="mb-10">
+
+  <h2 className="text-2xl font-serif text-[#3B2418] mb-6">
+    Product Status
+  </h2>
+
+  <div className="bg-[#F8F4EC] rounded-2xl p-5">
+
+    <div className="flex items-center justify-between">
+
+      <div>
+        <p className="font-semibold text-[#3B2418]">
+          Stock Status
+        </p>
+
+        <p className="text-sm text-gray-500">
+          This is automatically calculated from the stock quantity.
+        </p>
+      </div>
+
+      <span
+        className={`px-4 py-2 rounded-full text-sm font-medium ${
+          Number(product.stock) > 10
+            ? "bg-green-100 text-green-700"
+            : Number(product.stock) > 0
+            ? "bg-yellow-100 text-yellow-700"
+            : "bg-red-100 text-red-700"
+        }`}
+      >
+        {Number(product.stock) > 10
+          ? "In Stock"
+          : Number(product.stock) > 0
+          ? "Low Stock"
+          : "Out of Stock"}
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
 
         {/* Form Buttons */}
         <div className="flex justify-end gap-4 border-t pt-8">

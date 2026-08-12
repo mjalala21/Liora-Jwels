@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllOrders } from "../../services/ordersApi";
 import { getProducts } from "../../services/productsApi";
 import { getUsers } from "../../services/userApi";
+import SalesOverview from "./components/SalesOverview";
 
 
 function Dashboard() {
@@ -126,17 +127,7 @@ function Dashboard() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-10">
 
         {/* Sales Chart Placeholder */}
-        <div className="xl:col-span-2 bg-white rounded-3xl shadow-lg p-8">
-
-          <h2 className="text-2xl font-serif text-[#3B2418] mb-6">
-            Sales Overview
-          </h2>
-
-          <div className="h-72 rounded-2xl border-2 border-dotted border-[#D4AF37] flex items-center justify-center text-gray-400 text-lg">
-            Chart will be added here 📈
-          </div>
-
-        </div>
+         <SalesOverview />
 
         {/* Top Products */}
         <div className="bg-white rounded-3xl shadow-lg p-8">

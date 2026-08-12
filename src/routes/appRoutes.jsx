@@ -35,6 +35,7 @@ import AdminRoute from './AdminRoute'
 
 
 
+
 function AppRoutes() {
   return (
     <div>
@@ -69,8 +70,9 @@ function AppRoutes() {
         <Route path='/products/category/:category' element={<Category/>}></Route>
         <Route path='/products/:id' element={<ProductDetails/>}></Route>
         <Route path='/bestsellers' element={<BestSeller/>}></Route>
+        </Route>
        
-      </Route>
+     
       <Route element={<AuthLayout/>}>
          <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>

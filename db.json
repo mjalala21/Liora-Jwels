@@ -13,7 +13,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 0,
       "inStock": false,
-      "active": true,
+      "active": false,
       "featured": true
     },
     {
@@ -45,7 +45,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 15,
       "inStock": true,
-      "active": false,
+      "active": true,
       "featured": true
     },
     {
@@ -109,7 +109,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 20,
       "inStock": true,
-      "active": true,
+      "active": false,
       "featured": true
     },
     {
@@ -173,6 +173,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 13,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -204,6 +205,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 3,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -331,6 +333,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 13,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -410,6 +413,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 14,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -585,6 +589,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 15,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -632,6 +637,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 18,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -871,6 +877,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 12,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -966,6 +973,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 2,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -981,6 +989,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 2,
       "inStock": true,
+      "active": true,
       "featured": true
     },
     {
@@ -1041,6 +1050,7 @@
       "image": "/images/rings/ring19.jpg",
       "description": "rich and most elegent wedding ring",
       "inStock": true,
+      "active": true,
       "id": "4AGmxaZ2gCk"
     },
     {
@@ -1053,6 +1063,7 @@
       "image": "/images/bangles/bangle12.jpg",
       "description": "sfjjwerqeouqoiuewoiquwoueoiuwiquweoiuqwoueoiw",
       "inStock": true,
+      "active": true,
       "id": "JqaquoRAWWs"
     },
     {
@@ -1213,7 +1224,7 @@
         "address": "udskdskjhvskj"
       },
       "paymentMethod": "cod",
-      "status": "Shipped",
+      "status": "Processing",
       "createdAt": "2026-08-02T13:50:10.035Z",
       "id": "tI14GOOj4YE"
     },
@@ -1462,7 +1473,7 @@
         "address": "hdfkakjsfkjajfdl"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-03T14:51:46.796Z",
       "id": "CoZfGHzR1v0"
     },
@@ -1857,6 +1868,27 @@
       "status": "Pending",
       "createdAt": "2026-08-07T05:14:21.337Z",
       "id": "OUV5-NGCFDg"
+    },
+    {
+      "userId": "zS8eLYNYLgQ",
+      "items": [
+        {
+          "userId": "zS8eLYNYLgQ",
+          "productId": "2",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 4599,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "1234568790",
+        "city": "malappuram",
+        "address": "fwfjfwjoiefwoifoiwi"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-12T09:53:47.926Z",
+      "id": "6w11N_FKjYQ"
     }
   ],
   "wishlist": [

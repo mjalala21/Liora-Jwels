@@ -107,7 +107,9 @@ Loading Products...
 //     .includes((search || "").toLowerCase())
 // );
 
-let filteredProducts = products
+const activeProducts = products.filter(product=>product.active)
+
+let filteredProducts = activeProducts
 
 .filter(product =>
 product.name
@@ -543,7 +545,10 @@ gap-10
 
 {
 
-currentProducts.map(product=>(
+currentProducts
+
+
+.map(product=>(
 
 
 <div

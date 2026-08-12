@@ -9,23 +9,25 @@ function ProtectedRoute() {
 
 const userId = localStorage.getItem("userId")
 
-// const {user, loading} = useSelector(
-// (state)=>state.user
+
+// const user = useSelector(
+// (state)=>state.user.user
 // );
 
-
-// if(!loading){
-//     return (
-//       <div className="h-screen flex items-center justify-center">
-//         Loading...
-//       </div>
-//     )
-// }
 
 
 if(!userId){
     return <Navigate to='/login' replace />
 }
+
+
+// if(!user){
+//   return <Navigate to = '/login' replace/>
+// }
+
+// if(user.role === "admin"){
+//   return <Navigate to="/admin" replace/>
+// }
 
   return (
 <Outlet/>

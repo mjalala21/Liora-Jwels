@@ -94,11 +94,20 @@ if (newErrors.email || newErrors.password) {
     // email : loginUser.email
     // })
     // );
-    localStorage.setItem("userId", loginUser.id);
 
-    dispatch(setUser(loginUser))
+    if(loginUser.role==="user"){
+
+    localStorage.setItem("userId", loginUser.id);
+    
+   
+    }
+
+      dispatch(setUser(loginUser))
+
+   
 
     if(loginUser?.role === "admin"){
+      localStorage.setItem("role", loginUser.role);
       navigate('/admin/dashbord')
     }
     else {

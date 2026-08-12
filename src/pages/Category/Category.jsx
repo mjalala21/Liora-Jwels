@@ -102,13 +102,15 @@ function Category() {
     );
   }
 
-  console.log(cart);
+
 
   if (error) {
     return <p>{error.message}</p>;
   }
 
-  const filteredProducts = products.filter((product) => {
+const activeProducts= products.filter(product=>product.active)
+
+  const filteredProducts = activeProducts.filter((product) => {
     return product.category === category;
   });
 

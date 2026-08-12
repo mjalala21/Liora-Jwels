@@ -15,6 +15,7 @@ function Products() {
     queryFn: getProducts
   });
 
+  const activeProducts = data.filter(product=>product.active)
 
 
   if(isLoading){
@@ -153,7 +154,7 @@ function Products() {
         categories.map((item,index)=>{
 
 
-          const products = data
+          const products = activeProducts
           .filter(product=>product.category === item.category)
           .slice(0,4);
 
