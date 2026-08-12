@@ -50,9 +50,11 @@ function AddProduct() {
    addProductMutation.mutate(product)
 
    
-
-   
   };
+   const handleCancel=()=>{
+    navigate('/admin/adminproducts')
+   }
+   
 
   return (
     <div className="min-h-screen bg-[#F8F4EC] p-8">
@@ -280,6 +282,7 @@ function AddProduct() {
         <div className="flex justify-end gap-4 border-t pt-8">
 
           <button
+          onClick={handleCancel}
             type="button"
             className="px-7 py-3 rounded-xl border border-gray-300
             text-gray-600 hover:bg-gray-100 transition"

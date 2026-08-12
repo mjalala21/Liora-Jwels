@@ -11,7 +11,7 @@ const response =  await axios.post("http://localhost:3000/products", newProduct)
 return response.data
 }
 
-export async function deleteProduct(productId){
+export async function removeProduct(productId){
     const response = await axios.delete(`http://localhost:3000/products/${productId}`)
     return response.data
 }
@@ -29,6 +29,26 @@ export async function updateProductById(product) {
       image: product.image,
       description: product.description,
     }
+  );
+
+  return response.data;
+}
+
+export async function updateProductStatus(id, active) {
+  const response = await axios.patch(
+    `http://localhost:3000/products/${id}`,
+    {
+      active,
+    }
+  );
+
+  return response.data;
+}
+
+export async function softDeleteProduct(id, data) {
+  const response = await axios.patch(
+    `http://localhost:3000/products/${id}`,
+    data
   );
 
   return response.data;

@@ -9,6 +9,8 @@ import {
   FaGem,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearUser } from "../../redux/slices/UserSlice";
 
 function Sidebar() {
   const menuItems = [
@@ -38,6 +40,14 @@ function Sidebar() {
       icon: <FaChartLine />,
     },
   ];
+
+  const dispatch = useDispatch()
+
+  function handleLogout(){
+    localStorage.removeItem("userId")
+    dispatch(clearUser())
+    navigate('/login')
+  }
 
   return (
     <aside className="w-80 min-h-screen bg-[#3B2418] text-brand-beige flex flex-col justify-between shadow-xl">
@@ -85,7 +95,9 @@ function Sidebar() {
 
       {/* Logout */}
       <div className="p-4 border-t border-white/10">
-        <button className="w-full flex items-center gap-4 px-5 py-4 rounded-xl hover:bg-red-500 transition">
+        <button className="w-full flex items-center gap-4 px-5 py-4 rounded-xl hover:bg-red-500 transition"
+        onClick={handleLogout}
+        >
           <FaSignOutAlt />
           Logout
         </button>

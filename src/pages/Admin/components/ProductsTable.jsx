@@ -68,16 +68,16 @@
 import React, { useState } from "react";
 import {
   FaEye,
-  FaEdit,
+ 
   FaTrashAlt,
-  FaChevronLeft,
-  FaChevronRight,
+ 
+    FaUndo,
 } from "react-icons/fa";
 
 import usePagination from "../../../hooks/usePagination";
 import Pagination from "./Pagination";
 import { useMutation } from "@tanstack/react-query";
-import { deleteProduct } from "../../../services/productsApi";
+import { removeProduct,  updateProductStatus,   softDeleteProduct,} from "../../../services/productsApi";
 import { useQueryClient } from "@tanstack/react-query";
 
 
@@ -88,14 +88,39 @@ function ProductsTable({
   onEdit,
 }) {
 
+ 
+
     const {page, setPage,  totalPages, currentItems, nextPage, previousPage} = usePagination(searchedProducts, 5)
 
     const queryClient = useQueryClient()
+     const [deleteProduct, setDeleteProduct] = useState(null);
 
 
+const softDeleteMutation = useMutation({
+  mutationFn: (id) =>
+    softDeleteProduct(id, {
+      active: false,
+    }),
 
-    const permenentDeleteMutation = useMutation({
-        mutationFn : deleteProduct,
+  onSuccess: () => {
+    queryClient.invalidateQueries({
+      queryKey: ["products"],
+    });
+  },
+});
+const statusMutation = useMutation({
+  mutationFn: ({ id, active }) =>
+    updateProductStatus(id, active),
+
+  onSuccess: () => {
+    queryClient.invalidateQueries({
+      queryKey: ["products"],
+    });
+  },
+}); 
+
+    const permanentDeleteMutation = useMutation({
+        mutationFn : removeProduct,
 
         onSuccess : ()=>{
             queryClient.invalidateQueries({
@@ -103,7 +128,18 @@ function ProductsTable({
             })
         }
     })
-  
+//   const toggleProductMutation = useMutation({
+//   mutationFn: ({ id, active }) =>
+//     updateProductById(id, {
+//       active,
+//     }),
+
+//   onSuccess: () => {
+//     queryClient.invalidateQueries({
+//       queryKey: ["products"],
+//     });
+//   },
+// });
 
   return (
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
@@ -121,7 +157,8 @@ function ProductsTable({
               <th>Category</th>
               <th>Price</th>
               <th>Stock</th>
-              <th>Status</th>
+              <th>Stock Status</th>
+              <th>Product Status</th>
               <th className="text-center">Actions</th>
 
             </tr>
@@ -202,6 +239,18 @@ function ProductsTable({
 
                 </td>
 
+                <td>
+              <span
+              className={`px-3 py-1 rounded-full text-sm font-medium ${
+                   product.active
+                        ? "bg-green-100 text-green-700"
+                             : "bg-red-100 text-red-700"
+                                     }`}
+                                 >
+                              {product.active ? "Active" : "Inactive"}
+                              </span>
+                     </td>
+
                 {/* Actions */}
 
                <td>
@@ -216,6 +265,34 @@ function ProductsTable({
       <FaEye />
     </button>
 
+     {!product.active && (
+    <button
+      onClick={() =>
+        statusMutation.mutate({
+          id: product.id,
+          active: true,
+        })
+      }
+      className="w-10 h-10 rounded-xl bg-green-50 text-green-600 hover:bg-green-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+      title="Restore Product"
+    >
+      <FaUndo />
+    </button>
+  )}
+{/* <button
+  onClick={() =>
+    statusMutation.mutate({
+      id: product.id,
+      active: !product.active,})
+  }
+  className={`px-3 py-2 rounded-xl text-sm font-medium ${
+    product.active
+      ? "bg-red-50 text-red-600 hover:bg-red-100"
+      : "bg-green-50 text-green-600 hover:bg-green-100"
+  }`}
+>
+  {product.active ? "Deactivate" : "Restore"}
+</button> */}
     {/* Edit */}
     {/* <button
       className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
@@ -224,7 +301,7 @@ function ProductsTable({
       <FaEdit />
     </button> */}
 
-    {/* Delete */}
+    {/* Delete
     <button 
 
       onClick={()=>permenentDeleteMutation.mutate(product.id)}
@@ -232,7 +309,14 @@ function ProductsTable({
       title="Delete Product"
     >
       <FaTrashAlt />
-    </button>
+    </button> */}
+    <button
+  onClick={() => setDeleteProduct(product)}
+  className="w-10 h-10 rounded-xl bg-red-50 text-red-600 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+  title="Delete Product"
+>
+  <FaTrashAlt />
+</button>
 
   </div>
 </td>
@@ -256,7 +340,61 @@ function ProductsTable({
                   previousPage={previousPage}
                   
       />
+ {deleteProduct && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
 
+    <div className="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
+
+      <h2 className="text-xl font-semibold text-[#3B2418]">
+        Delete Product
+      </h2>
+
+      <p className="text-gray-500 mt-2">
+        How would you like to delete{" "}
+        <span className="font-semibold">
+          {deleteProduct.name}
+        </span>
+        ?
+      </p>
+
+      <div className="mt-6 space-y-3">
+
+        {/* Soft Delete */}
+        <button
+          onClick={() => {
+            softDeleteMutation.mutate(deleteProduct.id);
+            setDeleteProduct(null);
+          }}
+          className="w-full py-3 rounded-xl bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition"
+        >
+          Soft Delete
+        </button>
+
+        {/* Permanent Delete */}
+        <button
+          onClick={() => {
+            permanentDeleteMutation.mutate(deleteProduct.id);
+            setDeleteProduct(null);
+          }}
+          className="w-full py-3 rounded-xl bg-red-600 text-white hover:bg-red-700 transition"
+        >
+          Permanent Delete
+        </button>
+
+        {/* Cancel */}
+        <button
+          onClick={() => setDeleteProduct(null)}
+          className="w-full py-3 rounded-xl border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+)}
 
 
     </div>
