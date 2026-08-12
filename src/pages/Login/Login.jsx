@@ -60,8 +60,8 @@ if (newErrors.email || newErrors.password) {
       user => user.email === email
     );
 
-    console.log("LOGIN USER:", loginUser);
-   console.log("ROLE:", loginUser?.role);
+console.log("LOGIN USER:", loginUser);
+console.log("STATUS:", loginUser?.status);
 
 
     if(!loginUser){
@@ -94,6 +94,13 @@ if (newErrors.email || newErrors.password) {
     // email : loginUser.email
     // })
     // );
+  if(loginUser.status === "blocked"){
+
+      navigate('/blockedpage')
+
+      return;
+    }
+
 
     if(loginUser.role==="user"){
 
@@ -104,7 +111,7 @@ if (newErrors.email || newErrors.password) {
 
       dispatch(setUser(loginUser))
 
-   
+  
 
     if(loginUser?.role === "admin"){
       localStorage.setItem("role", loginUser.role);

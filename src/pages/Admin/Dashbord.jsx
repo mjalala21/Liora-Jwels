@@ -11,6 +11,7 @@ import { getAllOrders } from "../../services/ordersApi";
 import { getProducts } from "../../services/productsApi";
 import { getUsers } from "../../services/userApi";
 import SalesOverview from "./components/SalesOverview";
+import TopSelling from "./components/TopSelling";
 
 
 function Dashboard() {
@@ -130,43 +131,7 @@ function Dashboard() {
          <SalesOverview />
 
         {/* Top Products */}
-        <div className="bg-white rounded-3xl shadow-lg p-8">
-
-          <h2 className="text-2xl font-serif text-[#3B2418] mb-6">
-            Top Selling
-          </h2>
-
-          <div className="space-y-5">
-
-            {[
-              "Diamond Ring",
-              "Gold Necklace",
-              "Pearl Earrings",
-              "Luxury Bracelet",
-              "Wedding Set",
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center border-b pb-3"
-              >
-                <div>
-                  <h3 className="text-[#3B2418] font-semibold">
-                    {item}
-                  </h3>
-                  <p className="text-gray-500 text-sm">
-                    {120 - index * 10} Sales
-                  </p>
-                </div>
-
-                <span className="text-[#D4AF37] font-bold">
-                  #{index + 1}
-                </span>
-              </div>
-            ))}
-
-          </div>
-
-        </div>
+        <TopSelling />
 
       </div>
 

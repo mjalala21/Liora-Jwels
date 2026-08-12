@@ -48,20 +48,20 @@ const [editingUser, setEditingUser] = useState(null);
 
   
 
-  const roleFilteredUsers =useMemo(()=>{
-   return searchedUsers.filter(user=>
-    roleFilter==="All Users" || 
-   ( user.role==="admin"&& roleFilter === "Admin") ||
-   (user.role === "user" && roleFilter === "Customer")
-  )
-},[roleFilter, searchedUsers])
+//   const roleFilteredUsers =useMemo(()=>{
+//    return searchedUsers.filter(user=>
+//     roleFilter==="All Users" || 
+//    ( user.role==="admin"&& roleFilter === "Admin") ||
+//    (user.role === "user" && roleFilter === "Customer")
+//   )
+// },[roleFilter, searchedUsers])
   const filteredUsers = useMemo(()=>{
-  return roleFilteredUsers.filter(user=>
+  return searchedUsers.filter(user=>
       statusFilter=== "All Status" ||
       (user.status === "active" && statusFilter === "Active") ||
       (user.status === "blocked" && statusFilter === "Blocked")
   )
-},[roleFilteredUsers, statusFilter])
+},[searchedUsers, statusFilter])
 
 const onlyUsers = useMemo(()=>{
   return filteredUsers.filter(user=>user.role!=="admin")
@@ -245,15 +245,7 @@ const updateStatusMutation = useMutation({
 
       <div className="flex flex-wrap gap-4 mb-8">
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
-        onChange={(e)=>setRoleFilter(e.target.value)}
-        >
 
-          <option value = "All Users">All Roles</option>
-          <option value = "Customer">Customer</option>
-          <option value = "Admin">Admin</option>
-
-        </select>
 
 
         <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]"
@@ -365,21 +357,7 @@ const updateStatusMutation = useMutation({
                   </td>
 
 
-                  {/* Role */}
-
-                  {/* <td>
-
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        user.role === "admin"
-                          ? "bg-purple-100 text-purple-700"
-                          : "bg-blue-100 text-blue-700"
-                      }`}
-                    >
-                      {user.role}
-                    </span>
-
-                  </td> */}
+                  
 
 
                   {/* Status */}

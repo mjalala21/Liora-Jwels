@@ -31,6 +31,7 @@ import Users from './../pages/Admin/Users'
 import AdminAnalytics from '../pages/Admin/AdminAnalytics'
 import ProductForm from '../pages/Admin/components/ProductForm'
 import AdminRoute from './AdminRoute'
+import BlockedPage from '../pages/BlockedPage/BlockedPage'
 
 
 
@@ -88,7 +89,7 @@ function AppRoutes() {
 
         </Route>
         </Route>
-
+        <Route path= '/blockedpage' element={<BlockedPage/>}></Route>
         <Route path="*" element={<NotFound/>}></Route>
         
       
