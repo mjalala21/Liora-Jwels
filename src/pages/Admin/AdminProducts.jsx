@@ -1,92 +1,3 @@
-// import React, { useState } from 'react'
-// import { useQuery } from '@tanstack/react-query'
-// // import { getProducts } from '../../services/api'
-// import { getProducts } from '../../services/productsApi'
-// import ProductsTable from './AdminProducts/ProductsTable'
-
-// function AdminProducts() {
-
-// const[page, setPage] = useState(1)
-
-
-
-
-// const {data : products=[], isLoading} = useQuery({
-//   queryKey : ['products'],
-//   queryFn : getProducts
-// })
-
-// if(isLoading){
-//   return <h1>Loading...</h1>
-// }
-
-//   return (
-//     <div className='min-h-screen'>
-
-//       <div className="flex justify-between items-end mb-10">
-
-//   <div>
-//     <h1 className="text-5xl font-serif text-[#3B2418] tracking-wide">
-//       Products
-//     </h1>
-
-//     <p className="mt-2 text-gray-500 text-lg">
-//       Manage your jewellery collection
-//     </p>
-//   </div>
-
-//   <div className="bg-white rounded-2xl shadow-lg p-5 flex items-center gap-4 mb-10">
-
-//     🔍
-
-//     <input
-//         type="text"
-//         placeholder="Search products..."
-//         className="flex-1 outline-none text-[#3B2418] placeholder:text-gray-400"
-//     />
-
-// </div>
-
-//   <button className="bg-[#D4AF37] hover:bg-[#C49B2F] text-[#3B2418] px-6 py-3 rounded-xl font-semibold transition-all shadow-lg">
-//     + Add Product
-//   </button>
-
-// </div>
-      
-//       {/* <div className='flex flex-col gap-5'>
-//          <h1 className='text-brand-brown font-extrabold text-3xl tracking-wide'>Products</h1>
-//          <p className='text-black/50'>Manage your jwellery Collection</p>
-//       </div>
-      
-      
-//       <div className=' flex'>
-//         <input placeholder='search...' className='w-full border-none focus:ring-none' className='bg-white p-4 rounded-2xl' />
-//         <button className='bg-brand-gold p-2 py-2 px-4 rounded-xl font-bold'>+Add New Product</button>
-//       </div> */}
-//       <div className='flex gap-10'>
-//         <div className='bg-brand-cream rounded-xl p-5 '>
-//           <p>Total Products</p>
-//           <p>{products.length}</p>
-//         </div>
-//         <div>
-//           <p>Available</p>
-//           <p>72</p>
-//         </div>
-//         <div>
-//           <p>Out of Stocks</p>
-//           <p>13</p>
-//         </div>
-//         <div>
-//           <p>Categories</p>
-//           <p>5</p>
-//         </div>
-//       </div>
-//      <ProductsTable products={products}/>
-//     </div>
-//   )
-// }
-
-// export default AdminProducts
 
 import React,{useState} from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -106,6 +17,7 @@ import SearchBar from "../../components/layout/SearchBar";
 import ProductView from "./components/ProductView";
 import EditProduct from "./components/EditProduct";
 import NoItemsFound from "./components/NoItemsFound";
+import { toast } from "react-toastify";
 
 
 function AdminProducts() {
@@ -134,7 +46,14 @@ const [editingProduct, setEditingProduct] = useState(null);
     });
 
     setEditingProduct(null);
+    
+    toast.success("Product Edited Successfully")
+
   },
+
+  onError : ()=>{
+    toast.error("Edititng Product failed")
+  }
 
 });
 
@@ -192,7 +111,7 @@ const filteredProducts = categoryFilteredProducts.filter(product => {
 
 const handleSaveProduct = (updatedProduct) => {
 
-  updateProductMutation.mutate(updatedProduct);
+  updateProductMutation.mutate(updatedProduct)
 
 };
 

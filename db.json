@@ -4,14 +4,14 @@
       "id": "1",
       "name": "Royal Diamond Ring",
       "category": "Ring",
-      "price": 2999,
+      "price": 3085,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
       "image": "/images/rings/ring1.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
-      "stock": 0,
+      "stock": 1,
       "inStock": false,
       "active": true,
       "featured": true
@@ -36,7 +36,7 @@
       "id": "3",
       "name": "Golden block Ring",
       "category": "Ring",
-      "price": 3900,
+      "price": 5000,
       "originalPrice": 3499,
       "rating": 4.8,
       "reviews": 120,
@@ -1156,6 +1156,32 @@
       "active": true,
       "inStock": true,
       "id": "rqNLI7ZldfY"
+    },
+    {
+      "name": "aamish alam ring",
+      "category": "Ring",
+      "price": "2344",
+      "originalPrice": "3232",
+      "material": "18K gold",
+      "stock": 32,
+      "image": "/images/rings/ring19.jpg",
+      "description": "isjflskdjfkjslkfdjlksjdfljlkdfjlksdfljldsf",
+      "active": true,
+      "inStock": true,
+      "id": "8faAIxtD2Ls"
+    },
+    {
+      "name": "testing ",
+      "category": "Ring",
+      "price": "2323",
+      "originalPrice": "3434343",
+      "material": "Gold",
+      "stock": 2,
+      "image": "/images/rings/ring19.jpg",
+      "description": "ddd",
+      "active": true,
+      "inStock": true,
+      "id": "Lv3-rgphC_g"
     }
   ],
   "users": [
@@ -1180,7 +1206,7 @@
       "email": "anfal@gmail.com",
       "password": "123qwe#2",
       "role": "user",
-      "status": "blocked",
+      "status": "active",
       "id": "BQ1K92XflgI"
     },
     {
@@ -1188,7 +1214,7 @@
       "email": "thahir@gmail.com",
       "password": "123qwe#@",
       "role": "user",
-      "status": "active",
+      "status": "blocked",
       "id": "tcJMlgk-C_g"
     },
     {
@@ -1196,7 +1222,7 @@
       "email": "thahirvp@gmail.com",
       "password": "123qwe#@",
       "role": "user",
-      "status": "active",
+      "status": "blocked",
       "id": "GUu-ODs33A4"
     },
     {
@@ -1242,7 +1268,7 @@
         "address": "fwfjfwjoiefwoifoiwi"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Delivered",
       "createdAt": "2026-08-12T09:53:47.926Z",
       "id": "6w11N_FKjYQ"
     },
@@ -1611,11 +1637,6 @@
       "userId": null,
       "productId": "3",
       "id": "jRVJXUWWNQM"
-    },
-    {
-      "userId": "zS8eLYNYLgQ",
-      "productId": "19",
-      "id": "nH6cH_Bip1E"
     }
   ],
   "carts": [

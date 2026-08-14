@@ -16,11 +16,10 @@ import {
 
 import { deleteUserById, getUsers, updateUserById } from "../../services/userApi";
 import useSearch from "../../hooks/useSearch";
-import usePagination from "../../hooks/usePagination";
-import Pagination from "./components/Pagination";
-import UserView from "./components/UserView";
+
 import { getAllOrders } from "../../services/ordersApi";
-import ConfirmMessage from "./components/ConfirmMessage";
+import UserTable from "./components/UserTable";
+
 
 
 function AdminUsers() {
@@ -30,9 +29,7 @@ function AdminUsers() {
 const[roleFilter, setRoleFilter] = useState("All Users")
 const[statusFilter, setStatusFilter] = useState("All Status")
 
-const [selectedUser, setSelectedUser] = useState(null);
-const [editingUser, setEditingUser] = useState(null);
-const [blockUser, setBlockUser] = useState(null)
+
 
 
   const { data: users = [], isUserLoading } = useQuery({
@@ -75,14 +72,6 @@ const onlyUsers = useMemo(()=>{
   return filteredUsers.filter(user=>user.role!=="admin")
 },[filteredUsers]) 
 
-  const {
-    page,
-    setPage,
-    totalPages,
-    currentItems,
-    nextPage,
-    previousPage,
-  } = usePagination(onlyUsers, 5);
 
 
 // const updateStatusMutation = useMutation({
@@ -272,9 +261,11 @@ const customerUsers = customers.length
       </div>
 
 
+<UserTable users = {onlyUsers}/>
+
       {/* Users Table */}
 
-      <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+      {/* <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
 
         <div className="overflow-x-auto">
 
@@ -290,12 +281,12 @@ const customerUsers = customers.length
 
                 <th>
                   Email
-                </th>
+                </th> */}
 
                 {/* <th>
                   Role
                 </th> */}
-
+{/* 
                 <th>
                   Status
                 </th>
@@ -320,10 +311,10 @@ const customerUsers = customers.length
                 <tr
                   key={user.id}
                   className="border-b hover:bg-[#FDFBF8] transition-all"
-                >
+                > */}
 
                   {/* User */}
-
+{/* 
                   <td className="px-6 py-5">
 
                     <div className="flex items-center gap-4">
@@ -358,14 +349,14 @@ const customerUsers = customers.length
 
                     </div>
 
-                  </td>
+                  </td> */}
 
 
                   {/* Email */}
 
-                  <td className="text-gray-600">
+                  {/* <td className="text-gray-600">
                     {user.email}
-                  </td>
+                  </td> */}
 
 
                   
@@ -373,11 +364,11 @@ const customerUsers = customers.length
 
                   {/* Status */}
 
-                  <td>
+                  {/* <td> */}
 
 
 
-<button onClick={()=>setBlockUser(user)}
+{/* <button onClick={()=>setBlockUser(user)}
     className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition ${
     user.status === "active"
       ? "bg-green-100 text-green-700 hover:bg-green-200"
@@ -385,34 +376,34 @@ const customerUsers = customers.length
   }`}
   > {user.status === "active" ? "Active" : "Blocked"}</button>
 
-                  </td>
+                  </td> */}
 
 
                   {/* Created */}
 
-                  <td className="text-gray-500">
+                  {/* <td className="text-gray-500">
                   {new Date(user.createdAt).toLocaleDateString("en-IN", {
                                day: "2-digit",
                                month: "short",
                                 year: "numeric"
                                              })}
-                  </td>
+                  </td> */}
 
 
                   {/* Actions */}
 
-                  <td>
+                  {/* <td>
 
-                    <div className="flex justify-center items-center gap-3">
+                    <div className="flex justify-center items-center gap-3"> */}
 
                       {/* View */}
-<button
+{/* <button
   onClick={() => setSelectedUser(user)}
   className="w-10 h-10 rounded-xl bg-[#F8F4EC] hover:bg-[#D4AF37] hover:text-white transition-all duration-300 flex items-center justify-center"
   title="View User"
 >
   <FaEye />
-</button>
+</button> */}
 
 
         
@@ -422,7 +413,7 @@ const customerUsers = customers.length
 
                       {/* Delete */}
 
-                    
+{/*                     
                     </div>
 
                   </td>
@@ -435,32 +426,32 @@ const customerUsers = customers.length
 
           </table>
 
-        </div>
+        </div> */}
 
-        {blockUser && <ConfirmMessage user={blockUser} setBlockUser={setBlockUser}/>} 
+        {/* {blockUser && <ConfirmMessage user={blockUser} setBlockUser={setBlockUser}/>}  */}
 
         {/* user View  */}
 
-        {selectedUser && (
+        {/* {selectedUser && (
   <UserView
     user={selectedUser}
     onClose={() => setSelectedUser(null)}
   />
-)}
+)} */}
 
 
         {/* Pagination */}
 
-        <Pagination
+        {/* <Pagination
           page={page}
           setPage={setPage}
           totalPages={totalPages}
           currentItems={currentItems}
           nextPage={nextPage}
           previousPage={previousPage}
-        />
+        /> */}
 
-      </div>
+      {/* </div> */}
 
     </div>
   );

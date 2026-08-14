@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { addProducts } from "../../../services/productsApi";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 function AddProduct() {
 
 
@@ -32,6 +33,12 @@ function AddProduct() {
        })
        
       navigate('/admin/adminproducts')
+
+      toast.success("product added successfully")
+    },
+
+    onError : ()=>{
+      toast.error("Adding product Failed")
     }
   })
 
