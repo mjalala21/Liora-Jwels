@@ -1,36 +1,59 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setUser} from "./redux/slices/UserSlice";
-// import { getUserById } from "./services/api";
-import { getUserById } from "./services/userApi";
-import AppRoutes from "./routes/AppRoutes";
+  import { useEffect } from "react";
+  import { useDispatch } from "react-redux";
+  import { setUser} from "./redux/slices/UserSlice";
 
-function App() {
+  import { ToastContainer } from "react-toastify";
 
-  const dispatch = useDispatch();
 
-  useEffect(() => {
+  import { getUserById } from "./services/userApi";
+  import AppRoutes from "./routes/AppRoutes";
 
-    async function loadUser() {
+  function App() {
 
-      const userId = localStorage.getItem("userId");
+    const dispatch = useDispatch();
 
-      if (!userId){
-        
-        return;
+    useEffect(() => {
+
+      async function loadUser() {
+
+        const userId = localStorage.getItem("userId");
+
+        if (!userId){
+          
+          return;
+        }
+        const user = await getUserById(userId);
+
+        dispatch(setUser(user));
+
+    
       }
-      const user = await getUserById(userId);
 
-      dispatch(setUser(user));
+      loadUser();
 
-   
-    }
+    }, []);
 
-    loadUser();
+    return (
 
-  }, []);
+      <>
+    
+    <AppRoutes />;
 
-  return <AppRoutes />;
-}
+         <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="light"
+        toastClassName="liora-toast"
+        bodyClassName="liora-toast-body"
+      />
 
-export default App;
+</>
+    )
+  }
+
+  export default App;
+

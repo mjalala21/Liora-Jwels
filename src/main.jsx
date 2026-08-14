@@ -1,11 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import "react-toastify/dist/ReactToastify.css";
 import './index.css'
 import App from './App.jsx'
 import "@fontsource/cormorant-garamond/400.css";
 import "@fontsource/cormorant-garamond/600.css";
 import "@fontsource/cormorant-garamond/700.css";
 import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
 import {BrowserRouter} from 'react-router-dom'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import { Provider } from "react-redux";

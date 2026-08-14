@@ -79,6 +79,7 @@ import Pagination from "./Pagination";
 import { useMutation } from "@tanstack/react-query";
 import { removeProduct,  updateProductStatus,   softDeleteProduct,} from "../../../services/productsApi";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 
 function ProductsTable({
@@ -106,7 +107,14 @@ const softDeleteMutation = useMutation({
     queryClient.invalidateQueries({
       queryKey: ["products"],
     });
+
+    toast.success("Product Soft Deleted");
   },
+
+    onError: () => {
+    toast.error("Failed to Soft delete");
+  },
+
 });
 const statusMutation = useMutation({
   mutationFn: ({ id, active }) =>
@@ -116,7 +124,15 @@ const statusMutation = useMutation({
     queryClient.invalidateQueries({
       queryKey: ["products"],
     });
+
+     toast.success("Product restored successfully!");
   },
+   onError: () => {
+    toast.error("Failed to restore product");
+  },
+
+
+  
 }); 
 
     const permanentDeleteMutation = useMutation({
@@ -125,7 +141,13 @@ const statusMutation = useMutation({
         onSuccess : ()=>{
             queryClient.invalidateQueries({
                 queryKey : ['products']
-            })
+            }),
+
+        toast.success("Product permanently deleted!")
+        },
+
+        onError : ()=>{
+          toast.error("Failed to delete product")
         }
     })
 //   const toggleProductMutation = useMutation({
@@ -279,37 +301,7 @@ const statusMutation = useMutation({
       <FaUndo />
     </button>
   )}
-{/* <button
-  onClick={() =>
-    statusMutation.mutate({
-      id: product.id,
-      active: !product.active,})
-  }
-  className={`px-3 py-2 rounded-xl text-sm font-medium ${
-    product.active
-      ? "bg-red-50 text-red-600 hover:bg-red-100"
-      : "bg-green-50 text-green-600 hover:bg-green-100"
-  }`}
->
-  {product.active ? "Deactivate" : "Restore"}
-</button> */}
-    {/* Edit */}
-    {/* <button
-      className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
-      title="Edit Product"
-    >
-      <FaEdit />
-    </button> */}
 
-    {/* Delete
-    <button 
-
-      onClick={()=>permenentDeleteMutation.mutate(product.id)}
-      className="w-10 h-10 rounded-xl bg-red-50 text-red-600 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center"
-      title="Delete Product"
-    >
-      <FaTrashAlt />
-    </button> */}
     <button
   onClick={() => setDeleteProduct(product)}
   className="w-10 h-10 rounded-xl bg-red-50 text-red-600 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center"
@@ -360,7 +352,8 @@ const statusMutation = useMutation({
       <div className="mt-6 space-y-3">
 
         {/* Soft Delete */}
-        <button
+
+        {deleteProduct.active ?   ( <button
           onClick={() => {
             softDeleteMutation.mutate(deleteProduct.id);
             setDeleteProduct(null);
@@ -368,7 +361,24 @@ const statusMutation = useMutation({
           className="w-full py-3 rounded-xl bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition"
         >
           Soft Delete
-        </button>
+        </button>  ) : ( 
+          <button onClick = {()=>{
+            statusMutation.mutate({
+          id: deleteProduct.id,
+          active: true,
+        })
+      setDeleteProduct(null)
+    }
+        }
+        className="w-full py-3 rounded-xl bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition"
+        >
+           
+
+           Restore Product
+
+          </button>
+        ) }
+       
 
         {/* Permanent Delete */}
         <button

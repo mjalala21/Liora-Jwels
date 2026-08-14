@@ -149,18 +149,19 @@ function AdminOrders() {
     (order) => order.status === "Pending"
   ).length;
 
-  const completedOrders = orders.filter(
+  const deliveredOrders = orders.filter(
     (order) => order.status === "Delivered"
-  ).length;
+  )
+
+  const completedOrders = deliveredOrders.length
 
   const cancelledOrders = orders.filter(
     (order) => order.status === "Cancelled"
   ).length;
 
-  const totalRevenue = orders.reduce(
-    (total, order) => total + Number(order.totalAmount),
-    0
-  );
+    const totalRevenue = deliveredOrders.reduce((revenue, order)=>
+    revenue + order.totalAmount, 0
+    )
 
   return (
     <div className="min-h-screen bg-[#F8F4EC] p-8">

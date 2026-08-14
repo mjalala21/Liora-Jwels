@@ -11,6 +11,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../../redux/slices/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const menuItems = [
@@ -41,10 +42,11 @@ function Sidebar() {
     },
   ];
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   function handleLogout(){
-    localStorage.removeItem("userId")
+    localStorage.removeItem("role")
     dispatch(clearUser())
     navigate('/login')
   }

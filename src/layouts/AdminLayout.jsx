@@ -6,9 +6,9 @@ import AdminNavbar from "../components/layout/AdminNavbar";
 
 function AdminLayout() {
   return (
-   <div className="flex h-screen overflow-hidden bg-[#F8F4EC]">
+   <div className="flex h-screen  bg-[#F8F4EC]">
       
-      <Sidebar className="fixed"/>
+      <Sidebar />
     
 
 

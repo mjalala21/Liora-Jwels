@@ -44,7 +44,7 @@ function AdminNavbar() {
       <div className="flex items-center gap-6">
 
         {/* Search */}
-        <div className="hidden md:flex items-center bg-[#F8F4EC] rounded-full px-4 py-2 w-72">
+        {/* <div className="hidden md:flex items-center bg-[#F8F4EC] rounded-full px-4 py-2 w-72">
 
           <FaSearch className="text-gray-500" />
 
@@ -53,7 +53,7 @@ function AdminNavbar() {
             placeholder="Search..."
             className="bg-transparent outline-none ml-3 w-full text-[#3B2418]"
           />
-        </div>
+        </div> */}
 
         {/* Notification */}
         <button className="relative bg-[#F8F4EC] p-3 rounded-full hover:bg-[#D4AF37]/20 transition">

@@ -34,8 +34,15 @@ function Dashboard() {
     if(isOrderLoading || isProductsLoading || isUsersLoading){
         return <h1>Loading...</h1>
     }
+
+    const customers = users.filter(user=>
+      orders.some(order => order.userId === user.id)
+    )
+
+
+    const completedOrders = orders.filter(order=>order.status === "Delivered")
   
-    const totalRevenue = orders.reduce((revenue, order)=>
+    const totalRevenue = completedOrders.reduce((revenue, order)=>
     revenue + order.totalAmount, 0
     )
 
@@ -112,7 +119,7 @@ function Dashboard() {
             <div>
               <p className="text-gray-500">Customers</p>
               <h2 className="text-3xl font-bold text-[#3B2418] mt-2">
-                {users.length}
+                {customers.length}
               </h2>
             </div>
 
@@ -172,7 +179,19 @@ function Dashboard() {
                          <td>{customer?.name}</td>
                          <td>{order.totalAmount}</td>
                          <td>
-                            <span className="bg-[#D4AF37]/20 text-[#8B6B25] px-4 py-1 rounded-full text-sm">
+                            <span className={`bg-[#D4AF37]/20 text-[#8B6B25] px-4 py-1 rounded-full text-sm 
+                              ${ 
+                          order.status==="Pending" 
+                          ?"bg-yellow-50 text-yellow-700"
+                          :order.status ==="Processing"
+                          ? " bg-blue-50 text-blue-700"
+                          :order.status === "Shipped"
+                          ? "bg-purple-50 text-purple-700"
+                          :order.status==="Delivered"
+                          ?"bg-green-50 text-green-700"
+                          :"bg-red-50 text-red-700"
+                        }
+                              `}>
                             {order.status}
                           </span>
                             </td>

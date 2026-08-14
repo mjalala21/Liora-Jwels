@@ -19,6 +19,8 @@ import useSearch from "../../hooks/useSearch";
 import usePagination from "../../hooks/usePagination";
 import Pagination from "./components/Pagination";
 import UserView from "./components/UserView";
+import { getAllOrders } from "../../services/ordersApi";
+import ConfirmMessage from "./components/ConfirmMessage";
 
 
 function AdminUsers() {
@@ -30,12 +32,18 @@ const[statusFilter, setStatusFilter] = useState("All Status")
 
 const [selectedUser, setSelectedUser] = useState(null);
 const [editingUser, setEditingUser] = useState(null);
+const [blockUser, setBlockUser] = useState(null)
 
 
-  const { data: users = [], isLoading } = useQuery({
+  const { data: users = [], isUserLoading } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });
+
+  const {data: orders = [], isOrderLoading} = useQuery({
+    queryKey : ['orders'],
+    queryFn : getAllOrders
+  })
 
   const getUserSearchValue = useCallback((user)=>
     `${user.name}
@@ -77,18 +85,18 @@ const onlyUsers = useMemo(()=>{
   } = usePagination(onlyUsers, 5);
 
 
-const updateStatusMutation = useMutation({
-  mutationFn : updateUserById,
+// const updateStatusMutation = useMutation({
+//   mutationFn : updateUserById,
 
-  onSuccess : ()=>{
-    queryClient.invalidateQueries({
-      queryKey : ['users']
-    })
-  }
-})
+//   onSuccess : ()=>{
+//     queryClient.invalidateQueries({
+//       queryKey : ['users']
+//     })
+//   }
+// })
 
 
-  if (isLoading) {
+  if (isUserLoading || isOrderLoading ) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <h1 className="text-2xl text-[#3B2418] font-semibold">
@@ -108,21 +116,24 @@ const updateStatusMutation = useMutation({
     (user) => user.status === "blocked"
   ).length;
 
-  const customerUsers = users.filter(
-    (user) => user.role === "user"
-  ).length;
+const customers = users.filter(user=>
+  orders.some(order=>order.userId === user.id)
 
-  const handleStatusChange = (user) => {
+)
 
-  const updatedUser = {
-    ...user,
-    status: user.status === "active"
-      ? "blocked"
-      : "active"
-  };
+const customerUsers = customers.length
 
-  updateStatusMutation.mutate(updatedUser);
-};
+//   const handleStatusChange = (user) => {
+
+//   const updatedUser = {
+//     ...user,
+//     status: user.status === "active"
+//       ? "blocked"
+//       : "active"
+//   };
+
+//   updateStatusMutation.mutate(updatedUser);
+// };
 
 
 
@@ -364,7 +375,7 @@ const updateStatusMutation = useMutation({
 
                   <td>
 
-                    <button
+                    {/* <button
   onClick={() => handleStatusChange(user)}
   disabled={updateStatusMutation.isPending}
   className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition ${
@@ -374,7 +385,9 @@ const updateStatusMutation = useMutation({
   }`}
 >
   {user.status === "active" ? "Active" : "Blocked"}
-</button>
+</button> */}
+
+<button onClick={()=>setBlockUser(user)}> {user.status === "active" ? "Active" : "Blocked"}</button>
 
                   </td>
 
@@ -427,6 +440,8 @@ const updateStatusMutation = useMutation({
           </table>
 
         </div>
+
+        {blockUser && <ConfirmMessage user={blockUser} setBlockUser={setBlockUser}/>} 
 
         {/* user View  */}
 

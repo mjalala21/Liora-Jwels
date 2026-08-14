@@ -53,11 +53,11 @@ function AdminAnalytics() {
 
     //  BASIC CALCULATIONS
 
-
-  const totalRevenue = orders.reduce(
-    (total, order) => total + Number(order.totalAmount || 0),
-    0
-  );
+ const completedOrders = orders.filter(order=>order.status === "Delivered")
+  
+    const totalRevenue = completedOrders.reduce((revenue, order)=>
+    revenue + order.totalAmount, 0
+    )
 
   const totalOrders = orders.length;
 
