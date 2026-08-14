@@ -105,6 +105,7 @@ import useSearch from "../../hooks/useSearch";
 import SearchBar from "../../components/layout/SearchBar";
 import ProductView from "./components/ProductView";
 import EditProduct from "./components/EditProduct";
+import NoItemsFound from "./components/NoItemsFound";
 
 
 function AdminProducts() {
@@ -350,7 +351,7 @@ const handleSaveProduct = (updatedProduct) => {
       </div>
 
       {/* Products Table */}
-
+{filteredProducts.length<=0 ? <NoItemsFound/> : 
       <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
 
        <ProductsTable
@@ -360,6 +361,8 @@ const handleSaveProduct = (updatedProduct) => {
 />
 
       </div>
+
+}
 
       {/* Product View */}
 

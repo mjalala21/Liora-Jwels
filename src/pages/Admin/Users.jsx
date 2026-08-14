@@ -375,19 +375,15 @@ const customerUsers = customers.length
 
                   <td>
 
-                    {/* <button
-  onClick={() => handleStatusChange(user)}
-  disabled={updateStatusMutation.isPending}
-  className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition ${
+
+
+<button onClick={()=>setBlockUser(user)}
+    className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition ${
     user.status === "active"
       ? "bg-green-100 text-green-700 hover:bg-green-200"
       : "bg-red-100 text-red-700 hover:bg-red-200"
   }`}
->
-  {user.status === "active" ? "Active" : "Blocked"}
-</button> */}
-
-<button onClick={()=>setBlockUser(user)}> {user.status === "active" ? "Active" : "Blocked"}</button>
+  > {user.status === "active" ? "Active" : "Blocked"}</button>
 
                   </td>
 
