@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   FaRupeeSign,
@@ -10,22 +10,22 @@ import {
 
 
 
-// import { getOrders, getUsers } from "../../services/api";
-import { getOrders } from "../../services/ordersApi";
+import { getAllOrders } from "../../services/ordersApi";
 import { getUsers } from "../../services/userApi";
 import { getProducts } from "../../services/productsApi";
 import RevenueOverview from "./Analytics/RevenueOverview";
 import OrdersOverview from "./Analytics/OrderOverview";
 import SalesByCategory from "./Analytics/SalesByCategory";
-import TopSellingProducts from "./Analytics/TopSellingProducts";
-import OrderStatus from "./Analytics/OrderStatus";
+
 
 function AdminAnalytics() {
+
+  const [dateRange, setDateRange] = useState("6months");
 
 
   const { data: orders = [], isLoading: ordersLoading } = useQuery({
     queryKey: ["orders"],
-    queryFn: getOrders,
+    queryFn: getAllOrders,
   });
 
   const { data: products = [], isLoading: productsLoading } = useQuery({
@@ -37,6 +37,45 @@ function AdminAnalytics() {
     queryKey: ["users"],
     queryFn: getUsers,
   });
+
+
+  
+  //filter 
+
+  const filteredOrders = useMemo(() => {
+  const now = new Date();
+
+  const startDate = new Date(now);
+
+  if (dateRange === "7days") {
+    startDate.setDate(now.getDate() - 7);
+  }
+
+  if (dateRange === "30days") {
+    startDate.setDate(now.getDate() - 30);
+  }
+
+  if (dateRange === "6months") {
+    startDate.setMonth(now.getMonth() - 6);
+  }
+
+  if (dateRange === "year") {
+    startDate.setMonth(0);
+    startDate.setDate(1);
+  }
+
+  startDate.setHours(0, 0, 0, 0);
+
+  return orders.filter((order) => {
+    const orderDate = new Date(order.createdAt);
+
+    return orderDate >= startDate && orderDate <= now;
+  });
+}, [orders, dateRange]);
+
+console.log("ALL ORDERS:", orders);
+console.log("FILTERED ORDERS:", filteredOrders);
+console.log("DATE RANGE:", dateRange);
 
 
   if (ordersLoading || productsLoading || usersLoading) {
@@ -53,24 +92,48 @@ function AdminAnalytics() {
 
     //  BASIC CALCULATIONS
 
- const completedOrders = orders.filter(order=>order.status === "Delivered")
+//  const completedOrders = filteredOrders.filter(order=>order.status === "Delivered")
   
-    const totalRevenue = completedOrders.reduce((revenue, order)=>
-    revenue + order.totalAmount, 0
-    )
+//     const totalRevenue = completedOrders.reduce((revenue, order)=>
+//     revenue + order.totalAmount, 0
+//     )
 
-  const totalOrders = orders.length;
+//   const totalOrders = filteredOrders.length;
 
-  const totalCustomers = users.filter(
-    (user) => user.role === "user"
-  ).length;
+//   const totalCustomers = users.filter(
+//     (user) => user.role === "user"
+//   ).length;
 
-  const averageOrderValue =
-    totalOrders > 0
-      ? Math.round(totalRevenue / totalOrders)
-      : 0;
+//   const averageOrderValue =
+//     completedOrders.length > 0
+//       ? Math.round(totalRevenue / totalOrders)
+//       : 0;
 
 
+// =========================
+// BASIC CALCULATIONS
+// =========================
+
+const completedOrders = filteredOrders.filter(
+  (order) => order.status === "Delivered"
+);
+
+const totalRevenue = completedOrders.reduce(
+  (revenue, order) =>
+    revenue + Number(order.totalAmount || 0),
+  0
+);
+
+const totalOrders = filteredOrders.length;
+
+const totalCustomers = users.filter(
+  (user) => user.role === "user"
+).length;
+
+const averageOrderValue =
+  completedOrders.length > 0
+    ? Math.round(totalRevenue / completedOrders.length)
+    : 0;
   /* =========================
      PRODUCT INVENTORY
   ========================= */
@@ -85,7 +148,14 @@ function AdminAnalytics() {
     (product) => Number(product.stock) === 0
   ).length;
 
-
+const filterLabel =
+  dateRange === "7days"
+    ? "Last 7 Days"
+    : dateRange === "30days"
+    ? "Last 30 Days"
+    : dateRange === "6months"
+    ? "Last 6 Months"
+    : "This Year";
 
 
 
@@ -111,115 +181,102 @@ function AdminAnalytics() {
         </div>
 
 
-        <select className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418]">
-
-          <option>Last 6 Months</option>
-          <option>Last 30 Days</option>
-          <option>Last 7 Days</option>
-          <option>This Year</option>
-
-        </select>
+        <select
+  value={dateRange}
+  onChange={(e) => setDateRange(e.target.value)}
+  className="bg-white border border-gray-200 rounded-xl px-5 py-3 outline-none text-[#3B2418] cursor-pointer"
+>
+  <option value="6months">Last 6 Months</option>
+  <option value="30days">Last 30 Days</option>
+  <option value="7days">Last 7 Days</option>
+  <option value="year">This Year</option>
+</select>
 
       </div>
 
 
       {/* ================= KPI CARDS ================= */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7 mb-10">
+{/* ================= KPI CARDS ================= */}
+
+<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7 mb-10">
+
+  {/* ================= REVENUE ================= */}
+
+  <div className="bg-white rounded-3xl p-7 shadow-lg">
+
+    <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+      <FaRupeeSign className="text-[#D4AF37] text-2xl" />
+    </div>
+
+    <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
+      ₹{totalRevenue.toLocaleString("en-IN")}
+    </h2>
+
+    <p className="text-gray-500 mt-2">
+      Revenue — {filterLabel}
+    </p>
+
+  </div>
 
 
-        {/* Revenue */}
+  {/* ================= ORDERS ================= */}
 
-        <div className="bg-white rounded-3xl p-7 shadow-lg">
+  <div className="bg-white rounded-3xl p-7 shadow-lg">
 
-          <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+    <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+      <FaShoppingBag className="text-[#D4AF37] text-2xl" />
+    </div>
 
-            <FaRupeeSign className="text-[#D4AF37] text-2xl" />
+    <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
+      {totalOrders}
+    </h2>
 
-          </div>
+    <p className="text-gray-500 mt-2">
+      Orders — {filterLabel}
+    </p>
 
-          <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
-
-            ₹{totalRevenue.toLocaleString("en-IN")}
-
-          </h2>
-
-          <p className="text-gray-500 mt-2">
-            Total Revenue
-          </p>
-
-        </div>
+  </div>
 
 
-        {/* Orders */}
+  {/* ================= CUSTOMERS ================= */}
 
-        <div className="bg-white rounded-3xl p-7 shadow-lg">
+  <div className="bg-white rounded-3xl p-7 shadow-lg">
 
-          <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+    <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+      <FaUsers className="text-[#D4AF37] text-2xl" />
+    </div>
 
-            <FaShoppingBag className="text-[#D4AF37] text-2xl" />
+    <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
+      {totalCustomers}
+    </h2>
 
-          </div>
+    <p className="text-gray-500 mt-2">
+      Total Customers
+    </p>
 
-          <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
-
-            {totalOrders}
-
-          </h2>
-
-          <p className="text-gray-500 mt-2">
-            Total Orders
-          </p>
-
-        </div>
+  </div>
 
 
-        {/* Customers */}
+  {/* ================= AVERAGE ORDER ================= */}
 
-        <div className="bg-white rounded-3xl p-7 shadow-lg">
+  <div className="bg-white rounded-3xl p-7 shadow-lg">
 
-          <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+    <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
+      <FaChartLine className="text-[#D4AF37] text-2xl" />
+    </div>
 
-            <FaUsers className="text-[#D4AF37] text-2xl" />
+    <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
+      ₹{averageOrderValue.toLocaleString("en-IN")}
+    </h2>
 
-          </div>
+    <p className="text-gray-500 mt-2">
+      Average Order — {filterLabel}
+    </p>
 
-          <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
+  </div>
 
-            {totalCustomers}
-
-          </h2>
-
-          <p className="text-gray-500 mt-2">
-            Customers
-          </p>
-
-        </div>
-
-
-        {/* Average Order */}
-
-        <div className="bg-white rounded-3xl p-7 shadow-lg">
-
-          <div className="w-14 h-14 rounded-full bg-[#F8F4EC] flex items-center justify-center">
-
-            <FaChartLine className="text-[#D4AF37] text-2xl" />
-
-          </div>
-
-          <h2 className="text-3xl font-bold mt-6 text-[#3B2418]">
-
-            ₹{averageOrderValue.toLocaleString("en-IN")}
-
-          </h2>
-
-          <p className="text-gray-500 mt-2">
-            Average Order Value
-          </p>
-
-        </div>
-
-      </div>
+</div>
 
 
       {/* ================= REVENUE CHART ================= */}
@@ -227,7 +284,7 @@ function AdminAnalytics() {
        <div className="grid grid-cols-1 xl:grid-cols-1 gap-8 mb-10"> 
 
 
-<RevenueOverview />
+<RevenueOverview orders={filteredOrders} dateRange={dateRange} />
 
 
      </div>
@@ -238,7 +295,7 @@ function AdminAnalytics() {
 
         {/* Orders Chart */}
 
-<OrdersOverview />
+<OrdersOverview orders={filteredOrders} dateRange={dateRange}/>
 
         {/* Category Chart */}
 
@@ -246,26 +303,12 @@ function AdminAnalytics() {
 
 
         
-<SalesByCategory />
+<SalesByCategory orders={filteredOrders} dateRange={dateRange}/>
 
       </div>
 
 
-      {/* ================= PRODUCT + ORDER STATUS ================= */}
-
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-10">
-
-
-        {/* Top Products */}
-
- <TopSellingProducts />
-
-
-        {/* Order Status */}
-
-       <OrderStatus />
-
-</div>
+     
       {/* ================= INVENTORY ================= */}
 
       <div className="bg-white rounded-3xl shadow-xl p-8 mb-10">

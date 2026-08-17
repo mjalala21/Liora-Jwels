@@ -28,6 +28,8 @@ export async function updateProductById(product) {
       stock: product.stock,
       image: product.image,
       description: product.description,
+      inStock : product.inStock,
+      active : product.active
     }
   );
 

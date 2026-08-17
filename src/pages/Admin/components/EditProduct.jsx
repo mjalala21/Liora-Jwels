@@ -49,7 +49,11 @@ function EditProduct({
       image,
 
       description,
+      inStock : Number(stock) > 0,
+      active : Number(stock)>0
     };
+
+    console.log(updatedProduct)
 
     onSave(updatedProduct);
   };

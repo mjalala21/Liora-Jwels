@@ -10,8 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { getOrders } from "../../../services/ordersApi";
 import { getProducts } from "../../../services/productsApi";
+
 
 const COLORS = [
   "#D4AF37",
@@ -21,14 +21,15 @@ const COLORS = [
   "#E5C07B",
 ];
 
-function SalesByCategory() {
 
-  const { data: orders = [] } = useQuery({
-    queryKey: ["orders"],
-    queryFn: getOrders,
-  });
+function SalesByCategory({
+  orders = [],
+  dateRange,
+}) {
 
-  const { data: products = [] } = useQuery({
+  const {
+    data: products = [],
+  } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
@@ -38,102 +39,192 @@ function SalesByCategory() {
 
     const categorySales = {};
 
+
     orders.forEach((order) => {
 
-      if (order.status === "Cancelled") return;
+      // Ignore cancelled orders
+      if (order.status === "Cancelled") {
+        return;
+      }
+
 
       order.items?.forEach((item) => {
 
         const product = products.find(
-          (product) => product.id === item.productId
+          (product) =>
+            String(product.id) ===
+            String(item.productId)
         );
 
-        if (!product) return;
+
+        if (!product) {
+          return;
+        }
+
 
         const category = product.category;
 
-        const quantity = Number(item.quantity);
+        const quantity =
+          Number(item.quantity) || 0;
 
-        const price = Number(product.price);
+        const price =
+          Number(product.price) || 0;
 
-        const revenue = price * quantity;
+
+        const revenue =
+          price * quantity;
+
 
         categorySales[category] =
-          (categorySales[category] || 0) + revenue;
+          (categorySales[category] || 0) +
+          revenue;
 
       });
 
     });
 
 
-    return Object.entries(categorySales).map(
-      ([name, value]) => ({
+    return Object.entries(categorySales)
+      .map(([name, value]) => ({
         name,
         value,
-      })
-    );
+      }))
+      .sort((a, b) => b.value - a.value);
 
   }, [orders, products]);
 
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl p-8">
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        shadow-xl
 
-      <h2 className="text-2xl font-serif text-[#3B2418]">
+        p-5
+        sm:p-6
+        lg:p-8
+      "
+    >
+
+      {/* =========================
+          HEADER
+      ========================== */}
+
+      <h2
+        className="
+          text-xl
+          sm:text-2xl
+          font-serif
+          text-[#3B2418]
+        "
+      >
         Sales by Category
       </h2>
 
-      <p className="text-gray-500 mt-1">
-        Category performance
+
+      <p
+        className="
+          text-gray-500
+          text-sm
+          mt-1
+        "
+      >
+        {dateRange === "7days"
+          ? "Category sales for the last 7 days"
+          : dateRange === "30days"
+          ? "Category sales for the last 30 days"
+          : dateRange === "6months"
+          ? "Category sales for the last 6 months"
+          : "Category sales for this year"}
       </p>
 
 
-      <div className="h-[320px]">
+      {/* =========================
+          CHART
+      ========================== */}
 
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-        >
+      <div className="h-[300px] sm:h-[320px]">
 
-          <PieChart>
+        {categoryData.length === 0 ? (
 
-            <Pie
-              data={categoryData}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={110}
-              innerRadius={65}
-              paddingAngle={3}
-            >
+          <div
+            className="
+              h-full
+              flex
+              items-center
+              justify-center
+              text-gray-400
+            "
+          >
+            No sales available
+          </div>
 
-              {categoryData.map((_, index) => (
-                <Cell
-                  key={index}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
+        ) : (
 
-            </Pie>
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+          >
+
+            <PieChart>
+
+              <Pie
+                data={categoryData}
+                dataKey="value"
+                nameKey="name"
+
+                cx="50%"
+                cy="50%"
+
+                outerRadius="65%"
+                innerRadius="40%"
+
+                paddingAngle={3}
+              >
+
+                {categoryData.map(
+                  (entry, index) => (
+
+                    <Cell
+                      key={`cell-${entry.name}`}
+                      fill={
+                        COLORS[index]
+                      }
+                    />
+
+                  )
+                )}
+
+              </Pie>
 
 
-            <Tooltip
-              formatter={(value) =>
-                `₹${Number(value).toLocaleString("en-IN")}`
-              }
-            />
+              <Tooltip
+                formatter={(value) => [
+                  `₹${Number(value).toLocaleString(
+                    "en-IN"
+                  )}`,
+                  "Sales",
+                ]}
+              />
 
-            <Legend />
 
-          </PieChart>
+              <Legend
+                verticalAlign="bottom"
+                height={36}
+              />
 
-        </ResponsiveContainer>
+            </PieChart>
+
+          </ResponsiveContainer>
+
+        )}
 
       </div>
 
     </div>
   );
 }
+
 
 export default SalesByCategory;

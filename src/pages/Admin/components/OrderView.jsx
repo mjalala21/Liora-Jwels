@@ -161,10 +161,14 @@ function OrderView({ order, onClose }) {
             <div className="space-y-4">
 
               {order.items?.length > 0 ? (
-                order.items.map((item, index) => (
+                order.items.map((item, index) => 
+                  {
+                    const product = products.find(p=>p.id===item.productId)
+                   if(!product){
+                    return;
+                   }
                     
-
-                  <div
+                  return (<div
                     key={item.id || index}
                     className="flex items-center gap-4
                     border-b pb-4 last:border-b-0 last:pb-0"
@@ -173,10 +177,10 @@ function OrderView({ order, onClose }) {
                     {/* Product Image */}
                     <div className="w-20 h-20 rounded-2xl overflow-hidden bg-[#F8F4EC] flex-shrink-0">
 
-                      {item.image ? (
+                      {product.image ? (
                         <img
-                          src={item.image}
-                          alt={item.name}
+                          src={product.image}
+                          alt={product.name}
                           className="w-full h-full object-cover"
                         />
                       ) : (
@@ -191,45 +195,48 @@ function OrderView({ order, onClose }) {
                     <div className="flex-1">
 
                       <h4 className="font-medium text-[#3B2418]">
-                        {item.name || "Product"}
+                        {product.name || "Product"}
                       </h4>
 
                       <p className="text-sm text-gray-500 mt-1">
                         Quantity: {item.quantity || 1}
                       </p>
 
-                      <p className="text-sm text-gray-500">
+                      {/* <p className="text-sm text-gray-500">
                         Price: ₹
-                        {Number(item.price || 0).toLocaleString("en-IN")}
-                      </p>
+                        {Number(product.price || 0).toLocaleString("en-IN")}
+                      </p> */}
 
                     </div>
 
                     {/* Item Total */}
-                    <div className="text-right">
+                    {/* <div className="text-right">
 
                       <p className="font-semibold text-[#3B2418]">
                         ₹
                         {Number(
-                          (item.price || 0) * (item.quantity || 1)
+                          (product.price || 0) * (item.quantity || 1)
                         ).toLocaleString("en-IN")}
+                    
                       </p>
 
-                    </div>
+                    </div> */}
 
                   </div>
 
-                ))
+                )
+                    })
               ) : (
                 <p className="text-gray-500 text-center py-6">
                   No products found in this order.
                 </p>
+
               )}
-
+            
             </div>
-
+            
           </div>
-
+            
         </div>
 
         {/* Shipping Address */}

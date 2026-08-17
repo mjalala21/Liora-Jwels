@@ -13,7 +13,7 @@ function SearchBar({search, setSearch}) {
              value={search}
              onChange={(e)=>setSearch(e.target.value)}
              type="text"
-             placeholder="Search products..."
+             placeholder="Search..."
              className="flex-1 outline-none text-[#3B2418] placeholder:text-gray-400"
            />
    

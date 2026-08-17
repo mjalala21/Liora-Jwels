@@ -73,8 +73,12 @@ const filteredProducts = categoryFilteredProducts.filter(product => {
   }
 
   if (stockFilter === "In Stock") {
-    return product.inStock === true;
+    return product.stock > 10;
   }
+   
+   if(stockFilter === "Low Stock"){
+    return product.stock >0 && product.stock <=10
+   }
 
   if (stockFilter === "Out of Stock") {
     return product.inStock === false;
@@ -262,6 +266,7 @@ const handleSaveProduct = (updatedProduct) => {
         >
 
           <option value = "All Stock">All Stock</option>
+          <option value = "Low Stock">Low Stock</option>
           <option value = "In Stock">In Stock</option>
           <option value = "Out of Stock">Out of Stock</option>
 

@@ -116,6 +116,8 @@ console.log("STATUS:", loginUser?.status);
     if(loginUser?.role === "admin"){
       localStorage.setItem("role", loginUser.role);
       navigate('/admin/dashbord')
+
+       dispatch(setUser(loginUser))
     }
     else {
 

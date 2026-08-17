@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
 
 import {
   LineChart,
@@ -11,95 +10,352 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { getAllOrders } from "../../../services/ordersApi";
 
-
-function RevenueOverview() {
-
-  const { data: orders = [] } = useQuery({
-    queryKey: ["orders"],
-    queryFn: getAllOrders,
-  });
-
+function RevenueOverview({
+  orders = [],
+  dateRange,
+}) {
 
   const revenueData = useMemo(() => {
 
-    const dailyRevenue = {};
+    // ==========================================
+    // 7 DAYS
+    // ==========================================
 
-    const now = new Date();
+    if (dateRange === "7days") {
 
-    orders.forEach((order) => {
+      const data = [];
 
-      // Ignore cancelled orders
-      if (order.status === "Cancelled") return;
+      const today = new Date();
 
-      const date = new Date(order.createdAt);
+      for (let i = 6; i >= 0; i--) {
 
-      // Current month only
-      if (
-        date.getMonth() !== now.getMonth() ||
-        date.getFullYear() !== now.getFullYear()
-      ) {
-        return;
+        const date = new Date(today);
+
+        date.setDate(
+          today.getDate() - i
+        );
+
+        const day = date.getDate();
+        const month = date.getMonth();
+        const year = date.getFullYear();
+
+        const revenue = orders.reduce(
+          (total, order) => {
+
+            if (order.status === "Cancelled") {
+              return total;
+            }
+
+            const orderDate =
+              new Date(order.createdAt);
+
+            if (
+              orderDate.getDate() === day &&
+              orderDate.getMonth() === month &&
+              orderDate.getFullYear() === year
+            ) {
+              return (
+                total +
+                Number(order.totalAmount || 0)
+              );
+            }
+
+            return total;
+          },
+          0
+        );
+
+        data.push({
+          label: date.toLocaleDateString(
+            "en-IN",
+            {
+              weekday: "short",
+            }
+          ),
+          revenue,
+        });
+
       }
 
-      const day = date.getDate();
-
-      dailyRevenue[day] =
-        (dailyRevenue[day] || 0) +
-        Number(order.totalAmount);
-
-    });
+      return data;
+    }
 
 
-    return Object.entries(dailyRevenue)
-      .map(([day, revenue]) => ({
-        day: `Day ${day}`,
-        revenue,
-      }))
-      .sort((a, b) => {
+    // ==========================================
+    // 30 DAYS
+    // ==========================================
 
-        const dayA = Number(
-          a.day.replace("Day ", "")
-        );
+    if (dateRange === "30days") {
 
-        const dayB = Number(
-          b.day.replace("Day ", "")
-        );
+      const data = [
+        {
+          label: "Week 1",
+          revenue: 0,
+        },
+        {
+          label: "Week 2",
+          revenue: 0,
+        },
+        {
+          label: "Week 3",
+          revenue: 0,
+        },
+        {
+          label: "Week 4",
+          revenue: 0,
+        },
+        {
+          label: "Week 5",
+          revenue: 0,
+        },
+      ];
 
-        return dayA - dayB;
+      const today = new Date();
+
+      orders.forEach((order) => {
+
+        if (order.status === "Cancelled") {
+          return;
+        }
+
+        const orderDate =
+          new Date(order.createdAt);
+
+        const difference =
+          Math.floor(
+            (today - orderDate) /
+              (1000 * 60 * 60 * 24)
+          );
+
+        const weekNumber =
+          Math.floor(difference / 7);
+
+        const index =
+          4 - weekNumber;
+
+        if (
+          index >= 0 &&
+          index < 5
+        ) {
+          data[index].revenue +=
+            Number(order.totalAmount || 0);
+        }
 
       });
 
-  }, [orders]);
+      return data;
+    }
+
+
+    // ==========================================
+    // 6 MONTHS
+    // ==========================================
+
+    if (dateRange === "6months") {
+
+      const data = [];
+
+      const today = new Date();
+
+      for (let i = 5; i >= 0; i--) {
+
+        const date = new Date(
+          today.getFullYear(),
+          today.getMonth() - i,
+          1
+        );
+
+        const month =
+          date.getMonth();
+
+        const year =
+          date.getFullYear();
+
+        const revenue = orders.reduce(
+          (total, order) => {
+
+            if (order.status === "Cancelled") {
+              return total;
+            }
+
+            const orderDate =
+              new Date(order.createdAt);
+
+            if (
+              orderDate.getMonth() === month &&
+              orderDate.getFullYear() === year
+            ) {
+              return (
+                total +
+                Number(order.totalAmount || 0)
+              );
+            }
+
+            return total;
+          },
+          0
+        );
+
+        data.push({
+          label: date.toLocaleDateString(
+            "en-IN",
+            {
+              month: "short",
+            }
+          ),
+          revenue,
+        });
+
+      }
+
+      return data;
+    }
+
+
+    // ==========================================
+    // THIS YEAR
+    // ==========================================
+
+    if (dateRange === "year") {
+
+      const data = [];
+
+      const today = new Date();
+
+      const currentYear =
+        today.getFullYear();
+
+      const currentMonth =
+        today.getMonth();
+
+      for (
+        let month = 0;
+        month <= currentMonth;
+        month++
+      ) {
+
+        const revenue = orders.reduce(
+          (total, order) => {
+
+            if (order.status === "Cancelled") {
+              return total;
+            }
+
+            const orderDate =
+              new Date(order.createdAt);
+
+            if (
+              orderDate.getMonth() === month &&
+              orderDate.getFullYear() === currentYear
+            ) {
+              return (
+                total +
+                Number(order.totalAmount || 0)
+              );
+            }
+
+            return total;
+          },
+          0
+        );
+
+        const date = new Date(
+          currentYear,
+          month,
+          1
+        );
+
+        data.push({
+          label: date.toLocaleDateString(
+            "en-IN",
+            {
+              month: "short",
+            }
+          ),
+          revenue,
+        });
+
+      }
+
+      return data;
+    }
+
+
+    return [];
+
+  }, [orders, dateRange]);
 
 
   return (
-    <div className="bg-white rounded-3xl shadow-lg p-8">
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        shadow-lg
 
-      <div className="flex justify-between items-center mb-6">
+        p-5
+        sm:p-6
+        lg:p-8
+      "
+    >
 
-        <div>
-          <h2 className="text-2xl font-serif text-[#3B2418]">
-            Revenue Overview
-          </h2>
+      {/* =================================
+          HEADER
+      ================================= */}
 
-          <p className="text-gray-500 text-sm mt-1">
-            Revenue generated this month
-          </p>
-        </div>
+      <div className="mb-6">
+
+        <h2
+          className="
+            text-xl
+            sm:text-2xl
+            font-serif
+            text-[#3B2418]
+          "
+        >
+          Revenue Overview
+        </h2>
+
+        <p
+          className="
+            text-gray-500
+            text-sm
+            mt-1
+          "
+        >
+          {dateRange === "7days"
+            ? "Revenue generated in the last 7 days"
+            : dateRange === "30days"
+            ? "Revenue generated in the last 30 days"
+            : dateRange === "6months"
+            ? "Revenue generated in the last 6 months"
+            : "Revenue generated this year"}
+        </p>
 
       </div>
 
 
-      <div className="h-80">
+      {/* =================================
+          CHART
+      ================================= */}
+
+      <div className="h-72 sm:h-80">
 
         <ResponsiveContainer
           width="100%"
           height="100%"
         >
 
-          <LineChart data={revenueData}>
+          <LineChart
+            data={revenueData}
+            margin={{
+              top: 10,
+              right: 10,
+              left: 0,
+              bottom: 5,
+            }}
+          >
 
             <CartesianGrid
               strokeDasharray="3 3"
@@ -107,7 +363,7 @@ function RevenueOverview() {
             />
 
             <XAxis
-              dataKey="day"
+              dataKey="label"
               tickLine={false}
               axisLine={false}
             />
@@ -115,11 +371,16 @@ function RevenueOverview() {
             <YAxis
               tickLine={false}
               axisLine={false}
+              tickFormatter={(value) =>
+                `₹${value}`
+              }
             />
 
             <Tooltip
               formatter={(value) => [
-                `₹${value}`,
+                `₹${Number(value).toLocaleString(
+                  "en-IN"
+                )}`,
                 "Revenue",
               ]}
             />
@@ -142,5 +403,6 @@ function RevenueOverview() {
     </div>
   );
 }
+
 
 export default RevenueOverview;

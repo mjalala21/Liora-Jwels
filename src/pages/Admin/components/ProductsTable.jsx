@@ -300,6 +300,7 @@ const statusMutation = useMutation({
             statusMutation.mutate({
           id: deleteProduct.id,
           active: true,
+          inStock : true,
         })
       setDeleteProduct(null)
     }

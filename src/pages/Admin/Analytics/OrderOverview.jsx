@@ -145,9 +145,7 @@
 // }
 
 // export default OrdersOverview;
-
 import React, { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
 
 import {
   BarChart,
@@ -159,96 +157,290 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { getOrders } from "../../../services/ordersApi";
-
-function OrdersOverview() {
-  const { data: orders = [] } = useQuery({
-    queryKey: ["orders"],
-    queryFn: getOrders,
-  });
+function OrdersOverview({ orders = [], dateRange }) {
 
   const ordersData = useMemo(() => {
-    const now = new Date();
 
-    const currentMonth = now.getMonth();
-    const currentYear = now.getFullYear();
+    // ==========================================
+    // 7 DAYS
+    // ==========================================
 
-    // Number of days in current month
-    const daysInMonth = new Date(
-      currentYear,
-      currentMonth + 1,
-      0
-    ).getDate();
+    if (dateRange === "7days") {
 
-    // Number of weeks needed for the month
-    const numberOfWeeks = Math.ceil(daysInMonth / 7);
+      const data = [];
 
-    // Create Week 1, Week 2, Week 3...
-    const monthlyOrders = {};
+      const today = new Date();
 
-    for (let i = 1; i <= numberOfWeeks; i++) {
-      monthlyOrders[`Week ${i}`] = 0;
-    }
+      for (let i = 6; i >= 0; i--) {
 
-    // Count orders
-    orders.forEach((order) => {
-      // Ignore cancelled orders
-      if (order.status === "Cancelled") return;
+        const date = new Date(today);
 
-      const date = new Date(order.createdAt);
+        date.setDate(today.getDate() - i);
 
-      // Only current month
-      if (
-        date.getMonth() !== currentMonth ||
-        date.getFullYear() !== currentYear
-      ) {
-        return;
+        const day = date.getDate();
+        const month = date.getMonth();
+        const year = date.getFullYear();
+
+        const ordersCount = orders.filter((order) => {
+
+          if (order.status === "Cancelled") {
+            return false;
+          }
+
+          const orderDate = new Date(order.createdAt);
+
+          return (
+            orderDate.getDate() === day &&
+            orderDate.getMonth() === month &&
+            orderDate.getFullYear() === year
+          );
+
+        }).length;
+
+        data.push({
+          week: date.toLocaleDateString("en-IN", {
+            weekday: "short",
+          }),
+          orders: ordersCount,
+        });
+
       }
 
-      // Get day of month
-      const day = date.getDate();
+      return data;
+    }
 
-      // Find week
-      const weekNumber = Math.ceil(day / 7);
 
-      monthlyOrders[`Week ${weekNumber}`]++;
-    });
+    // ==========================================
+    // 30 DAYS
+    // ==========================================
 
-    // Convert object into array for Recharts
-    return Object.entries(monthlyOrders).map(
-      ([week, orders]) => ({
-        week,
-        orders,
-      })
-    );
+    if (dateRange === "30days") {
 
-  }, [orders]);
+      const data = [
+        {
+          week: "Week 1",
+          orders: 0,
+        },
+        {
+          week: "Week 2",
+          orders: 0,
+        },
+        {
+          week: "Week 3",
+          orders: 0,
+        },
+        {
+          week: "Week 4",
+          orders: 0,
+        },
+        {
+          week: "Week 5",
+          orders: 0,
+        },
+      ];
+
+      orders.forEach((order) => {
+
+        if (order.status === "Cancelled") {
+          return;
+        }
+
+        const orderDate = new Date(order.createdAt);
+
+        const today = new Date();
+
+        const difference =
+          Math.floor(
+            (today - orderDate) /
+              (1000 * 60 * 60 * 24)
+          );
+
+        const weekNumber =
+          Math.floor(difference / 7);
+
+        const index =
+          4 - weekNumber;
+
+        if (index >= 0 && index < 5) {
+          data[index].orders++;
+        }
+
+      });
+
+      return data;
+    }
+
+
+    // ==========================================
+    // 6 MONTHS
+    // ==========================================
+
+    if (dateRange === "6months") {
+
+      const data = [];
+
+      const today = new Date();
+
+      for (let i = 5; i >= 0; i--) {
+
+        const date = new Date(
+          today.getFullYear(),
+          today.getMonth() - i,
+          1
+        );
+
+        const month = date.getMonth();
+        const year = date.getFullYear();
+
+        const ordersCount = orders.filter((order) => {
+
+          if (order.status === "Cancelled") {
+            return false;
+          }
+
+          const orderDate = new Date(order.createdAt);
+
+          return (
+            orderDate.getMonth() === month &&
+            orderDate.getFullYear() === year
+          );
+
+        }).length;
+
+        data.push({
+          week: date.toLocaleDateString("en-IN", {
+            month: "short",
+          }),
+          orders: ordersCount,
+        });
+
+      }
+
+      return data;
+    }
+
+
+    // ==========================================
+    // THIS YEAR
+    // ==========================================
+
+    if (dateRange === "year") {
+
+      const data = [];
+
+      const currentYear = new Date().getFullYear();
+
+      for (let month = 0; month <= new Date().getMonth(); month++) {
+
+        const ordersCount = orders.filter((order) => {
+
+          if (order.status === "Cancelled") {
+            return false;
+          }
+
+          const orderDate = new Date(order.createdAt);
+
+          return (
+            orderDate.getMonth() === month &&
+            orderDate.getFullYear() === currentYear
+          );
+
+        }).length;
+
+        const date = new Date(
+          currentYear,
+          month,
+          1
+        );
+
+        data.push({
+          week: date.toLocaleDateString("en-IN", {
+            month: "short",
+          }),
+          orders: ordersCount,
+        });
+
+      }
+
+      return data;
+    }
+
+
+    return [];
+
+  }, [orders, dateRange]);
+
 
   return (
-    <div className="bg-white rounded-3xl shadow-lg p-8">
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        shadow-lg
 
-      {/* Header */}
+        p-5
+        sm:p-6
+        lg:p-8
+      "
+    >
+
+      {/* =================================
+          HEADER
+      ================================= */}
+
       <div className="mb-6">
 
-        <h2 className="text-2xl font-serif text-[#3B2418]">
-          Monthly Orders Overview
+        <h2
+          className="
+            text-xl
+            sm:text-2xl
+
+            font-serif
+            text-[#3B2418]
+          "
+        >
+          Orders Overview
         </h2>
 
-        <p className="text-gray-500 text-sm mt-1">
-          Orders placed this month
+        <p
+          className="
+            text-gray-500
+            text-sm
+            mt-1
+          "
+        >
+          {dateRange === "7days"
+            ? "Orders placed in the last 7 days"
+            : dateRange === "30days"
+            ? "Orders placed in the last 30 days"
+            : dateRange === "6months"
+            ? "Orders placed in the last 6 months"
+            : "Orders placed this year"}
         </p>
 
       </div>
 
-      {/* Chart */}
-      <div className="h-80">
+
+      {/* =================================
+          CHART
+      ================================= */}
+
+      <div className="h-72 sm:h-80">
 
         <ResponsiveContainer
           width="100%"
           height="100%"
         >
 
-          <BarChart data={ordersData}>
+          <BarChart
+            data={ordersData}
+            margin={{
+              top: 10,
+              right: 10,
+              left: 0,
+              bottom: 5,
+            }}
+          >
 
             <CartesianGrid
               strokeDasharray="3 3"
@@ -278,6 +470,7 @@ function OrdersOverview() {
               dataKey="orders"
               fill="#D4AF37"
               radius={[6, 6, 0, 0]}
+              barSize={35}
             />
 
           </BarChart>

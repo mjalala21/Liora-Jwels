@@ -11,8 +11,8 @@
       "image": "/images/rings/ring1.jpg",
       "material": "18K Gold",
       "description": "Elegant handcrafted diamond ring.",
-      "stock": 1,
-      "inStock": false,
+      "stock": 12,
+      "inStock": true,
       "active": true,
       "featured": true
     },
@@ -20,16 +20,16 @@
       "id": "2",
       "name": "golden Sun earing",
       "category": "Earing",
-      "price": 4599,
-      "originalPrice": 5200,
+      "price": 459944,
+      "originalPrice": 52002,
       "rating": 4.9,
       "reviews": 85,
       "image": "/images/earings/earing1.jpg",
       "material": "22K Gold",
       "description": "Luxury pearl necklace.",
-      "stock": 25,
-      "inStock": true,
-      "active": true,
+      "stock": 0,
+      "inStock": false,
+      "active": false,
       "featured": false
     },
     {
@@ -525,7 +525,7 @@
       "description": "Elegant handcrafted diamond ring.",
       "stock": 24,
       "inStock": true,
-      "active": false,
+      "active": true,
       "featured": true
     },
     {
@@ -1089,7 +1089,7 @@
       "image": "/images/rings/ring3.jpg",
       "description": "uwetrywtyrwytiwyrtywyit",
       "inStock": true,
-      "active": true,
+      "active": false,
       "id": "MSL5Q8rIRYI"
     },
     {
@@ -1191,6 +1191,7 @@
       "password": "123qwe#@",
       "role": "admin",
       "status": "active",
+      "createdAt": "2026-07-15T17:05:00.000Z",
       "id": "I0GJwW1H7HY"
     },
     {
@@ -1199,6 +1200,7 @@
       "password": "123qwe#@",
       "role": "user",
       "status": "active",
+      "createdAt": "2026-07-20T13:25:00.000Z",
       "id": "zS8eLYNYLgQ"
     },
     {
@@ -1207,6 +1209,7 @@
       "password": "123qwe#2",
       "role": "user",
       "status": "active",
+      "createdAt": "2026-07-25T08:40:00.000Z",
       "id": "BQ1K92XflgI"
     },
     {
@@ -1215,6 +1218,7 @@
       "password": "123qwe#@",
       "role": "user",
       "status": "blocked",
+      "createdAt": "2026-07-30T16:10:00.000Z",
       "id": "tcJMlgk-C_g"
     },
     {
@@ -1223,6 +1227,7 @@
       "password": "123qwe#@",
       "role": "user",
       "status": "blocked",
+      "createdAt": "2026-08-03T11:20:00.000Z",
       "id": "GUu-ODs33A4"
     },
     {
@@ -1231,6 +1236,7 @@
       "password": "12345678",
       "role": "user",
       "status": "active",
+      "createdAt": "2026-08-05T14:45:00.000Z",
       "id": "zr34g3BkT4k"
     },
     {
@@ -1239,6 +1245,7 @@
       "password": "12345678",
       "role": "user",
       "status": "active",
+      "createdAt": "2026-08-08T09:15:00.000Z",
       "id": "4A-VAasjT34"
     },
     {
@@ -1247,7 +1254,26 @@
       "password": "123123",
       "role": "user",
       "status": "active",
+      "createdAt": "2026-08-10T10:30:00.000Z",
       "id": "_tJ1gBmiM7Y"
+    },
+    {
+      "name": "mustharijalala",
+      "email": "example@gmail.com",
+      "password": "12345678",
+      "role": "user",
+      "isActive": "active",
+      "createdAt": "2026-08-14T14:36:23.952Z",
+      "id": "kmApoie2VNI"
+    },
+    {
+      "name": "user",
+      "email": "user@gmail.com",
+      "password": "12345678",
+      "role": "user",
+      "isActive": "active",
+      "createdAt": "2026-08-16T04:36:50.497Z",
+      "id": "kl8oXBvC_Ko"
     }
   ],
   "orders": [
@@ -1580,6 +1606,116 @@
       "status": "Processing",
       "createdAt": "2026-08-14T03:21:01.648Z",
       "id": "in5VnnEJuk8"
+    },
+    {
+      "userId": "zS8eLYNYLgQ",
+      "items": [
+        {
+          "userId": "zS8eLYNYLgQ",
+          "productId": "45",
+          "quantity": 1,
+          "id": "iXhQFdNNEhs"
+        },
+        {
+          "userId": "zS8eLYNYLgQ",
+          "productId": "26",
+          "quantity": 3,
+          "id": "t6x5s_ZExR0"
+        },
+        {
+          "userId": "zS8eLYNYLgQ",
+          "productId": "39",
+          "quantity": 1,
+          "id": "dBcwysQJwHk"
+        },
+        {
+          "userId": "zS8eLYNYLgQ",
+          "productId": "JqaquoRAWWs",
+          "quantity": 1,
+          "id": "fmAFCUKsPrw"
+        }
+      ],
+      "totalAmount": 128995,
+      "shippingAddress": {
+        "fullName": "minnu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "jgjgjghhijkh"
+      },
+      "paymentMethod": "cod",
+      "status": "Delivered",
+      "createdAt": "2026-08-15T16:11:46.250Z",
+      "id": "sjFJYRCD6Q0"
+    },
+    {
+      "userId": "zr34g3BkT4k",
+      "items": [
+        {
+          "userId": "zr34g3BkT4k",
+          "productId": "8",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2239,
+      "shippingAddress": {
+        "fullName": "minnu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "weewfjf"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-16T04:15:34.696Z",
+      "id": "8HleHH4ArPM"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "items": [
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "1",
+          "quantity": 1,
+          "id": "2kbiEjzzwMY"
+        },
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "5",
+          "quantity": 1,
+          "id": "mMLm9KudmDU"
+        }
+      ],
+      "totalAmount": 5185,
+      "shippingAddress": {
+        "fullName": "mustharijalala",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "fjwjfjrofojr"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-16T05:05:31.312Z",
+      "id": "EN1s7MXyEj4"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "items": [
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "1",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 3085,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "1234567890",
+        "city": "malappuramr",
+        "address": "jgerjtjrejtirwjtoijrw"
+      },
+      "paymentMethod": "card",
+      "status": "Pending",
+      "createdAt": "2026-08-16T05:08:43.516Z",
+      "id": "sa6UyrathNE"
     }
   ],
   "wishlist": [
@@ -1637,6 +1773,21 @@
       "userId": null,
       "productId": "3",
       "id": "jRVJXUWWNQM"
+    },
+    {
+      "userId": "zS8eLYNYLgQ",
+      "productId": "39",
+      "id": "VNg13ckrt38"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "productId": "5",
+      "id": "7dTuTR-n9QE"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "productId": "Lv3-rgphC_g",
+      "id": "-Nhd2tD2z4g"
     }
   ],
   "carts": [
@@ -1657,6 +1808,12 @@
       "productId": "4",
       "quantity": 5,
       "id": "LGGqGeW3qo0"
+    },
+    {
+      "userId": "zr34g3BkT4k",
+      "productId": "6",
+      "quantity": 1,
+      "id": "nyXkR2pNcH8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

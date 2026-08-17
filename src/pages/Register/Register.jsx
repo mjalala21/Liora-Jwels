@@ -153,7 +153,7 @@ const handleRegister = () => {
           "
           style={{
             backgroundImage:
-            "url('images/rings/ring21.jpg')"
+            "url('images/necklaces/necklace18.png')"
           }}
         >
 
@@ -452,6 +452,8 @@ const handleRegister = () => {
 
 export default Register;
 
+
+// ----------------------------------
 // import React from 'react'
 // import { useForm } from 'react-hook-form'
 // import { useQuery, useMutation } from '@tanstack/react-query'
@@ -533,3 +535,4 @@ export default Register;
 // }
 
 // export default Register
+

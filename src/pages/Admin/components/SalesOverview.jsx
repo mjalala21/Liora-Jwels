@@ -105,7 +105,7 @@ const salesData = useMemo(() => {
               stroke="#D4AF37"
               strokeWidth={3}
               dot={{ r: 4 }}
-              activeDot={{ r: 6 }}
+              activeDot={{ r: 6}}
             />
 
           </LineChart>

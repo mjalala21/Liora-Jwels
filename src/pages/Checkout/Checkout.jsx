@@ -2,12 +2,7 @@ import React from "react";
 import { FaLock, FaCreditCard, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-// import {
-//   placeOrders,
-//   getCart,
-//   getProducts,
-//   cleanCartItems,
-// } from "../../services/api";
+
 import { getProducts } from "../../services/productsApi";
 import { placeOrders } from "../../services/ordersApi";
 import { getCart, cleanCartItems } from "../../services/cartApi";
