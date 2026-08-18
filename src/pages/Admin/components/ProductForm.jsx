@@ -44,14 +44,14 @@ function AddProduct() {
 
   const navigate= useNavigate()
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+const handleChange = (e) => {
+  const { name, value } = e.target;
 
-    setProduct((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  setProduct((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
 
   
 const handleSubmit = (e) => {
@@ -373,3 +373,564 @@ const handleSubmit = (e) => {
 
 export default AddProduct;
 
+
+// import React from "react";
+// import {
+//   FaTimes,
+//   FaSave,
+//   FaGem,
+// } from "react-icons/fa";
+
+// function ProductForm({
+//   product,
+//   setProduct,
+//   onSubmit,
+//   onCancel,
+//   submitText = "Save Product",
+//   isSaving = false,
+// }) {
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+
+//     setProduct((prev) => ({
+//       ...prev,
+//       [name]: value,
+//     }));
+//   };
+
+//   return (
+//     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+
+//       {/* Background */}
+//       <div
+//         onClick={onCancel}
+//         className="
+//           absolute inset-0
+//           bg-black/50
+//           backdrop-blur-sm
+//         "
+//       />
+
+//       {/* Form Box */}
+//       <div
+//         className="
+//           relative z-10
+//           w-full max-w-2xl
+//           max-h-[90vh]
+//           overflow-y-auto
+//           bg-[#F8F4EC]
+//           rounded-3xl
+//           shadow-2xl
+//         "
+//       >
+
+//         {/* Header */}
+//         <div
+//           className="
+//             sticky top-0 z-10
+//             bg-white
+//             border-b
+//             px-7 py-5
+//             flex items-center justify-between
+//           "
+//         >
+
+//           <div>
+//             <p className="text-sm text-gray-500">
+//               Product Management
+//             </p>
+
+//             <h2 className="text-2xl font-serif text-[#3B2418]">
+//               {submitText === "Add Product"
+//                 ? "Add Product"
+//                 : "Edit Product"}
+//             </h2>
+//           </div>
+
+//           <button
+//             type="button"
+//             onClick={onCancel}
+//             disabled={isSaving}
+//             className="
+//               w-10 h-10
+//               rounded-full
+//               bg-[#F8F4EC]
+//               flex items-center justify-center
+//               hover:bg-[#D4AF37]
+//               hover:text-white
+//               transition
+//             "
+//           >
+//             <FaTimes />
+//           </button>
+
+//         </div>
+
+//         {/* Form */}
+//         <form
+//           onSubmit={onSubmit}
+//           className="p-7 space-y-6"
+//         >
+
+//           {/* ================= IMAGE ================= */}
+
+//           <div className="bg-white rounded-2xl p-4">
+
+//             <div className="flex items-center gap-5">
+
+//               {product.image ? (
+
+//                 <img
+//                   src={product.image}
+//                   alt={product.name}
+//                   className="
+//                     w-24 h-24
+//                     rounded-2xl
+//                     object-cover
+//                   "
+//                 />
+
+//               ) : (
+
+//                 <div
+//                   className="
+//                     w-24 h-24
+//                     rounded-2xl
+//                     bg-[#F8F4EC]
+//                     flex items-center justify-center
+//                   "
+//                 >
+//                   <FaGem className="text-3xl text-[#D4AF37]" />
+//                 </div>
+
+//               )}
+
+//               <div className="flex-1">
+
+//                 <label
+//                   className="
+//                     block
+//                     text-sm
+//                     font-medium
+//                     text-[#3B2418]
+//                     mb-2
+//                   "
+//                 >
+//                   Image URL
+//                 </label>
+
+//                 <input
+//                   type="text"
+//                   name="image"
+//                   value={product.image}
+//                   onChange={handleChange}
+//                   className="
+//                     w-full
+//                     border
+//                     border-gray-200
+//                     rounded-xl
+//                     px-4 py-3
+//                     outline-none
+//                     focus:border-[#D4AF37]
+//                   "
+//                   placeholder="Enter image URL"
+//                 />
+
+//               </div>
+
+//             </div>
+
+//           </div>
+
+//           {/* ================= NAME ================= */}
+
+//           <div>
+
+//             <label
+//               className="
+//                 block
+//                 text-sm
+//                 font-medium
+//                 text-[#3B2418]
+//                 mb-2
+//               "
+//             >
+//               Product Name
+//             </label>
+
+//             <input
+//               type="text"
+//               name="name"
+//               value={product.name}
+//               onChange={handleChange}
+//               required
+//               className="
+//                 w-full
+//                 bg-white
+//                 border
+//                 border-gray-200
+//                 rounded-xl
+//                 px-4 py-3
+//                 outline-none
+//                 focus:border-[#D4AF37]
+//               "
+//             />
+
+//           </div>
+
+//           {/* ================= CATEGORY + MATERIAL ================= */}
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+//             <div>
+
+//               <label
+//                 className="
+//                   block
+//                   text-sm
+//                   font-medium
+//                   text-[#3B2418]
+//                   mb-2
+//                 "
+//               >
+//                 Category
+//               </label>
+
+//               <select
+//                 name="category"
+//                 value={product.category}
+//                 onChange={handleChange}
+//                 required
+//                 className="
+//                   w-full
+//                   bg-white
+//                   border
+//                   border-gray-200
+//                   rounded-xl
+//                   px-4 py-3
+//                   outline-none
+//                   focus:border-[#D4AF37]
+//                 "
+//               >
+
+//                 <option value="">
+//                   Select Category
+//                 </option>
+
+//                 <option value="Ring">
+//                   Ring
+//                 </option>
+
+//                 <option value="Necklace">
+//                   Necklace
+//                 </option>
+
+//                 <option value="Bracelet">
+//                   Bracelet
+//                 </option>
+
+//                 <option value="Earing">
+//                   Earring
+//                 </option>
+
+//                 <option value="Bangle">
+//                   Bangle
+//                 </option>
+
+//               </select>
+
+//             </div>
+
+//             <div>
+
+//               <label
+//                 className="
+//                   block
+//                   text-sm
+//                   font-medium
+//                   text-[#3B2418]
+//                   mb-2
+//                 "
+//               >
+//                 Material
+//               </label>
+
+//               <input
+//                 type="text"
+//                 name="material"
+//                 value={product.material}
+//                 onChange={handleChange}
+//                 className="
+//                   w-full
+//                   bg-white
+//                   border
+//                   border-gray-200
+//                   rounded-xl
+//                   px-4 py-3
+//                   outline-none
+//                   focus:border-[#D4AF37]
+//                 "
+//               />
+
+//             </div>
+
+//           </div>
+
+//           {/* ================= PRICE ================= */}
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+//             <div>
+
+//               <label
+//                 className="
+//                   block
+//                   text-sm
+//                   font-medium
+//                   text-[#3B2418]
+//                   mb-2
+//                 "
+//               >
+//                 Price
+//               </label>
+
+//               <input
+//                 type="number"
+//                 name="price"
+//                 value={product.price}
+//                 onChange={handleChange}
+//                 required
+//                 min="0"
+//                 className="
+//                   w-full
+//                   bg-white
+//                   border
+//                   border-gray-200
+//                   rounded-xl
+//                   px-4 py-3
+//                   outline-none
+//                   focus:border-[#D4AF37]
+//                 "
+//               />
+
+//             </div>
+
+//             <div>
+
+//               <label
+//                 className="
+//                   block
+//                   text-sm
+//                   font-medium
+//                   text-[#3B2418]
+//                   mb-2
+//                 "
+//               >
+//                 Original Price
+//               </label>
+
+//               <input
+//                 type="number"
+//                 name="originalPrice"
+//                 value={product.originalPrice}
+//                 onChange={handleChange}
+//                 min="0"
+//                 className="
+//                   w-full
+//                   bg-white
+//                   border
+//                   border-gray-200
+//                   rounded-xl
+//                   px-4 py-3
+//                   outline-none
+//                   focus:border-[#D4AF37]
+//                 "
+//               />
+
+//             </div>
+
+//           </div>
+
+//           {/* ================= STOCK ================= */}
+
+//           <div>
+
+//             <label
+//               className="
+//                 block
+//                 text-sm
+//                 font-medium
+//                 text-[#3B2418]
+//                 mb-2
+//               "
+//             >
+//               Stock
+//             </label>
+
+//             <input
+//               type="number"
+//               name="stock"
+//               value={product.stock}
+//               onChange={handleChange}
+//               required
+//               min="0"
+//               className="
+//                 w-full
+//                 bg-white
+//                 border
+//                 border-gray-200
+//                 rounded-xl
+//                 px-4 py-3
+//                 outline-none
+//                 focus:border-[#D4AF37]
+//               "
+//             />
+
+//           </div>
+
+//           {/* ================= DESCRIPTION ================= */}
+
+//           <div>
+
+//             <label
+//               className="
+//                 block
+//                 text-sm
+//                 font-medium
+//                 text-[#3B2418]
+//                 mb-2
+//               "
+//             >
+//               Description
+//             </label>
+
+//             <textarea
+//               name="description"
+//               value={product.description}
+//               onChange={handleChange}
+//               rows="5"
+//               className="
+//                 w-full
+//                 bg-white
+//                 border
+//                 border-gray-200
+//                 rounded-xl
+//                 px-4 py-3
+//                 outline-none
+//                 focus:border-[#D4AF37]
+//                 resize-none
+//               "
+//             />
+
+//           </div>
+
+//           {/* ================= STOCK STATUS ================= */}
+
+//           <div
+//             className="
+//               bg-white
+//               rounded-2xl
+//               p-5
+//               flex
+//               items-center
+//               justify-between
+//             "
+//           >
+
+//             <div>
+
+//               <p className="font-medium text-[#3B2418]">
+//                 Product Status
+//               </p>
+
+//               <p className="text-sm text-gray-500">
+//                 Automatically controlled by stock
+//               </p>
+
+//             </div>
+
+//             <span
+//               className={`
+//                 px-4 py-2
+//                 rounded-full
+//                 text-sm
+//                 font-medium
+//                 ${
+//                   Number(product.stock) > 0
+//                     ? "bg-green-100 text-green-700"
+//                     : "bg-red-100 text-red-600"
+//                 }
+//               `}
+//             >
+//               {Number(product.stock) > 0
+//                 ? "In Stock"
+//                 : "Out of Stock"}
+//             </span>
+
+//           </div>
+
+//           {/* ================= BUTTONS ================= */}
+
+//           <div className="flex gap-4 pt-2">
+
+//             <button
+//               type="button"
+//               onClick={onCancel}
+//               disabled={isSaving}
+//               className="
+//                 flex-1
+//                 py-3
+//                 rounded-xl
+//                 bg-white
+//                 border
+//                 border-gray-200
+//                 text-gray-600
+//                 hover:bg-gray-100
+//                 transition
+//                 font-medium
+//               "
+//             >
+//               Cancel
+//             </button>
+
+//             <button
+//               type="submit"
+//               disabled={isSaving}
+//               className="
+//                 flex-1
+//                 py-3
+//                 rounded-xl
+//                 bg-[#3B2418]
+//                 text-white
+//                 hover:bg-[#D4AF37]
+//                 hover:text-[#3B2418]
+//                 transition
+//                 font-medium
+//                 flex
+//                 items-center
+//                 justify-center
+//                 gap-2
+//                 disabled:opacity-50
+//               "
+//             >
+
+//               <FaSave />
+
+//               {isSaving
+//                 ? "Saving..."
+//                 : submitText}
+
+//             </button>
+
+//           </div>
+
+//         </form>
+
+//       </div>
+
+//     </div>
+//   );
+// }
+
+// export default ProductForm;

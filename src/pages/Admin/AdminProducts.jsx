@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 import SearchBar from "../../components/layout/SearchBar";
 import ProductView from "./components/ProductView";
-import EditProduct from "./components/EditProduct";
+import EditProduct from "./EditProduct";
 import NoItemsFound from "./components/NoItemsFound";
 import { toast } from "react-toastify";
 
@@ -145,18 +145,7 @@ const handleSaveProduct = (updatedProduct) => {
                  
       />
 
-      {/* Search */}
-      {/* <div className="bg-white rounded-2xl shadow-lg p-5 flex items-center gap-4 mb-10">
 
-        <FaSearch className="text-gray-400 text-xl" />
-
-        <input
-          type="text"
-          placeholder="Search products..."
-          className="flex-1 outline-none text-[#3B2418] placeholder:text-gray-400"
-        />
-
-      </div> */}
 
       {/* Statistics */}
 

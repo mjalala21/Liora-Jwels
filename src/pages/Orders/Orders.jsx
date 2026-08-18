@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   FaBoxOpen,
   FaMapMarkerAlt,
@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 // import { getOrders, getProducts } from "../../services/api";
 import { getProducts } from "../../services/productsApi";
-import { getOrders } from "../../services/ordersApi";
+import { getOrders, updateOrderStatus } from "../../services/ordersApi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -16,6 +16,8 @@ function MyOrders() {
 
 
 const user = useSelector((state) => state.user.user);
+
+const queryClient = useQueryClient()
 
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ["orders", user?.id],
@@ -29,6 +31,20 @@ const user = useSelector((state) => state.user.user);
   queryFn:getProducts
 
 });
+
+const cancelOrderMutation = useMutation({
+   mutationFn : ({orderId, status})=>updateOrderStatus(orderId, status),
+
+   onSuccess : ()=>{
+    queryClient.invalidateQueries({
+      queryKey : ['orders']
+    })
+   }
+})
+
+
+
+
 
   if (isLoading) {
     return (
@@ -123,11 +139,11 @@ const user = useSelector((state) => state.user.user);
                 </div>
 
                 
-                <div className="mt-8 space-y-6">
+                <div className="mt-8 space-y-6 ">
                   {order.items.map((item, index) => (
                     <div
                       key={index}
-                      className="flex gap-6 items-center border-b pb-5 last:border-none"
+                      className="flex gap-6 justify-between items-center border-b pb-5 last:border-none"
                     >
                       <Link to={`/products/${item.product?.id}`}><img
                         src={item.product?.image}
@@ -148,8 +164,12 @@ const user = useSelector((state) => state.user.user);
                           ₹{item.product?.price}
                         </p>
                       </div>
+
                     </div>
+                    
                   ))}
+
+                  
                 </div>
 
                 {/* Delivery Address */}
@@ -182,6 +202,18 @@ const user = useSelector((state) => state.user.user);
                       {order.paymentMethod}
                     </p>
                   </div>
+                  {order.status!=="Cancelled" && 
+                  <button className="py-2 px-4 border-none rounded-3xl bg-red-200 text-red-500"
+                      onClick={()=>{cancelOrderMutation.mutate({
+                        orderId :order.id,
+                        status : "Cancelled"
+                      })
+                        console.log(order.id)
+                      }}
+                      
+                      >Cancel Order</button>
+                  }
+                                        
                 </div>
               </div>
             ))}

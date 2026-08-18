@@ -1182,6 +1182,19 @@
       "active": true,
       "inStock": true,
       "id": "Lv3-rgphC_g"
+    },
+    {
+      "name": "testing product",
+      "category": "Ring",
+      "price": "3232",
+      "originalPrice": "34343",
+      "material": "Gold",
+      "stock": 1,
+      "image": "/images/rings/ring19.jpg",
+      "description": "fgeekrhkhruhj",
+      "active": true,
+      "inStock": true,
+      "id": "-rEGEDBIGT8"
     }
   ],
   "users": [
@@ -1199,7 +1212,7 @@
       "email": "alluallu@gmail.com",
       "password": "123qwe#@",
       "role": "user",
-      "status": "active",
+      "status": "blocked",
       "createdAt": "2026-07-20T13:25:00.000Z",
       "id": "zS8eLYNYLgQ"
     },
@@ -1497,7 +1510,7 @@
         "address": "ehrweerkhekurwk"
       },
       "paymentMethod": "cod",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-13T06:43:15.908Z",
       "id": "GPDrMMpN6-M"
     },
@@ -1540,7 +1553,7 @@
         "address": "kwhkjfhkdsfj"
       },
       "paymentMethod": "cod",
-      "status": "Processing",
+      "status": "Cancelled",
       "createdAt": "2026-08-13T06:45:05.574Z",
       "id": "AT9UwS87FjU"
     },
@@ -1664,7 +1677,7 @@
         "address": "weewfjf"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-16T04:15:34.696Z",
       "id": "8HleHH4ArPM"
     },
@@ -1692,7 +1705,7 @@
         "address": "fjwjfjrofojr"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-16T05:05:31.312Z",
       "id": "EN1s7MXyEj4"
     },
@@ -1713,9 +1726,135 @@
         "address": "jgerjtjrejtirwjtoijrw"
       },
       "paymentMethod": "card",
-      "status": "Pending",
+      "status": "Cancelled",
       "createdAt": "2026-08-16T05:08:43.516Z",
       "id": "sa6UyrathNE"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "items": [
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "3",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 5000,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "hfehriueir"
+      },
+      "paymentMethod": "cod",
+      "status": "Cancelled",
+      "createdAt": "2026-08-17T08:50:55.650Z",
+      "id": "eC4GvYl9evs"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "items": [
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "Lv3-rgphC_g",
+          "quantity": 1,
+          "id": "SEFSLjiE5Sk"
+        }
+      ],
+      "totalAmount": 2323,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "ywegfywgyeyw"
+      },
+      "paymentMethod": "cod",
+      "status": "Cancelled",
+      "createdAt": "2026-08-17T10:02:00.859Z",
+      "id": "2UbwGCznXlQ"
+    },
+    {
+      "userId": "zr34g3BkT4k",
+      "items": [
+        {
+          "userId": "zr34g3BkT4k",
+          "productId": "6",
+          "quantity": 1,
+          "id": "nyXkR2pNcH8"
+        }
+      ],
+      "totalAmount": 3299,
+      "shippingAddress": {
+        "fullName": "minnu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "hfrwhurhfiuwhg"
+      },
+      "paymentMethod": "cod",
+      "status": "Cancelled",
+      "createdAt": "2026-08-17T15:02:35.706Z",
+      "id": "qr3PBVtNxPY"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "items": [
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "8",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2239,
+      "shippingAddress": {
+        "fullName": "minnu",
+        "phone": "1234567890",
+        "city": "malappuram",
+        "address": "jgjgggyugyuguygyu"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-18T12:51:56.369Z",
+      "id": "6BuDT-BCi5c"
+    },
+    {
+      "userId": "kl8oXBvC_Ko",
+      "items": [
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "8",
+          "quantity": 1,
+          "id": "2I__lXoXX7w"
+        },
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "j3tEgYpFz6U",
+          "quantity": 1,
+          "id": "K1AwWaJ1vqc"
+        },
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "50",
+          "quantity": 1,
+          "id": "kT0IwhZFx4U"
+        },
+        {
+          "userId": "kl8oXBvC_Ko",
+          "productId": "51",
+          "quantity": 1,
+          "id": "qRa5c-UH-uY"
+        }
+      ],
+      "totalAmount": 80238,
+      "shippingAddress": {
+        "fullName": "allu",
+        "phone": "1234567890",
+        "city": "sdasdsd",
+        "address": "msmsbmdas"
+      },
+      "paymentMethod": "cod",
+      "status": "Pending",
+      "createdAt": "2026-08-18T12:52:29.943Z",
+      "id": "u-k5qF0tORY"
     }
   ],
   "wishlist": [
@@ -1785,9 +1924,9 @@
       "id": "7dTuTR-n9QE"
     },
     {
-      "userId": "kl8oXBvC_Ko",
-      "productId": "Lv3-rgphC_g",
-      "id": "-Nhd2tD2z4g"
+      "userId": "zr34g3BkT4k",
+      "productId": "49",
+      "id": "uBk4R2rNGLc"
     }
   ],
   "carts": [
@@ -1811,9 +1950,9 @@
     },
     {
       "userId": "zr34g3BkT4k",
-      "productId": "6",
-      "quantity": 1,
-      "id": "nyXkR2pNcH8"
+      "productId": "10",
+      "quantity": 3,
+      "id": "edNOtK7_Lao"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

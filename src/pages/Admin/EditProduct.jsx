@@ -377,3 +377,110 @@ function EditProduct({
 }
 
 export default EditProduct;
+
+
+// import React, { useEffect, useState } from "react";
+
+// import ProductForm from "./components/ProductForm";
+
+// function EditProduct({
+//   product,
+//   onClose,
+//   onSave,
+//   isSaving,
+// }) {
+
+//   const [editedProduct, setEditedProduct] = useState({
+//     name: "",
+//     category: "",
+//     material: "",
+//     price: "",
+//     originalPrice: "",
+//     stock: 0,
+//     image: "",
+//     description: "",
+//   });
+
+//   useEffect(() => {
+
+//     if (product) {
+
+//       setEditedProduct({
+//         ...product,
+
+//         name: product.name || "",
+//         category: product.category || "",
+//         material: product.material || "",
+
+//         price: product.price ?? "",
+
+//         originalPrice:
+//           product.originalPrice ?? "",
+
+//         stock: product.stock ?? 0,
+
+//         image: product.image || "",
+
+//         description:
+//           product.description || "",
+//       });
+
+//     }
+
+//   }, [product]);
+
+//   const handleSubmit = (e) => {
+
+//     e.preventDefault();
+
+//     const stock = Number(
+//       editedProduct.stock
+//     );
+
+//     const updatedProduct = {
+
+//       ...product,
+
+//       ...editedProduct,
+
+//       price: Number(
+//         editedProduct.price
+//       ),
+
+//       originalPrice:
+//         editedProduct.originalPrice === ""
+//           ? ""
+//           : Number(
+//               editedProduct.originalPrice
+//             ),
+
+//       stock,
+
+//       inStock: stock > 0,
+
+//       active: stock > 0,
+//     };
+
+//     console.log(
+//       "Updated Product:",
+//       updatedProduct
+//     );
+
+//     onSave(updatedProduct);
+//   };
+
+//   return (
+
+//     <ProductForm
+//       product={editedProduct}
+//       setProduct={setEditedProduct}
+//       onSubmit={handleSubmit}
+//       onCancel={onClose}
+//       submitText="Save Changes"
+//       isSaving={isSaving}
+//     />
+
+//   );
+// }
+
+// export default EditProduct;
