@@ -8,8 +8,8 @@ import { getProducts } from '../../services/productsApi'
 import { getWishlist, addToWishlist, removeFromWishlist } from '../../services/wishlistApi'
 import { FaHeart } from "react-icons/fa";
 
-import ProductHero from './productHero'
-import ProductServices from './productServices'
+import ProductHero from './ProductHero'
+import ProductServices from './ProductServices'
 import RelatedProducts from './RelatedProducts'
 import { useSelector } from 'react-redux'
 
