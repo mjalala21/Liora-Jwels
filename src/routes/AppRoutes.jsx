@@ -23,10 +23,10 @@ import OrderDetails from "../pages/Orders/OrderDetails";
 import AllProducts from '../pages/Products/AllProducts'
 import BlankLayout from "../layouts/BlankLayout";
 import AdminLayout from '../layouts/AdminLayout'
-import Dashbord from './../pages/Admin/Dashbord'
+import Dashbord from '../pages/Admin/Dashbord'
 import AdminProducts from '../pages/Admin/AdminProducts'
 import AdminOrders from '../pages/Admin/AdminOrders'
-import Users from './../pages/Admin/Users'
+import Users from '../pages/Admin/Users'
 // import An from './../pages/Admin/Analytics'
 import AdminAnalytics from '../pages/Admin/AdminAnalytics'
 import ProductForm from '../pages/Admin/components/ProductForm'

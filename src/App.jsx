@@ -6,7 +6,7 @@
 
 
   import { getUserById } from "./services/userApi";
-  import AppRoutes from "./routes/AppRoutes";
+  import AppRoutes from "./routes/AppRoutes.jsx";
 
   function App() {
 
