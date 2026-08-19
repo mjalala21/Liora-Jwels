@@ -10,7 +10,7 @@ import { FaHeart } from "react-icons/fa";
 
 import ProductHero from './productHero'
 import ProductServices from './productServices'
-import RelatedProducts from './relatedProducts'
+import RelatedProducts from './RelatedProducts'
 import { useSelector } from 'react-redux'
 
 function ProductDetails() {
